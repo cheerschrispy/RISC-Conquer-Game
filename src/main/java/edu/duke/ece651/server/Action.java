@@ -12,4 +12,20 @@ public class Action {
         this.end = end;
         this.num = num;
     }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getStart(){
+        return this.start;
+    }
+
+    public String getEnd(){
+        return this.end;
+    }
+
+    public int getNum(){
+        return this.num;
+    }
 }

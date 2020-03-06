@@ -30,4 +30,12 @@ public class Territory {
     public String getName(){
         return this.name;
     }
+
+    public Set<Territory> getNeighbors(){
+        return this.neighbors;
+    }
+
+    public void setNum(int i){
+        this.num = i;
+    }
 }
