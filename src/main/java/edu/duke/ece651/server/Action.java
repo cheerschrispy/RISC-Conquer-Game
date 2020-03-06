@@ -28,4 +28,20 @@ public class Action {
     public int getNum(){
         return this.num;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
 }
