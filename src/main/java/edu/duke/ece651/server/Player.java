@@ -6,8 +6,16 @@ public class Player {
     private int id;
     private List<Action> actions;
 
-    Player(int id) {
+    public Player(int id) {
         this.id = id;
         this.actions = new ArrayList<>();
+    }
+
+    public int getId(){
+        return this.id;
+    }
+
+    public List<Action> getActions(){
+        return this.actions;
     }
 }

@@ -16,6 +16,18 @@ public class Territory {
     }
 
     public void connect(Territory t) {
-        neighbors.add(t);
+        this.neighbors.add(t);
+    }
+
+    public int getOwner(){
+        return this.owner;
+    }
+
+    public int getNum(){
+        return this.num;
+    }
+
+    public String getName(){
+        return this.name;
     }
 }
