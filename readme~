@@ -19,17 +19,18 @@ validate抛出NullPointerException，导致接受失败
 
 ----------3.7 lzy update---------
 1. Modification on Server:
-1)everytime using outputstream,use flush() after sending.
-2)server starts to close only after 3 clients close(and sending server message "exit")
+1)everytime use outputstream, flush after sending.
+2)server start to close only after 3 clients close(and sending server message "exit")
 
 2.On player
 1) now it has a field to indicate the current player is valid or not, judged by server
-2) the action list will be cleared everytime it is used in a new round.(May be a problem cuz everything is reference if you want to use "history" to trace back)
+2) the action list will be cleared everytime it is used in a new round.(May be a problem cuz everything is reference? if
+you want to use history)
 
 3.On client
 1)hopefullly all functions?
 
 4.Validator
-1) add some helper functions to validate for user input 
+1) add some functions to valid in client
 
 
