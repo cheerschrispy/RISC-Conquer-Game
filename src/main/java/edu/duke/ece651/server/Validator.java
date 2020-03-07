@@ -68,7 +68,7 @@ public class Validator {
             Territory curr = q.peek();
             q.poll();
             for(Territory t : curr.getNeighbors()){
-                if(!visited.contains(t)){
+              if(!visited.contains(t) && t.getOwner() == start.getOwner()){
                     q.offer(t);
                     visited.add(t);
                     if(t.getName().equals(dest)){
