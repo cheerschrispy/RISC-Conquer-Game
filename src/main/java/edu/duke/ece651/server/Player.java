@@ -1,8 +1,9 @@
 package edu.duke.ece651.server;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Player {
+public class Player implements Serializable {
     private int id;
     private List<Action> actions;
 
@@ -15,7 +16,11 @@ public class Player {
         return this.id;
     }
 
-    public List<Action> getActions(){
+    public List<Action> getActions() {
         return this.actions;
+    }
+
+    public void addAction(Action action) {
+        this.actions.add(action);
     }
 }

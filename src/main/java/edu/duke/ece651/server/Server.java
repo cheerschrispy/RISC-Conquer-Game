@@ -1,19 +1,67 @@
 package edu.duke.ece651.server;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.*;
 
 public class Server {
     private Map<String, Territory> territories;
     private List<Player> players;
+    private Validator validator;
+    private Executor executor;
+    public static final int port = 8080;
+    private ServerSocket ss = null;
 
     Server() {
         this.territories = new HashMap<>();
         this.players = new ArrayList<>();
+        this.validator = new Validator();
+        this.executor = new Executor();
     }
 
     public void run() {
         createTerritories();
         createPlayers();
+        try {
+            ss = new ServerSocket(port);
+            System.out.println("Starting Server on Port " + port);
+            Socket[] clients = new Socket[3];
+            //send empty player to each player
+            for (int i = 0; i < 3; i++) {
+                clients[i] = ss.accept();
+                System.out.println("Connected to player " + i);
+                ObjectOutputStream os = new ObjectOutputStream(clients[i].getOutputStream());
+                os.writeObject(players.get(i));
+            }
+            //receive player & send territory to each player
+            while (!executor.checkWin(territories)) {
+                Receiver[] receivers = new Receiver[3];
+                for (int i = 0; i < 3; i++) {
+                    receivers[i] = new Receiver(clients[i]);
+                    receivers[i].start();
+                }
+                for (Thread thread : receivers) {
+                    thread.join();
+                }
+                executor.execute(players, territories);
+                for (int i = 0; i < 3; i++) {
+                    ObjectOutputStream os = new ObjectOutputStream(clients[i].getOutputStream());
+                    os.writeObject(territories);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                System.out.println("Closing Server Socket");
+                ss.close();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -50,6 +98,27 @@ public class Server {
         for (int i = 0; i < 3; i++) {
             Player player = new Player(i);
             players.add(player);
+        }
+    }
+
+    class Receiver extends Thread {
+        Socket client;
+        Receiver(Socket socket) {
+            this.client = socket;
+        }
+        @Override
+        public void run() {
+            try {
+                ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());
+                ObjectInputStream is = new ObjectInputStream(client.getInputStream());
+                Player player = (Player) is.readObject();
+                while (!validator.validate(player, territories)) {
+                    os.writeObject(player);
+                    player = (Player) is.readObject();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

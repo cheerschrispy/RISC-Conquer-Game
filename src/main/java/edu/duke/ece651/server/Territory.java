@@ -1,8 +1,9 @@
 package edu.duke.ece651.server;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Territory {
+public class Territory implements Serializable {
     private String name;
     private int owner;
     private int num;

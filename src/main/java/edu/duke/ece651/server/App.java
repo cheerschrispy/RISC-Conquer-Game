@@ -6,7 +6,6 @@ package edu.duke.ece651.server;
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("Starting Server");
         Server server = new Server();
         server.run();
     }
