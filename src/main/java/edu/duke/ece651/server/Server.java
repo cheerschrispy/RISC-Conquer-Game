@@ -10,7 +10,6 @@ import java.util.*;
 public class Server {
     private Map<String, Territory> territories;
     private List<Player> players;
-    private Validator validator;
     private Executor executor;
     private static final int port = 8080;
     private ServerSocket ss = null;
@@ -18,7 +17,6 @@ public class Server {
     Server() {
         this.territories = new HashMap<>();
         this.players = new ArrayList<>();
-        this.validator = new Validator();
         this.executor = new Executor();
     }
 
@@ -116,6 +114,7 @@ public class Server {
                 ObjectOutputStream os = new ObjectOutputStream(client.getOutputStream());
                 ObjectInputStream is = new ObjectInputStream(client.getInputStream());
                 Player player = (Player) is.readObject();
+                Validator validator = new Validator();
                 while (!validator.validate(player, territories)) {
                     os.writeObject(player);
                     player = (Player) is.readObject();

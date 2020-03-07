@@ -1,0 +1,17 @@
+连接流程：
+连接三个client
+给client发player和territories
+如果游戏未结束循环：{
+    多线程接受client发来的player，如果validate失败把player传回client
+    全部接受成功
+    进行move，attack等处理
+    把处理完的territories传给client
+}
+
+
+测试流程：
+AppTest.java
+ConnectionTest.java
+
+todo:
+validate抛出NullPointerException，导致接受失败
