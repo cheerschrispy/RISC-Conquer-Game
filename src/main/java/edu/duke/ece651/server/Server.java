@@ -12,7 +12,7 @@ public class Server {
     private List<Player> players;
     private Validator validator;
     private Executor executor;
-    public static final int port = 8080;
+    private static final int port = 8080;
     private ServerSocket ss = null;
 
     Server() {
@@ -29,18 +29,20 @@ public class Server {
             ss = new ServerSocket(port);
             System.out.println("Starting Server on Port " + port);
             Socket[] clients = new Socket[3];
-            //send empty player to each player
+            //send player & territories to each player
             for (int i = 0; i < 3; i++) {
                 clients[i] = ss.accept();
                 System.out.println("Connected to player " + i);
                 ObjectOutputStream os = new ObjectOutputStream(clients[i].getOutputStream());
                 os.writeObject(players.get(i));
+                os.writeObject(territories);
             }
-            //receive player & send territory to each player
+            //receive player & send territories to each player
             while (!executor.checkWin(territories)) {
+                players = new ArrayList<>();
                 Receiver[] receivers = new Receiver[3];
                 for (int i = 0; i < 3; i++) {
-                    receivers[i] = new Receiver(clients[i]);
+                    receivers[i] = new Receiver(clients[i], i);
                     receivers[i].start();
                 }
                 for (Thread thread : receivers) {
@@ -58,7 +60,7 @@ public class Server {
             try{
                 System.out.println("Closing Server Socket");
                 ss.close();
-            }catch(IOException e){
+            }catch(Exception e){
                 e.printStackTrace();
             }
         }
@@ -66,15 +68,15 @@ public class Server {
     }
 
     private void createTerritories() {
-        territories.put("a1", new Territory("a1", 1, 3));
-        territories.put("a2", new Territory("a2", 1, 3));
-        territories.put("a3", new Territory("a3", 1, 3));
-        territories.put("b1", new Territory("b1", 2, 3));
-        territories.put("b2", new Territory("b2", 2, 3));
-        territories.put("b3", new Territory("b3", 2, 3));
-        territories.put("c1", new Territory("c1", 3, 3));
-        territories.put("c2", new Territory("c2", 3, 3));
-        territories.put("c3", new Territory("c3", 3, 3));
+        territories.put("a1", new Territory("a1", 0, 3));
+        territories.put("a2", new Territory("a2", 0, 3));
+        territories.put("a3", new Territory("a3", 0, 3));
+        territories.put("b1", new Territory("b1", 1, 3));
+        territories.put("b2", new Territory("b2", 1, 3));
+        territories.put("b3", new Territory("b3", 1, 3));
+        territories.put("c1", new Territory("c1", 2, 3));
+        territories.put("c2", new Territory("c2", 2, 3));
+        territories.put("c3", new Territory("c3", 2, 3));
         connect("a1", "a2");
         connect("a2", "a3");
         connect("b1", "b2");
@@ -103,8 +105,10 @@ public class Server {
 
     class Receiver extends Thread {
         Socket client;
-        Receiver(Socket socket) {
+        int id;
+        Receiver(Socket socket, int id) {
             this.client = socket;
+            this.id = id;
         }
         @Override
         public void run() {
@@ -116,6 +120,7 @@ public class Server {
                     os.writeObject(player);
                     player = (Player) is.readObject();
                 }
+                players.add(player);
             } catch (Exception e) {
                 e.printStackTrace();
             }

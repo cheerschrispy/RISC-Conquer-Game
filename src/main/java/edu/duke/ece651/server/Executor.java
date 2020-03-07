@@ -22,7 +22,7 @@ public class Executor {
                 String end = action.getEnd();
                 int num = action.getNum();
                 territories.get(start).setNum(territories.get(start).getNum() - num);
-                territories.get(end).setNum(territories.get(end).getNum() - num);
+                territories.get(end).setNum(territories.get(end).getNum() + num);
             }
         }
     }
