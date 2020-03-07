@@ -38,7 +38,7 @@ public class Player implements Serializable {
             while (!validate_helper.InputFormat_Validate(action)) {
                 action = sc.nextLine();
             }
-            if (action.equals("C")) break;
+            if (action.equals("D")) break;
             System.out.println("Please assign the source territory of YOURSELF");
             String src = sc.nextLine();
             while (!validate_helper.InputOnwer_Validate(this, src, territories)) {

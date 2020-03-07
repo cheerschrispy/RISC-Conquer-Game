@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04c8847d-33d2-4e20-9e6e-0572ff6c7d9b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Executor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme" beforeDir="false" afterPath="$PROJECT_DIR$/readme" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Prompts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Prompts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Territory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Territory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Validator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
