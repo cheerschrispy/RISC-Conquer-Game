@@ -3,10 +3,18 @@
  */
 package edu.duke.ece651.server;
 
-public class App {
+import java.util.concurrent.TimeUnit;
 
-    public static void main(String[] args) {
-        Server server = new Server();
-        server.run();
+public class App {
+    public static void main(String[] args) throws InterruptedException {
+        Client c1 = new Client("c");
+        Client c2 = new Client("b");
+        Client c3 = new Client("a");
+        c1.start();
+        TimeUnit.SECONDS.sleep(1);
+        c2.start();
+        TimeUnit.SECONDS.sleep(1);
+        c3.start();
     }
+
 }

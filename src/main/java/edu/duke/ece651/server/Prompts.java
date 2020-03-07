@@ -3,9 +3,12 @@ package edu.duke.ece651.server;
 import java.util.*;
 
 public class Prompts {
+    //key is player id, value is corresponding own territories
     private HashMap<Integer, ArrayList<Territory>> graphInformation = new HashMap<>();
 
+
     public void GraphPrompts(Map<String, Territory> territories){
+        //territories is the info got from server end(contains whole info of the graph)
         this.getInformation(territories);
         for(int playerId : this.graphInformation.keySet()){
             StringBuilder b = new StringBuilder();
@@ -44,4 +47,14 @@ public class Prompts {
             }
         }
     }
+
+
+    public void OPtionsPrompts(String client_name){
+        System.out.println("You are the "+client_name+" player, what would you like to do?");
+        System.out.println("M(ove)");
+        System.out.println("A(ttack)");
+        System.out.println("D(one)");
+    }
+
+
 }

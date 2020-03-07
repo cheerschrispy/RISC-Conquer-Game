@@ -6,7 +6,7 @@ import java.util.*;
 public class Territory implements Serializable {
     private String name;
     private int owner;
-    private int num;
+    private int num;//soldier num in this territory
     private Set<Territory> neighbors;
 
     Territory(String name, int owner, int num) {
@@ -16,6 +16,7 @@ public class Territory implements Serializable {
         neighbors = new HashSet<>();
     }
 
+    //add  other territory to its neighbor list
     public void connect(Territory t) {
         this.neighbors.add(t);
     }

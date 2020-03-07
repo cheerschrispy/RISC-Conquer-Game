@@ -3,6 +3,8 @@ package edu.duke.ece651.server;
 import java.util.*;
 
 public class Executor {
+
+
     public void attack(Map<String, Map<Integer, Integer>> attacks, Map<String, Territory> territories) {
 
     }
@@ -55,3 +57,4 @@ public class Executor {
         return set.size() == 1;
     }
 }
+

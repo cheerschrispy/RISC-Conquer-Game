@@ -1,11 +1,10 @@
 package edu.duke.ece651.server;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class Server {
     private Map<String, Territory> territories;
@@ -32,26 +31,46 @@ public class Server {
                 clients[i] = ss.accept();
                 System.out.println("Connected to player " + i);
                 ObjectOutputStream os = new ObjectOutputStream(clients[i].getOutputStream());
+
                 os.writeObject(players.get(i));
+                os.flush();
                 os.writeObject(territories);
+                os.flush();
             }
             //receive player & send territories to each player
             while (!executor.checkWin(territories)) {
                 players = new ArrayList<>();
+                //receive player
                 Receiver[] receivers = new Receiver[3];
                 for (int i = 0; i < 3; i++) {
                     receivers[i] = new Receiver(clients[i], i);
-                    receivers[i].start();
+                    receivers[i].start();// get the correct actions list from user
                 }
+
                 for (Thread thread : receivers) {
                     thread.join();
                 }
+
+                //operate on map and send map back
                 executor.execute(players, territories);
                 for (int i = 0; i < 3; i++) {
                     ObjectOutputStream os = new ObjectOutputStream(clients[i].getOutputStream());
                     os.writeObject(territories);
+                    os.flush();
                 }
             }
+
+            //after every client close,it will close
+
+            for(int i=0;i<3;i++) {
+                BufferedReader end_signal = new BufferedReader(new InputStreamReader(clients[i].getInputStream()));
+                String line = end_signal.readLine();
+                if (line.equals("exit")) {
+                    System.out.println("Player " + i + " exits");
+                }
+            }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -117,12 +136,26 @@ public class Server {
                 Validator validator = new Validator();
                 while (!validator.validate(player, territories)) {
                     os.writeObject(player);
+                    os.flush();
                     player = (Player) is.readObject();
                 }
+                //send the correct player whose flag is true;
+                os.writeObject(player);
+                os.flush();
+                //until the new input from user is valid
                 players.add(player);
-            } catch (Exception e) {
+                //close the resources
+                os.close();
+                is.close();
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
+    public static void main() throws IOException, InterruptedException {
+        Server server = new Server();
+        server.run();
+    }
+
 }

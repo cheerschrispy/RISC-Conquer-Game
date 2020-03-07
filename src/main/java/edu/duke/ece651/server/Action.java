@@ -1,12 +1,10 @@
 package edu.duke.ece651.server;
 
-import java.io.Serializable;
-
-public class Action implements Serializable {
-    private String name;
-    private String start;
+public class Action {
+    private String name;//Move or Attack
+    private String start;//start territory name
     private String end;
-    private int num;
+    private int num;//num of soldier
 
     Action(String name, String start, String end, int num) {
         this.name = name;
