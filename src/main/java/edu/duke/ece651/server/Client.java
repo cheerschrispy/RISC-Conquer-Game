@@ -42,32 +42,40 @@ public class Client extends Thread {
             socket = new Socket("localhost", 8080);
             System.out.println("Client Connected");
 
-            ObjectOutputStream os = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream is = new ObjectInputStream(socket.getInputStream());
+            ObjectOutputStream os1 = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream is1 = new ObjectInputStream(socket.getInputStream());
 
             //receive player
-            Player player = (Player) is.readObject();
+            Player player = (Player) is1.readObject();
             //receive territories
+            Map<String, Territory> territories = (Map<String, Territory>) is1.readObject();
+
             while(true) {
-                Map<String, Territory> territories = (Map<String, Territory>) is.readObject();
+                //Map<String, Territory> new_territories = (Map<String, Territory>) is.readObject();
                 //if reaching the end of game
-                if(end_helper.checkWin(territories)) break;
+                if(!end_helper.checkWin(territories)) break;
                 //------------------------------------//
                 //create action list
                 player.addAction(territories, get_name(),sc);
                 //send player to server
-                os.writeObject(player);
-                os.flush();
+                os1.writeObject(player);
+                os1.flush();
                 //waiting for server's reply of validating
                 while (true) {
-                    is = new ObjectInputStream(socket.getInputStream());
-                    Player temp = (Player) is.readObject();
-                    if (temp.isvalid = true) break;
+                    ObjectInputStream is2 = new ObjectInputStream(socket.getInputStream());
+                    Player temp = (Player) is2.readObject();
+                    if (temp.isvalid = true) {
+                       // is2.close();
+                        break;
+                    }
                     System.out.println("Collision actions,type again");
                     player.addAction(territories, get_name(),sc);
-                    os.writeObject(player);
-                    os.flush();
+                    os1.writeObject(player);
+                    os1.flush();
+                    is2.close();
                 }
+                ObjectInputStream is3 = new ObjectInputStream(socket.getInputStream());
+                territories = (Map<String, Territory>) is3.readObject();
             }
             //tell server it will close the client
             PrintWriter pw = new PrintWriter(socket.getOutputStream());
@@ -77,8 +85,6 @@ public class Client extends Thread {
 
             //close resources
             pw.close();
-            os.close();
-            is.close();
 
         } catch (Exception e) {
             e.printStackTrace();

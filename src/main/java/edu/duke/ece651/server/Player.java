@@ -28,12 +28,13 @@ public class Player implements Serializable {
         //the argument is passed by server via socket
         // need to simply verify the user input
         Validator validate_helper=new Validator();
-        Prompts prompts_helper=new Prompts();
-        prompts_helper.OPtionsPrompts(client_name);
+        Prompts prompts_helper=new Prompts(territories);
+        //prompts_helper.OPtionsPrompts(client_name);
 
         actions.clear();//clear all record in current action list
         while(true) {
-            prompts_helper.GraphPrompts(territories);
+            prompts_helper.GraphPrompts();
+            prompts_helper.OPtionsPrompts(client_name);
             String action = sc.nextLine();
             while (!validate_helper.InputFormat_Validate(action)) {
                 action = sc.nextLine();

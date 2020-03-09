@@ -29,21 +29,33 @@ public class Validator {
 
     public boolean InputOnwer_Validate(Player player, String input,Map<String, Territory> territories){
         //check if the selected territory is player's own one
-        Territory t=territories.get(input);
-        if(t.getOwner()==player.getId()) return true;
-        else{
-            System.out.println("It is NOT your territory, please choose again");
+        for(String name : territories.keySet()){
+           if(name.equals(input)){
+               Territory t=territories.get(input);
+               if(t.getOwner()==player.getId()) return true;
+               else{
+                   System.out.println("It is NOT your territory, please choose again");
+               }
+               return false;
+           }
         }
+        System.out.println("Your input is not valid territory name");
         return false;
     }
 
     public boolean InputEnemy_Validate(Player player,String input, Map<String, Territory> territories){
         //check if the selected territory is player's  enemy one
-        Territory t=territories.get(input);
-        if(t.getOwner()!=player.getId())return true;
-        else{
-            System.out.println("It is YOUR territory, please choose your ENEMY's");
+        for(String name : territories.keySet()){
+            if(name.equals(input)){
+                Territory t=territories.get(input);
+                if(t.getOwner()!=player.getId()) return true;
+                else{
+                    System.out.println("It is NOT your enemy territory, please choose again");
+                }
+                return false;
+            }
         }
+        System.out.println("Your input is not valid territory name");
         return false;
     }
 

@@ -1,6 +1,8 @@
 package edu.duke.ece651.server;
 
-public class Action {
+import java.io.Serializable;
+
+public class Action implements Serializable {
     private String name;//Move or Attack
     private String start;//start territory name
     private String end;
