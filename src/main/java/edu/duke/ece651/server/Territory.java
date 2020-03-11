@@ -40,4 +40,8 @@ public class Territory implements Serializable {
     public void setNum(int i){
         this.num = i;
     }
+
+    public void setOwner(int i){
+        this.owner = i;
+    }
 }
