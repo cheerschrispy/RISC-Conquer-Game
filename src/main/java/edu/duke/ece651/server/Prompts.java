@@ -19,21 +19,21 @@ public class Prompts {
             for(Territory t : this.graphInformation.get(playerId)){
                 int number = t.getNum();
                 String name = t.getName();
-                String neighbor = null;
+                StringBuilder neighbor = new StringBuilder();
                 int i = 0;
                 for(Territory n : t.getNeighbors()){
                     if(i != 0){
-                        neighbor += ", ";
+                        neighbor.append(", ");
                     }
-                    neighbor += n.getName();
+                    neighbor.append(n.getName());
                     i++;
                 }
                 b.append(number).append(" units in ").append(name).append(" (next to : ").append(neighbor).append(")\n");
             }
             System.out.println(b);
         }
-
     }
+
 
     public void getInformation(Map<String, Territory> territories){
         for(String key : territories.keySet()){

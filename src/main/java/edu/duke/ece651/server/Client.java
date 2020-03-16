@@ -26,11 +26,13 @@ import java.util.concurrent.TimeUnit;
 public class Client extends Thread {
     String name;
     private Scanner sc=new Scanner(System.in);
-
+    private ObjectOutputStream os1 = null;
+    private ObjectInputStream is1 = null;
 
     Client(String client_name) {
         this.name = client_name;
     }
+
     public String get_name(){
         return this.name;
     }
@@ -39,44 +41,41 @@ public class Client extends Thread {
         Socket socket = null;
         Executor end_helper=new Executor();
         try {
-            socket = new Socket("localhost", 8080);
+            socket = new Socket("localhost", 8000);
             System.out.println("Client Connected");
-
-            ObjectOutputStream os1 = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream is1 = new ObjectInputStream(socket.getInputStream());
+            this.os1 = new ObjectOutputStream(socket.getOutputStream());
+            this.is1 = new ObjectInputStream(socket.getInputStream());
 
             //receive player
             Player player = (Player) is1.readObject();
-            //receive territories
-            Map<String, Territory> territories = (Map<String, Territory>) is1.readObject();
-
             while(true) {
-                //Map<String, Territory> new_territories = (Map<String, Territory>) is.readObject();
-                //if reaching the end of game
+                //receive territories
+                System.out.println("receiving the map for new round");
+                Map<String, Territory> territories = (Map<String, Territory>) is1.readObject();
                 if(!end_helper.checkWin(territories)) break;
-                //------------------------------------//
-                //create action list
+
                 player.addAction(territories, get_name(),sc);
                 //send player to server
                 os1.writeObject(player);
                 os1.flush();
+                os1.reset();
                 //waiting for server's reply of validating
                 while (true) {
-                    ObjectInputStream is2 = new ObjectInputStream(socket.getInputStream());
-                    Player temp = (Player) is2.readObject();
-                    if (temp.isvalid = true) {
-                       // is2.close();
+                    System.out.println("receiving the player object from server");
+                    Player temp = (Player) is1.readObject();
+                    if (temp.isvalid) {
+                        System.out.println("input is valid");
                         break;
                     }
                     System.out.println("Collision actions,type again");
                     player.addAction(territories, get_name(),sc);
                     os1.writeObject(player);
                     os1.flush();
-                    is2.close();
+                    os1.reset();
                 }
-                ObjectInputStream is3 = new ObjectInputStream(socket.getInputStream());
-                territories = (Map<String, Territory>) is3.readObject();
             }
+
+
             //tell server it will close the client
             PrintWriter pw = new PrintWriter(socket.getOutputStream());
             String msg="exit";
@@ -99,19 +98,6 @@ public class Client extends Thread {
         }
     }
 
-
-
-    public static void main() throws IOException, InterruptedException {
-        Client c1=new Client("a");
-        Client c2=new Client("b");
-        Client c3=new Client("c");
-        c1.start();
-        TimeUnit.SECONDS.sleep(1);
-        c2.start();
-        TimeUnit.SECONDS.sleep(1);
-        c3.start();
-
-    }
 }
 
 

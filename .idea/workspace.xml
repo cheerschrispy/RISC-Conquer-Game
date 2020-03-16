@@ -3,15 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="04c8847d-33d2-4e20-9e6e-0572ff6c7d9b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Prompts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Prompts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/edu/duke/ece651/server/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/duke/ece651/server/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,11 +156,11 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.App" />
       <item itemvalue="JUnit.AppTest.appTest" />
       <item itemvalue="JUnit.AppTest" />
       <item itemvalue="JUnit.ConnectionTest" />
       <item itemvalue="JUnit.ConnectionTest.connectionTest" />
-      <item itemvalue="Application.App" />
     </list>
     <recent_temporary>
       <list>
@@ -211,6 +206,10 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state width="1398" height="181" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1583774924054" />
+    <state x="640" y="388" key="com.intellij.ide.util.TipDialog" timestamp="1584314450057">
+      <screen x="0" y="23" width="1440" height="805" />
+    </state>
+    <state x="640" y="388" key="com.intellij.ide.util.TipDialog/0.23.1440.805@0.23.1440.805" timestamp="1584314450057" />
     <state x="562" y="341" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1583767384909">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
