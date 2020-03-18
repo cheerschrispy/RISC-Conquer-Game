@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="main" />
+    <orderEntry type="module" module-name="main" scope="TEST" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit5">
         <CLASSES>

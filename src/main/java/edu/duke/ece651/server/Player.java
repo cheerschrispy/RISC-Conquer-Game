@@ -46,7 +46,8 @@ public class Player implements Serializable {
             System.out.println("Your territories are as follows,please assign the soldier in each place in display order");
             HashMap<Integer, ArrayList<Territory>> temp=prompts_helper.getGraphInformation();
             for(Territory t : temp.get(id)) {
-                System.out.println("How many soldiers do you want to place in "+t.getName());
+                System.out.println("How many soldiers do you want to place in "+t.getName()+"(remaing "+(total-total_input)+")");
+                //System.out.println("Y");
                 String num=sc.nextLine();
                 while(!validator.InputNumber_Validate(num)){
                     num=sc.nextLine();
@@ -55,7 +56,7 @@ public class Player implements Serializable {
                 init_info.put(t.getName(),Integer.parseInt(num));
                 total_input+=Integer.parseInt(num);
             }
-            if(total_input>total) System.out.println("Invalid initialization,type again");
+            if(total_input!=total) System.out.println("Invalid initialization,type again");
 
             else return;
         }
@@ -74,6 +75,9 @@ public class Player implements Serializable {
         while(true) {
             prompts_helper.GraphPrompts();
             prompts_helper.OPtionsPrompts(client_name);
+            //add a history to record this round's movement
+            prompts_helper.CurrentRoundHistory(this.actions);
+            //
             String action = sc.nextLine();
             while (!validate_helper.InputFormat_Validate(action)) {
                 action = sc.nextLine();

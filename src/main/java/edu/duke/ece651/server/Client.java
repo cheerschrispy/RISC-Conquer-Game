@@ -30,9 +30,6 @@ public class Client extends Thread {
     private ObjectOutputStream os1 = null;
     private ObjectInputStream is1 = null;
     final int totalsoldier=9;
-    Client(String client_name) {
-        this.name = client_name;
-    }
 
     public String get_name(){
         return this.name;
@@ -51,6 +48,7 @@ public class Client extends Thread {
 
             //receive player
             Player player = (Player) is1.readObject();
+            setName(player.getId());
             //receive map to be completed
             Map<String, Territory> territories = (Map<String, Territory>) is1.readObject();
 //new Added!
@@ -85,7 +83,7 @@ public class Client extends Thread {
                     os1.reset();
                 }
                 territories = (Map<String, Territory>) is1.readObject();
-                if(!end_helper.checkWin(territories)) break;
+                if(end_helper.checkWin(territories)) break;
             }
 
 
@@ -109,6 +107,15 @@ public class Client extends Thread {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void setName(int id) {
+        this.name = String.valueOf(id);
+    }
+
+    public static void main(String[] args) throws Exception {
+        Client c = new Client();
+        c.start();
     }
 
 }

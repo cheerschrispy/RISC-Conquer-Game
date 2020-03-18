@@ -31,7 +31,7 @@ public class Prompts {
                 i++;
             }
             if(!isinitial)
-            b.append(number).append(" units in ").append(name).append(" (next to : ").append(neighbor).append(")\n");
+                b.append(number).append(" units in ").append(name).append(" (next to : ").append(neighbor).append(")\n");
             else b.append(name).append(" (next to : ").append(neighbor).append(")\n");
         }
         System.out.println(b);
@@ -45,7 +45,15 @@ public class Prompts {
         }
     }
 
+    public void CurrentRoundHistory(ArrayList<Action> actions){
+        System.out.println("***This round's movement(Press D to commit your change)***");
+        int index=1;
+        for(Action a :actions){
+            System.out.println(index+": Move "+a.getNum()+" From "+a.getStart()+" To "+a.getEnd());
+            index++;
+        }
 
+    }
 
 
 

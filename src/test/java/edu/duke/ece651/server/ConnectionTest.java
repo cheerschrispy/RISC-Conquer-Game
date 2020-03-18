@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class ConnectionTest {
     @Test
     void connectionTest() throws Exception {
-        Client c1 = new Client("c");
-        Client c2 = new Client("b");
-        Client c3 = new Client("a");
+        Client c1 = new Client();
+        Client c2 = new Client();
+        Client c3 = new Client();
         c1.start();
         TimeUnit.SECONDS.sleep(1);
         c2.start();

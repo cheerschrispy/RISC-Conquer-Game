@@ -12,7 +12,7 @@ public class Server {
     private List<Player> players;
     private Executor executor;
     private static final int port = 8000;
-    private final int player_num=1;
+    private final int player_num=3;
     private ServerSocket ss = null;
     private ArrayList<ObjectOutputStream> os;
     private ArrayList<ObjectInputStream> is;
@@ -72,14 +72,11 @@ public class Server {
                 os.get(i).writeObject(territories);
                 os.get(i).flush();
                 os.get(i).reset();
-                System.out.println("new territory is ");
-                Prompts p=new Prompts(territories);
-                p.GraphPrompts();
             }
 
             Receiver[] receivers = new Receiver[player_num];
             //receive player & send territories to each player
-            while (executor.checkWin(territories)) {
+            while (!executor.checkWin(territories)) {
                 //players = new ArrayList<>();
                 System.out.println("new around");
                 players.clear();
@@ -136,15 +133,15 @@ public class Server {
         territories.put("a1", new Territory("a1", 0, 3));
         territories.put("a2", new Territory("a2", 0, 3));
         territories.put("a3", new Territory("a3", 0, 3));
-       /* territories.put("b1", new Territory("b1", 1, 3));
+        territories.put("b1", new Territory("b1", 1, 3));
         territories.put("b2", new Territory("b2", 1, 3));
         territories.put("b3", new Territory("b3", 1, 3));
         territories.put("c1", new Territory("c1", 2, 3));
         territories.put("c2", new Territory("c2", 2, 3));
-        territories.put("c3", new Territory("c3", 2, 3));*/
+        territories.put("c3", new Territory("c3", 2, 3));
         connect("a1", "a2");
         connect("a2", "a3");
-       /* connect("b1", "b2");
+        connect("b1", "b2");
         connect("b2", "b3");
         connect("c1", "c2");
         connect("c2", "c3");
@@ -153,7 +150,7 @@ public class Server {
         connect("a2", "b2");
         connect("b2", "c2");
         connect("a3", "b3");
-        connect("b3", "c3");*/
+        connect("b3", "c3");
     }
 
     private void connect(String t1, String t2) {
@@ -235,5 +232,10 @@ public class Server {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        Server server = new Server();
+        server.run();
     }
 }
