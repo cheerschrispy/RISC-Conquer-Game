@@ -28,7 +28,7 @@ public class Client extends Thread {
     private Scanner sc=new Scanner(System.in);
     private ObjectOutputStream os1 = null;
     private ObjectInputStream is1 = null;
-
+    final int totalsoldier=9;
     Client(String client_name) {
         this.name = client_name;
     }
@@ -46,14 +46,23 @@ public class Client extends Thread {
             this.os1 = new ObjectOutputStream(socket.getOutputStream());
             this.is1 = new ObjectInputStream(socket.getInputStream());
 
+
+
             //receive player
             Player player = (Player) is1.readObject();
+            //receive map to be completed
+            Map<String, Territory> territories = (Map<String, Territory>) is1.readObject();
+//new Added!
+            //fill the arraylist in player
+            player.initial_game(territories,sc,totalsoldier);
+            //send it to server
+            os1.writeObject(player);
+            os1.flush();
+            os1.reset();
+            //wait server send back completed map
+            territories = (Map<String, Territory>) is1.readObject();
+            //now game begins
             while(true) {
-                //receive territories
-                System.out.println("receiving the map for new round");
-                Map<String, Territory> territories = (Map<String, Territory>) is1.readObject();
-                if(!end_helper.checkWin(territories)) break;
-
                 player.addAction(territories, get_name(),sc);
                 //send player to server
                 os1.writeObject(player);
@@ -73,6 +82,8 @@ public class Client extends Thread {
                     os1.flush();
                     os1.reset();
                 }
+                territories = (Map<String, Territory>) is1.readObject();
+                if(!end_helper.checkWin(territories)) break;
             }
 
 

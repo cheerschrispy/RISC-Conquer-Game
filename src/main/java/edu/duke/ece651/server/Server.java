@@ -28,6 +28,7 @@ public class Server {
     }
 
     public void run() {
+        //------------------no need to set number for now------------
         createTerritories();
         createPlayers();
 
@@ -47,9 +48,11 @@ public class Server {
                 this.os.add(os1);
                 this.is.add(is1);
 
+
                 os1.writeObject(players.get(i));
                 os1.flush();
                 os1.reset();
+                //------at this point,it sends a incompleted map-------------
                 os1.writeObject(territories);
                 os1.flush();
                 os1.reset();

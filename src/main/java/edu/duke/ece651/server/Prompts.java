@@ -10,29 +10,40 @@ public class Prompts {
     public Prompts(Map<String, Territory> territories){
         this.getInformation(territories);
     }
+
+    public void gragh_helper(int playerId,boolean isinitial){
+        StringBuilder b = new StringBuilder();
+        b.append("player ").append(playerId).append(":\n--------------------------\n");
+        for(Territory t : this.graphInformation.get(playerId)){
+            int number = t.getNum();
+            String name = t.getName();
+            StringBuilder neighbor = new StringBuilder();
+            int i = 0;
+            for(Territory n : t.getNeighbors()){
+                if(i != 0){
+                    neighbor.append(", ");
+                }
+                neighbor.append(n.getName());
+                i++;
+            }
+            if(!isinitial)
+            b.append(number).append(" units in ").append(name).append(" (next to : ").append(neighbor).append(")\n");
+            else b.append(name).append(" (next to : ").append(neighbor).append(")\n");
+        }
+        System.out.println(b);
+
+    }
     public void GraphPrompts(){
         //territories is the info got from server end(contains whole info of the graph)
         //this.getInformation(territories);
         for(int playerId : this.graphInformation.keySet()){
-            StringBuilder b = new StringBuilder();
-            b.append("player ").append(playerId).append(":\n--------------------------\n");
-            for(Territory t : this.graphInformation.get(playerId)){
-                int number = t.getNum();
-                String name = t.getName();
-                StringBuilder neighbor = new StringBuilder();
-                int i = 0;
-                for(Territory n : t.getNeighbors()){
-                    if(i != 0){
-                        neighbor.append(", ");
-                    }
-                    neighbor.append(n.getName());
-                    i++;
-                }
-                b.append(number).append(" units in ").append(name).append(" (next to : ").append(neighbor).append(")\n");
-            }
-            System.out.println(b);
+            gragh_helper(playerId,false);
         }
     }
+
+
+
+
 
 
     public void getInformation(Map<String, Territory> territories){

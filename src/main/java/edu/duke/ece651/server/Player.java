@@ -9,11 +9,12 @@ public class Player implements Serializable {
     //each player has a scanner which get user's input
     //private Scanner sc=new Scanner(System.in);
     public boolean isvalid=true;//for validating
-
+    private ArrayList<Integer> init_nums;
 
     public Player(int id) {
         this.id = id;
         this.actions = new ArrayList<>();
+        this.init_nums=new ArrayList<>();
     }
 
     public int getId(){
@@ -32,6 +33,31 @@ public class Player implements Serializable {
             System.out.println("num: "+i.getNum());
         }
     }
+
+    //this will help fill in the arraylist the 3 number
+    public void initial_game(Map<String, Territory> territories,Scanner sc,int total){
+        Prompts prompts_helper=new Prompts(territories);
+        Validator validator=new Validator();
+        while(true){
+            int total_input=0;
+            this.init_nums.clear();
+            prompts_helper.gragh_helper(id, true);
+            System.out.println("Your territories are as follows,please assign the soldier in each place in display order");
+            for(int i=0;i<3;i++) {
+                System.out.println("How many soldiers do you want to place in "+i+" place ");
+                String num=sc.nextLine();
+                while(!validator.InputNumber_Validate(num)){
+                    num=sc.nextLine();
+                }
+                init_nums.add(Integer.parseInt(num));
+                total_input+=Integer.parseInt(num);
+            }
+            if(total_input>total) System.out.println("Invalid initialization,type again");
+            else return;
+        }
+    }
+
+
 
     public void addAction(Map<String, Territory> territories,String client_name,Scanner sc){
         //the argument is passed by server via socket
