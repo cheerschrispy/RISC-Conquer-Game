@@ -9,12 +9,13 @@ public class Player implements Serializable {
     //each player has a scanner which get user's input
     //private Scanner sc=new Scanner(System.in);
     public boolean isvalid=true;//for validating
-    private ArrayList<Integer> init_nums;
+    //private ArrayList<Integer> init_nums;
+
 
     public Player(int id) {
         this.id = id;
         this.actions = new ArrayList<>();
-        this.init_nums=new ArrayList<>();
+        //this.init_nums=new ArrayList<>();
     }
 
     public int getId(){
@@ -35,24 +36,27 @@ public class Player implements Serializable {
     }
 
     //this will help fill in the arraylist the 3 number
-    public void initial_game(Map<String, Territory> territories,Scanner sc,int total){
+    public void initial_game(Map<String, Territory> territories,Scanner sc,int total,HashMap<String,Integer> init_info){
         Prompts prompts_helper=new Prompts(territories);
         Validator validator=new Validator();
         while(true){
             int total_input=0;
-            this.init_nums.clear();
+            init_info.clear();
             prompts_helper.gragh_helper(id, true);
             System.out.println("Your territories are as follows,please assign the soldier in each place in display order");
-            for(int i=0;i<3;i++) {
-                System.out.println("How many soldiers do you want to place in "+i+" place ");
+            HashMap<Integer, ArrayList<Territory>> temp=prompts_helper.getGraphInformation();
+            for(Territory t : temp.get(id)) {
+                System.out.println("How many soldiers do you want to place in "+t.getName());
                 String num=sc.nextLine();
                 while(!validator.InputNumber_Validate(num)){
                     num=sc.nextLine();
                 }
-                init_nums.add(Integer.parseInt(num));
+
+                init_info.put(t.getName(),Integer.parseInt(num));
                 total_input+=Integer.parseInt(num);
             }
             if(total_input>total) System.out.println("Invalid initialization,type again");
+
             else return;
         }
     }

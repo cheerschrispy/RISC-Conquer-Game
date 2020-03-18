@@ -6,7 +6,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Prompts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Prompts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,11 +206,11 @@
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state width="1398" height="181" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1583774924054" />
-    <state x="640" y="408" key="com.intellij.ide.util.TipDialog" timestamp="1584498607784">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="640" y="388" key="com.intellij.ide.util.TipDialog" timestamp="1584560017406">
+      <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="640" y="408" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1584498607784" />
-    <state x="640" y="388" key="com.intellij.ide.util.TipDialog/0.23.1440.805@0.23.1440.805" timestamp="1584314450057" />
+    <state x="640" y="388" key="com.intellij.ide.util.TipDialog/0.23.1440.805@0.23.1440.805" timestamp="1584560017406" />
     <state x="562" y="341" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1583767384909">
       <screen x="0" y="23" width="1440" height="805" />
     </state>

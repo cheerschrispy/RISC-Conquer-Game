@@ -11,6 +11,10 @@ public class Prompts {
         this.getInformation(territories);
     }
 
+    public HashMap<Integer, ArrayList<Territory>> getGraphInformation(){
+        return this.graphInformation;
+    }
+
     public void gragh_helper(int playerId,boolean isinitial){
         StringBuilder b = new StringBuilder();
         b.append("player ").append(playerId).append(":\n--------------------------\n");

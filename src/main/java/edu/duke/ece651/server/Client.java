@@ -19,6 +19,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -53,10 +54,11 @@ public class Client extends Thread {
             //receive map to be completed
             Map<String, Territory> territories = (Map<String, Territory>) is1.readObject();
 //new Added!
-            //fill the arraylist in player
-            player.initial_game(territories,sc,totalsoldier);
+            //fill the map in player
+            HashMap<String,Integer> init_info=new HashMap<>();
+            player.initial_game(territories,sc,totalsoldier,init_info);
             //send it to server
-            os1.writeObject(player);
+            os1.writeObject(init_info);
             os1.flush();
             os1.reset();
             //wait server send back completed map
