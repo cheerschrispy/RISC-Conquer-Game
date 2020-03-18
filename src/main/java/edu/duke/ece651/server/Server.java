@@ -48,7 +48,6 @@ public class Server {
                 this.os.add(os1);
                 this.is.add(is1);
 
-
                 os1.writeObject(players.get(i));
                 os1.flush();
                 os1.reset();
@@ -56,6 +55,26 @@ public class Server {
                 os1.writeObject(territories);
                 os1.flush();
                 os1.reset();
+            }
+
+            //update people in territories based on user input
+            Initializer inits[] = new Initializer[player_num];
+            for (int i = 0; i < player_num; i++) {
+                inits[i] = new Initializer(clients[i], i,this.os.get(i),this.is.get(i));
+                inits[i].start();
+            }
+
+            for (Thread thread : inits) {
+                thread.join();
+            }
+
+            for (int i = 0; i < player_num; i++) {
+                os.get(i).writeObject(territories);
+                os.get(i).flush();
+                os.get(i).reset();
+                System.out.println("new territory is ");
+                Prompts p=new Prompts(territories);
+                p.GraphPrompts();
             }
 
             Receiver[] receivers = new Receiver[player_num];
@@ -191,4 +210,30 @@ public class Server {
         }
     }
 
+    class Initializer extends Thread {
+        Socket client;
+        int id;
+        ObjectOutputStream os1;
+        ObjectInputStream is1;
+        Initializer(Socket socket, int id,ObjectOutputStream os1,ObjectInputStream is1) {
+            this.client = socket;
+            this.id = id;
+            this.os1=os1;
+            this.is1=is1;
+        }
+        @Override
+        public void run() {
+            try {
+                HashMap<String,Integer> map = (HashMap<String,Integer>) this.is1.readObject();
+                for (Map.Entry entry : map.entrySet()) {
+                    String key = (String) entry.getKey();
+                    int value = (int) entry.getValue();
+                    territories.get(key).setNum(value);
+                }
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
