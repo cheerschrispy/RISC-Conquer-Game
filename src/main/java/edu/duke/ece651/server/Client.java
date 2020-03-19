@@ -63,20 +63,26 @@ public class Client extends Thread {
             territories = (Map<String, Territory>) is1.readObject();
             //now game begins
             while(true) {
-                player.addAction(territories, get_name(),sc);
+                if(!end_helper.singlePlayerFail(territories,player.getId()))
+                    player.addAction(territories, get_name(),sc);
+                else
+                    player.addAction_afterFail(territories);
                 //send player to server
                 os1.writeObject(player);
                 os1.flush();
                 os1.reset();
                 //waiting for server's reply of validating
                 while (true) {
-                    System.out.println("receiving the player object from server");
+                    //System.out.println("receiving the player object from server");
                     Player temp = (Player) is1.readObject();
                     if (temp.isvalid) {
-                        System.out.println("input is valid");
+                        System.out.println("Waiting for other players'input....");
+                        //System.out.println("------------------------");
                         break;
                     }
-                    System.out.println("Collision actions,type again");
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
+                    System.out.println("Collision! Type again");
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
                     player.addAction(territories, get_name(),sc);
                     os1.writeObject(player);
                     os1.flush();

@@ -62,7 +62,12 @@ public class Player implements Serializable {
         }
     }
 
-
+    public void addAction_afterFail(Map<String, Territory> territories){
+        System.out.println("----------YOU FAIL(Watching Mode)------------");
+        Prompts prompts_helper=new Prompts(territories);
+        this.actions.clear();
+        prompts_helper.GraphPrompts();
+    }
 
     public void addAction(Map<String, Territory> territories,String client_name,Scanner sc){
         //the argument is passed by server via socket

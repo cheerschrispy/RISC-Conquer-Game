@@ -143,12 +143,24 @@ public class Executor {
         return attacks;
     }
 
-    public boolean checkWin(Map<String, Territory> territories) {
+
+    public Set<Integer> win_helper(Map<String, Territory> territories){
         Set<Integer> set = new HashSet<>();
         for (Map.Entry<String, Territory> entry : territories.entrySet()) {
             set.add(entry.getValue().getOwner());
         }
+        return set;
+    }
+    public boolean checkWin(Map<String, Territory> territories) {
+        Set<Integer> set=win_helper(territories);
         return set.size() == 1;
     }
+
+    public boolean singlePlayerFail(Map<String, Territory> territories,int id){
+        Set<Integer> set=win_helper(territories);
+        return !set.contains(id);
+    }
+
+
 }
 

@@ -73,11 +73,13 @@ public class Validator {
             if(action.equals("M")){
                 if(!this.BFS(src, dest, territories)){
                     player.isvalid=false;
+                    System.out.println("BFS error");
                     return false;
                 }
                 this.moveChange(num, src, dest);
                 if(!this.checkNumber()){
                     player.isvalid=false;
+                    System.out.println("cannot moveChange");
                     return false;
                 }
             }
@@ -85,11 +87,13 @@ public class Validator {
                 //it is Attack command
                 if(!this.findEnemy(src, dest, territories)){
                     player.isvalid=false;
+                    System.out.println("cannot findenemy");
                     return false;
                 }
                 this.attackChange(num, src);
                 if(!this.checkNumber()){
                     player.isvalid=false;
+                    System.out.println("checknumber error");
                     return false;
                 }
             }

@@ -113,9 +113,6 @@ public class Server {
                     System.out.println("Player " + i + " exits");
                 }
             }
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -196,8 +193,8 @@ public class Server {
                 //now the new input from user is valid
                 players.add(player);
                 //this is for debugging
-                System.out.println("valid action list is ");
-                player.showActionContent();
+                //System.out.println("valid action list is ");
+                //player.showActionContent();
                 //close the resources
 
             }

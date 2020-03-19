@@ -49,9 +49,14 @@ public class Prompts {
         System.out.println("***This round's movement(Press D to commit your change)***");
         int index=1;
         for(Action a :actions){
-            System.out.println(index+": Move "+a.getNum()+" From "+a.getStart()+" To "+a.getEnd());
+            if(a.getName().equals("M")){
+                System.out.println(index+": Move "+a.getNum()+" soldiers From "+a.getStart()+" To "+a.getEnd());}
+            if(a.getName().equals("A")){
+                System.out.println(index+": Attack "+a.getEnd()+" From "+a.getStart()+" With "+a.getNum()+" soldiers");
+            }
             index++;
         }
+        System.out.println("**********************************************************");
 
     }
 
