@@ -2,30 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="484a7299-810e-4ad8-b645-94e4c7bd2c71" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Action.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Executor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Executor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/ForcePair.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/ForcePair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Prompts.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Prompts.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Server$Initializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Server$Initializer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Server$Receiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Server$Receiver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Territory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Territory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Validator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/server/Validator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Executor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Prompts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Prompts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/duke/ece651/server/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +41,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
@@ -110,34 +93,51 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1584629519970</updated>
+      <workItem from="1584635311168" duration="1762000" />
+      <workItem from="1584640932601" duration="1044000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
     <state x="184" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584631349655">
       <screen x="0" y="23" width="1440" height="805" />
     </state>
     <state x="184" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.805@0.23.1440.805" timestamp="1584631349655" />
-    <state width="1398" height="370" key="GridCell.Tab.0.bottom" timestamp="1584633892970">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="1001" key="GridCell.Tab.0.bottom" timestamp="1584642079347">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1398" height="370" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1584633892970" />
+    <state width="1877" height="1001" key="GridCell.Tab.0.bottom/0.0.1920.1160@0.0.1920.1160" timestamp="1584642079347" />
     <state width="1398" height="531" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1584632555619" />
-    <state width="1398" height="370" key="GridCell.Tab.0.center" timestamp="1584633892969">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="1001" key="GridCell.Tab.0.center" timestamp="1584642079347">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1398" height="370" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1584633892969" />
+    <state width="1877" height="1001" key="GridCell.Tab.0.center/0.0.1920.1160@0.0.1920.1160" timestamp="1584642079347" />
     <state width="1398" height="531" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1584632555617" />
-    <state width="1398" height="370" key="GridCell.Tab.0.left" timestamp="1584633892969">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="1001" key="GridCell.Tab.0.left" timestamp="1584642079346">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1398" height="370" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1584633892969" />
+    <state width="1877" height="1001" key="GridCell.Tab.0.left/0.0.1920.1160@0.0.1920.1160" timestamp="1584642079346" />
     <state width="1398" height="531" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1584632555617" />
-    <state width="1398" height="370" key="GridCell.Tab.0.right" timestamp="1584633892970">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state width="1877" height="1001" key="GridCell.Tab.0.right" timestamp="1584642079347">
+      <screen x="0" y="0" width="1920" height="1160" />
     </state>
     <state width="1398" height="370" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1584633892970" />
+    <state width="1877" height="1001" key="GridCell.Tab.0.right/0.0.1920.1160@0.0.1920.1160" timestamp="1584642079347" />
     <state width="1398" height="531" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1584632555618" />
+    <state x="453" y="221" key="SettingsEditor" timestamp="1584635742778">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="453" y="221" key="SettingsEditor/0.0.1920.1160@0.0.1920.1160" timestamp="1584635742778" />
+    <state x="636" y="404" key="com.intellij.ide.util.TipDialog" timestamp="1584640932138">
+      <screen x="0" y="0" width="1920" height="1160" />
+    </state>
+    <state x="636" y="404" key="com.intellij.ide.util.TipDialog/0.0.1920.1160@0.0.1920.1160" timestamp="1584640932138" />
     <state x="385" y="152" key="search.everywhere.popup" timestamp="1584629722866">
       <screen x="0" y="23" width="1440" height="805" />
     </state>

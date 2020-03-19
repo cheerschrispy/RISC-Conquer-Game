@@ -29,10 +29,10 @@ public class Executor {
 
     private ForcePair combat(ForcePair attacker, ForcePair defender) {
     
-        Random rand = new Random(System.currentTimeMillis());
+        Random rand = new Random(System.nanoTime());
         while (attacker.getSoldier() != 0 && defender.getSoldier() != 0) {
-            int attDice = rand.nextInt();
-            int defDice = rand.nextInt();
+            int attDice = rand.nextInt(20);
+            int defDice = rand.nextInt(20);
             // System.out.println("Attacker (owned by " + attacker.getOwner() + 
             //                        ") current: " + attacker.getSoldier() + " soldiers");
             // System.out.println("Defender (owned by " + defender.getOwner() + 
