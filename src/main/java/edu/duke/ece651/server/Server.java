@@ -127,32 +127,26 @@ public class Server {
     }
 
     public void createTerritories() {
-        territories.put("a1", new Territory("a1", 0, 3));
-        territories.put("a2", new Territory("a2", 0, 3));
-        territories.put("a3", new Territory("a3", 0, 3));
-        territories.put("b1", new Territory("b1", 1, 3));
-        territories.put("b2", new Territory("b2", 1, 3));
-        territories.put("b3", new Territory("b3", 1, 3));
-        territories.put("c1", new Territory("c1", 2, 3));
-        territories.put("c2", new Territory("c2", 2, 3));
-        territories.put("c3", new Territory("c3", 2, 3));
-        connect("a1", "a2");
-        connect("a2", "a3");
-        connect("b1", "b2");
-        connect("b2", "b3");
-        connect("c1", "c2");
-        connect("c2", "c3");
-        connect("a1", "b1");
-        connect("b1", "c1");
-        connect("a2", "b2");
-        connect("b2", "c2");
-        connect("a3", "b3");
-        connect("b3", "c3");
+        Territory[][] matrix = new Territory[player_num][3];
+        for (int i = 0; i < player_num; i++) {
+            for (int j = 0; j < 3; j++) {
+                String tName = (char) ('a' + i) + String.valueOf(j);
+                Territory newTerritory = new Territory(tName, i, 3);
+                territories.put(tName, newTerritory);
+                matrix[i][j] = newTerritory;
+                if (j > 0) {
+                    connect(newTerritory, matrix[i][j - 1]);
+                }
+                if (i > 0) {
+                    connect(newTerritory, matrix[i - 1][j]);
+                }
+            }
+        }
     }
 
-    private void connect(String t1, String t2) {
-        territories.get(t1).connect(territories.get(t2));
-        territories.get(t2).connect(territories.get(t1));
+    private void connect(Territory t1, Territory t2) {
+        t1.connect(t2);
+        t2.connect(t1);
     }
 
     private void createPlayers() {
