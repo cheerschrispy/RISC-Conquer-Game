@@ -98,6 +98,14 @@ public class Executor {
             move(actions, territories);
         }
         attack(convert(players), territories);
+        increase(territories);
+    }
+
+    public void increase(Map<String, Territory> territories) {
+        for (Map.Entry entry : territories.entrySet()) {
+            Territory t = (Territory) entry.getValue();
+            t.setNum(t.getNum() + 1);
+        }
     }
 
     public void move(List<Action> actions, Map<String, Territory> territories) {
