@@ -97,7 +97,7 @@ public class Executor {
             List<Action> actions = player.getActions();
             move(actions, territories);
         }
-        attack(convert(players), territories);
+        attack(convert(players, territories), territories);
         increase(territories);
     }
 
@@ -120,12 +120,15 @@ public class Executor {
         }
     }
 
-    public Map<String, Map<Integer, Integer>> convert(List<Player> players) {
+    public Map<String, Map<Integer, Integer>> convert(List<Player> players, Map<String, Territory> territories) {
         Map<String, Map<Integer, Integer>> attacks = new HashMap<>();
         for (Player player : players) {
             List<Action> actions = player.getActions();
             for (Action action : actions) {
                 if (action.getName().equals("A")) {
+                    String start = action.getStart();
+                    int num = action.getNum();
+                    territories.get(start).setNum(territories.get(start).getNum() - num);
                     String subject = action.getEnd();
                     if (attacks.containsKey(subject)) {
                         attacks.get(subject).put(player.getId(), action.getNum());
