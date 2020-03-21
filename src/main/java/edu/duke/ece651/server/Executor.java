@@ -153,7 +153,11 @@ public class Executor {
     }
     public boolean checkWin(Map<String, Territory> territories) {
         Set<Integer> set=win_helper(territories);
-        return set.size() == 1;
+        if (set.size() == 1){
+            System.out.println("Player "+set.toArray()[0]+" is the Winner!");
+            return true;
+        }
+        else return false;
     }
 
     public boolean singlePlayerFail(Map<String, Territory> territories,int id){

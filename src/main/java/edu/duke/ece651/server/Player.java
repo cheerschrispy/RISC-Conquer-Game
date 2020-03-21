@@ -26,14 +26,6 @@ public class Player implements Serializable {
         return this.actions;
     }
 
-    public void showActionContent(){
-        for(Action i :this.actions){
-            System.out.println("name: "+i.getName());
-            System.out.println("src: "+i.getStart());
-            System.out.println("des: "+i.getEnd());
-            System.out.println("num: "+i.getNum());
-        }
-    }
 
     //this will help fill in the arraylist the 3 number
     public void initial_game(Map<String, Territory> territories,Scanner sc,int total,HashMap<String,Integer> init_info){

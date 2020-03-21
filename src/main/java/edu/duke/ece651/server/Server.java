@@ -12,7 +12,7 @@ public class Server {
     private List<Player> players;
     private Executor executor;
     private static final int port = 8000;
-    private final int player_num=3;
+    private final int player_num=1;
     private ServerSocket ss = null;
     private ArrayList<ObjectOutputStream> os;
     private ArrayList<ObjectInputStream> is;
