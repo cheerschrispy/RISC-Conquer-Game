@@ -12,7 +12,14 @@ variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false"
 
 before_script:
+  - apt install emacs openjdk-11-jdk clang-format maven
+  - wget https://services.gradle.org/distributions/gradle-6.0.1-all.zip
+  - mkdir -p /opt/gradle
+  - apt-get install unzip
+  - unzip -d /opt/gradle gradle-6.0.1-all.zip
   - export PATH=${PATH}:/opt/gradle/gradle-6.0.1/bin
+  - echo 'export PATH=${PATH}:/opt/gradle/gradle-6.0.1/bin' >> ~/.bashrc
+  - apt install gradle-completion
 
 build:
   stage: build
