@@ -114,6 +114,9 @@ public class Player implements Serializable {
 	//actions.clear();
     actions.add(a);
   }
+	public void clearActions(){
+ actions.clear();
+}
   
 
 }

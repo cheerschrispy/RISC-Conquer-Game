@@ -32,29 +32,49 @@ public class TestValidator {
 
     Action a2 = new Action("A", "a1", "b1", 2);
 
-    Action a3 = new Action("A", "b1", "a1", 2);
+    // Action a3 = new Action("A", "b1", "a1", 2);
 
     Action a4 = new Action("A", "b0", "a2", 2);
 
-    Action a5 = new Action("M", "b1", "a2", 1);
 
-    Action a6 = new Action("A", "a1", "b2", 1);
 
     p0.setActions(a1);
-    // assertEquals(false, v.validate(p0, territories));
 
     p0.setActions(a2);
-    ///    p0.setActions(a6);
 
     assertEquals(true, v.validate(p0, territories));
 
+    p0.clearActions();
 
 
-    p1.setActions(a3);
+
+    Action a5 = new Action("M", "a0", "a2", 5);
+
+    p0.setActions(a5);
+
+    assertEquals(false, v.validate(p0, territories));
+
+
+
+    //p1.setActions(a3);
+
     p1.setActions(a4);
 
     assertEquals(false, v.validate(p1, territories));
 
+    p1.clearActions();
+
+
+
+    Action a6 = new Action("A", "b0", "a0", 5);
+
+    p1.setActions(a6);
+
+    assertEquals(false, v.validate(p1, territories));
+
+
+
+    
 
     Prompts pp = new Prompts(territories);
 
@@ -121,4 +141,5 @@ public class TestValidator {
   }
 
 }
+
 
