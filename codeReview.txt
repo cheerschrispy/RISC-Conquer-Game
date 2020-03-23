@@ -34,7 +34,17 @@ But It still has some mess when the second time passing object to be fixed.
 Alex to Zeyu Li
 Now only one pair of steam exists  during the whole lifespan of socket. Which could fix the AC code error. But It still has some mess when the second time passing object to be fixed. It will result in the whole program to exit. 
 
+3.11
+Yuhang Liu to Alex:
+Attack resolusion using setOwner method in Territory, but didn't actually implement this method in it.
 
+3.11
+Yuhang Liu to Alex:
+Most of the things are good, except there are many messages printing to the stdout that may be used for module testing. It would be better if you commented out these messages in the actual deployment.
+
+3.11
+Yuhang Liu to Alex:
+So far so good. When I am testing on attack order, the results seem to be the same if you input with same number of soldier. This behaviour doesn't conform the requirement. Maybe you could look into this problem?
 
 3.15
 Cheng Peng to Zeyu Li:
@@ -70,7 +80,9 @@ Wrote function to increase number in each territory by one after each round.
 Zeyu Li to Cheng Peng:
 Bug fix for number not decreased after attacking other territory.
 
-
+3.19
+Yuhang Liu to Alex:
+Good job. I can see now if you use millisecond system time to generate random numbers, they will be the same becasue excution time is smaller than the accuracy. Now the nanosecond can solve this problem.
 
 3.19 
 Alex to Zeyu Li:
