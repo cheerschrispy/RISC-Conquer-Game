@@ -2,12 +2,19 @@
 Yuhang Liu to Cheng Peng:
 Built an overall structure for the server. Some more methods to be added.
 
-
+3.5
+Cheng Peng to Yuhang Liu:
+I have already built the basic configuration of this project before. This time He wrote several basic methods such as get or set function. This will help us better use the configuration as an interface to develop our own part.
 
 3.6 
 Yuhang Liu to Cheng Peng:
 Constructed server side process. Added execution functions including move, action handler and win check. Client needed for an functional end-to-end system.
 
+3.6
+Zeyu Li to Yuhang Liu:
+Finish the basic part of validation check. 
+This part is used by server to check whether the inputs of players are valid. Valid means that the number of movement cannot exceed the total number in that territory, one can only attack other's territories that around its own. 
+In this part, he uses hashmap to record the change of numbers in each territory and use BFS to search all the surrounding information.
 
 
 3.7 
@@ -28,6 +35,11 @@ Improved the construction of the end-to -end for socket communication. Add flush
 
 But It still has some mess when the second time passing object to be fixed. 
 
+
+3.8
+Zeyu Li to Yuhang Liu:
+This part is used to give each player all the information about territories.
+As the requirement of the project, each time each user can see all the information as they need. The class named prompts provides all the information of the territories.
 
 
 3.9 
