@@ -1,0 +1,34 @@
+
+3.7 Cheng Peng to Zeyu Li:
+Improved the construction of the end-to -end for socket communication. Add flush() when using stream to send information.  Instead of creating multiple input and output stream, which resulted in the AC code error when passing the object Player, he revised to just create some pair to pair streams at the same time point 
+
+But It still has some mess when the second time passing object to be fixed. 
+
+
+
+3.9 
+Alex to Zeyu Li
+Now only one pair of steam exists  during the whole lifespan of socket. Which could fix the AC code error. But It still has some mess when the second time passing object to be fixed. It will result in the whole program to exit. 
+
+
+
+3.15
+Cheng Peng to Zeyu Li:
+Fixed the problem by adding reset() to outputstream. The serialization will record the object when it is first time passed and never changed again. Solved this problem by adding reset(). The codes now can achieve basic end to end function. But still not meet the requirements that user can choose soldier numbers to initialize the game at the beginning.
+
+
+
+3.18
+Cheng Peng to Zeyu Li
+Added the function of initialization. After testing, I still found when one player fails, the whole game will stuck, which is not supposed to happen. 
+
+
+
+3.19 
+Alex to Zeyu Li:
+There is no prompts for user which one is the winner after the game ended,
+
+
+3.20
+Alex to Zeyu Li:
+Added the prompts before all players close their socket and exit. No other error found for now.  
