@@ -16,7 +16,7 @@ import java.util.*;
 
 public class TestValidator {
 
-  @Test  
+ @Test  
 
   public void test_Validator() {
 
@@ -30,9 +30,9 @@ public class TestValidator {
 
     Action a1 = new Action("M", "a0", "a2", 1);
 
-    Action a2 = new Action("A", "a1", "b1", 2);
+    Action a2 = new Action("M", "b0", "b2", 1);
 
-    // Action a3 = new Action("A", "b1", "a1", 2);
+    //Action a3 = new Action("A", "b1", "a1", 2);
 
     Action a4 = new Action("A", "b0", "a2", 2);
 
@@ -40,7 +40,7 @@ public class TestValidator {
 
     p0.setActions(a1);
 
-    p0.setActions(a2);
+    //p0.setActions(a2);
 
     assertEquals(true, v.validate(p0, territories));
 
@@ -71,6 +71,16 @@ public class TestValidator {
     p1.setActions(a6);
 
     assertEquals(false, v.validate(p1, territories));
+
+    p1.clearActions();
+
+   
+
+    p1.setActions(a2);
+
+    assertEquals(false, v.validate(p1, territories));
+
+    p1.clearActions();
 
 
 
@@ -104,23 +114,35 @@ public class TestValidator {
 
         String tName = (char) ('a' + i) + String.valueOf(j);
 
-        Territory newTerritory = new Territory(tName, i, 3);
+	Territory newTerritory;
 
-        territories.put(tName, newTerritory);
+	if(j == 1 && i == 1){
 
-        matrix[i][j] = newTerritory;
+	   newTerritory = new Territory(tName, 0, 3);
 
-        if (j > 0) {
+	}
 
-          connect(newTerritory, matrix[i][j - 1]);
+	else{
 
-        }
+	   newTerritory = new Territory(tName, i, 3);
 
-        if (i > 0) {
+	}
 
-          connect(newTerritory, matrix[i - 1][j]);
+        	territories.put(tName, newTerritory);
 
-        }
+        	matrix[i][j] = newTerritory;
+
+        	if (j > 0) {
+
+          	connect(newTerritory, matrix[i][j - 1]);
+
+        	}
+
+        	if (i > 0) {
+
+          	connect(newTerritory, matrix[i - 1][j]);
+
+        	}
 
       }
 
@@ -141,5 +163,7 @@ public class TestValidator {
   }
 
 }
+
+
 
 
