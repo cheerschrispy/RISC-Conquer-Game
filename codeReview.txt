@@ -1,5 +1,29 @@
+3.4 
+Yuhang Liu to Cheng Peng:
+Built an overall structure for the server. Some more methods to be added.
 
-3.7 Cheng Peng to Zeyu Li:
+
+
+3.6 
+Yuhang Liu to Cheng Peng:
+Constructed server side process. Added execution functions including move, action handler and win check. Client needed for an functional end-to-end system.
+
+
+
+3.7 
+Yuhang Liu to Cheng Peng:
+Added dummy Client and test for end-to-end system. Fixed some minor bugs. But connection has errors to be examined.
+
+
+
+3.7 
+Yuhang Liu to Cheng Peng:
+Cheng added a readme to explain the code behavior because he is leaving for spring break.
+
+
+
+3.7 
+Cheng Peng to Zeyu Li:
 Improved the construction of the end-to -end for socket communication. Add flush() when using stream to send information.  Instead of creating multiple input and output stream, which resulted in the AC code error when passing the object Player, he revised to just create some pair to pair streams at the same time point 
 
 But It still has some mess when the second time passing object to be fixed. 
@@ -24,11 +48,54 @@ Added the function of initialization. After testing, I still found when one play
 
 
 
+3.18
+Zeyu Li to Cheng Peng:
+Added function to update people in territories based on the user input from client.
+
+
+
+3.18
+Zeyu Li to Cheng Peng:
+Made changes to enable multiple players for full game testings. Some numbers after attack do not add up.
+
+
+
+3.19
+Zeyu Li to Cheng Peng:
+Wrote function to increase number in each territory by one after each round.
+
+
+
+3.19
+Zeyu Li to Cheng Peng:
+Bug fix for number not decreased after attacking other territory.
+
+
+
 3.19 
 Alex to Zeyu Li:
 There is no prompts for user which one is the winner after the game ended,
 
 
+
+3.19
+Zeyu Li to Cheng Peng:
+Transformed hard-coded territory initializtion to enable different number of players.
+
+
+
 3.20
 Alex to Zeyu Li:
 Added the prompts before all players close their socket and exit. No other error found for now.  
+
+
+
+3.21
+Zeyu Li to Cheng Peng:
+Changed the structure of project for gradle. The CICD did not work out.
+
+
+
+3.23
+Zeyu Li to Cheng Peng:
+Added tests for the executor class.
