@@ -1,18 +1,22 @@
 package edu.duke.ece651.risc;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Action implements Serializable {
     private String name;//Move or Attack
     private String start;//start territory name
     private String end;
-    private int num;//num of soldier
+    //private int num;
+    private ArrayList<Unit> soldiers;
+    private ArrayList<Integer> levels;
 
-    Action(String name, String start, String end, int num) {
+    Action(String name, String start, String end) {
         this.name = name;
         this.start = start;
         this.end = end;
-        this.num = num;
+        this.soldiers = new ArrayList<>();
+        this.levels = new ArrayList<>();
     }
 
     public String getName(){
@@ -23,13 +27,17 @@ public class Action implements Serializable {
         return this.start;
     }
 
-    public String getEnd(){
-        return this.end;
+    public String getEnd(){ return this.end; }
+
+    public void addSoldiers(Unit u){
+        this.soldiers.add(u);
     }
 
-    public int getNum(){
-        return this.num;
+    public void addLevels(Integer i){
+        this.levels.add(i);
     }
 
-
+    public ArrayList<Integer> getLevels(){
+        return this.levels;
+    }
 }

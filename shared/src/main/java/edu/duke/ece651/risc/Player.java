@@ -6,20 +6,46 @@ import java.util.*;
 public class Player implements Serializable {
     private int id;
     private ArrayList<Action> actions;
-    //each player has a scanner which get user's input
-    //private Scanner sc=new Scanner(System.in);
-    public boolean isvalid=true;//for validating
-    //private ArrayList<Integer> init_nums;
+    public boolean isvalid=true; //for validating
+    private int foodResources;
+    private int techResources;
+    private int techLevel;
 
 
     public Player(int id) {
         this.id = id;
         this.actions = new ArrayList<>();
-        //this.init_nums=new ArrayList<>();
+        this.foodResources = 30;
+        this.techLevel = 0;
+        this.techResources = 50;
     }
 
     public int getId(){
         return this.id;
+    }
+
+    public void addTechLevel(){
+        this.techLevel++;
+    }
+
+    public int getTechLevel(){
+        return this.techLevel;
+    }
+
+    public int getFoodResources() {
+        return foodResources;
+    }
+
+    public void addFoodResources(){
+        this.foodResources += 5;
+    }
+
+    public int getTechResources() {
+        return techResources;
+    }
+
+    public void addTechResources(){
+        this.techResources += 10;
     }
 
     public ArrayList<Action> getActions(){
