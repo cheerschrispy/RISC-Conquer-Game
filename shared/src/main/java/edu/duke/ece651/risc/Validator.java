@@ -1,178 +1,148 @@
 package edu.duke.ece651.risc;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Validator {
-    //T's name and T's corresponding soldier number
-    private HashMap<String, Integer> record = new HashMap<>();
+public class Player implements Serializable {
+    private int id;
+    private ArrayList<Action> actions;
+    public boolean isvalid = true; //for validating
+    private int foodResources;
+    private int techResources;
+    private int techLevel;
 
-    public boolean InputNumber_Validate(String input){
-        for (int i = 0; i < input.length(); i++) {
-            if (!Character.isDigit(input.charAt(i))) {
-                System.out.println("Please type valid number");
-                return false;
-            }
-        }
-        return true;
+
+    public Player(int id) {
+        this.id = id;
+        this.actions = new ArrayList<>();
+        this.foodResources = 30;
+        this.techLevel = 1;
+        this.techResources = 50;
+    }
+
+    public int getId(){
+        return this.id;
+    }
+
+    public void addTechLevel(){
+        this.techLevel++;
+    }
+
+    public int getTechLevel(){
+        return this.techLevel;
+    }
+
+    public int getFoodResources() {
+        return foodResources;
+    }
+
+    public void addFoodResources(){
+        this.foodResources += 5;
+    }
+
+    public int getTechResources() {
+        return techResources;
+    }
+
+    public void addTechResources(){
+        this.techResources += 10;
+    }
+
+    public ArrayList<Action> getActions(){
+        return this.actions;
     }
 
 
-    public boolean InputFormat_Validate(String input){
-        //check if the user's input is valid, i.e. belonging to limited input options
-        if(input.equals("M")||input.equals("A")|| input.equals("D")) return true;
-        else{
-            System.out.println("Invalid input! Please type the first character of each option given!");
-        }
-        return false;
-    }
-
-
-    public boolean InputOnwer_Validate(Player player, String input,Map<String, Territory> territories){
-        //check if the selected territory is player's own one
-        for(String name : territories.keySet()){
-           if(name.equals(input)){
-               Territory t=territories.get(input);
-               if(t.getOwner()==player.getId()) return true;
-               else{
-                   System.out.println("It is NOT your territory, please choose again");
-               }
-               return false;
-           }
-        }
-        System.out.println("Your input is not valid territory name");
-        return false;
-    }
-
-    public boolean InputEnemy_Validate(Player player,String input, Map<String, Territory> territories){
-        //check if the selected territory is player's  enemy one
-        for(String name : territories.keySet()){
-            if(name.equals(input)){
-                Territory t=territories.get(input);
-                if(t.getOwner()!=player.getId()) return true;
-                else{
-                    System.out.println("It is NOT your enemy territory, please choose again");
+    //this will help fill in the arraylist the 3 number
+    public void initial_game(Map<String, Territory> territories,Scanner sc,int total,HashMap<String,Integer> init_info){
+        Prompts prompts_helper=new Prompts(territories);
+        Validator validator=new Validator();
+        while(true){
+            int total_input=0;
+            init_info.clear();
+            prompts_helper.gragh_helper(id, true);
+            System.out.println("Your territories are as follows,please assign the soldier in each place in display order");
+            HashMap<Integer, ArrayList<Territory>> temp=prompts_helper.getGraphInformation();
+            for(Territory t : temp.get(id)) {
+                System.out.println("How many soldiers do you want to place in "+t.getName()+"(remaing "+(total-total_input)+")");
+                //System.out.println("Y");
+                String num=sc.nextLine();
+                while(!validator.InputNumber_Validate(num)){
+                    num=sc.nextLine();
                 }
-                return false;
+
+                init_info.put(t.getName(),Integer.parseInt(num));
+                total_input+=Integer.parseInt(num);
             }
-        }
-        System.out.println("Your input is not valid territory name");
-        return false;
-    }
+            if(total_input!=total) System.out.println("Invalid initialization,type again");
 
-
-
-    //Check whether the actions of this player is valid
-    public boolean validate(Player player, Map<String, Territory> territories) {
-        initializeRecord(player, territories);
-        for(Action a: player.getActions()){
-            String action = a.getName();
-            String src = a.getStart();
-            String dest = a.getEnd();
-            int num = a.getNum();
-
-            if(action.equals("M")){
-                if(!this.BFS(src, dest, territories)){
-                    player.isvalid=false;
-                    System.out.println("BFS error");
-                    return false;
-                }
-                this.moveChange(num, src, dest);
-                if(!this.checkNumber()){
-                    player.isvalid=false;
-                    System.out.println("cannot moveChange");
-                    return false;
-                }
-            }
-            else{
-                //it is Attack command
-                if(!this.findEnemy(src, dest, territories)){
-                    player.isvalid=false;
-                    System.out.println("cannot findenemy");
-                    return false;
-                }
-                this.attackChange(num, src);
-                if(!this.checkNumber()){
-                    player.isvalid=false;
-                    System.out.println("checknumber error");
-                    return false;
-                }
-            }
-        }
-        player.isvalid=true;
-        return true;
-    }
-
-    //Initialize the record of the number in each territory
-    public void initializeRecord(Player player, Map<String, Territory> territories){
-        int playerId = player.getId();
-        for(String key : territories.keySet()){
-            if(territories.get(key).getOwner() == playerId){
-                record.put(territories.get(key).getName(), territories.get(key).getNum());
-            }
+            else return;
         }
     }
 
-    //Check whether the number is still larger or equal than 0
-    private boolean checkNumber(){
-        for(String key : record.keySet()){
-            if(record.get(key) < 0){
-                return false;
-            }
-        }
-        return true;
+    public void addAction_afterFail(Map<String, Territory> territories){
+        System.out.println("----------YOU FAIL(Watching Mode)------------");
+        Prompts prompts_helper=new Prompts(territories);
+        this.actions.clear();
+        prompts_helper.GraphPrompts();
     }
 
-    //Search whether these two territories are connected
-    private boolean BFS(String src, String dest, Map<String, Territory> territories){
-        Queue<Territory> q = new LinkedList<>();
-        HashSet<Territory> visited = new HashSet<>();
-        Territory start = territories.get(src);
-        q.offer(start);
-        visited.add(start);
+    public void addAction(Map<String, Territory> territories,String client_name,Scanner sc){
+        //the argument is passed by server via socket
+        // need to simply verify the user input
+        Validator validate_helper=new Validator();
+        Prompts prompts_helper=new Prompts(territories);
 
-        while(!q.isEmpty()){
-            Territory curr = q.peek();
-            q.poll();
-            for(Territory t : curr.getNeighbors()){
-                if(!visited.contains(t) && t.getOwner() == start.getOwner()){
-                    q.offer(t);
-                    visited.add(t);
-                    if(t.getName().equals(dest)){
-                        return true;
-                    }
+        this.actions.clear();
+        //clear all record in current action list
+        while(true) {
+            prompts_helper.GraphPrompts();
+            prompts_helper.OPtionsPrompts(client_name);
+            //add a history to record this round's movement
+            prompts_helper.CurrentRoundHistory(this.actions);
+            //
+            String action = sc.nextLine();
+            while (!validate_helper.InputFormat_Validate(action)) {
+                action = sc.nextLine();
+            }
+            if (action.equals("D")) break;
+            System.out.println("Please assign the source territory of YOURSELF");
+            String src = sc.nextLine();
+            while (!validate_helper.InputOnwer_Validate(this, src, territories)) {
+                src = sc.nextLine();
+            }
+            System.out.println("Please type the soldier number you want to send");
+            String num_string = sc.nextLine();
+            while (!validate_helper.InputNumber_Validate(num_string)) {
+                num_string = sc.nextLine();
+            }
+            String des = "";
+            if (action.equals("M")) {
+                System.out.println("Please assign the destination of YOURSELF");
+                des = sc.nextLine();
+                while (!validate_helper.InputOnwer_Validate(this, des, territories)) {
+                    des = sc.nextLine();
+                }
+            } else {// it is attack command
+                System.out.println("Please assign the destination of ENEMY");
+                des = sc.nextLine();
+                while (!validate_helper.InputEnemy_Validate(this, des, territories)) {
+                    des = sc.nextLine();
                 }
             }
+            //now get all three arguments a Action object need
+            Action user_action = new Action(action, src, des, Integer.parseInt(num_string));
+            //add some valid action list to it
+            this.actions.add(user_action);
         }
-        return false;
     }
+  public void setActions(Action a){
+	//actions.clear();
+    actions.add(a);
+  }
+	public void clearActions(){
+ actions.clear();
+}
+  
 
-    //Change the record
-    private void moveChange(int i, String src, String dest){
-        int t1 = this.record.get(src);
-        int t2 = this.record.get(dest);
-
-        this.record.remove(src);
-        this.record.remove(dest);
-
-        this.record.put(src, t1 - i);
-        this.record.put(dest, t2 + i);
-    }
-
-    //Find whether the enemy is connected
-    private boolean findEnemy(String src, String dest, Map<String, Territory> territories){
-        Territory start = territories.get(src);
-        for(Territory t : start.getNeighbors()){
-            if(t.getName().equals(dest)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //Change the record
-    private void attackChange(int i, String src){
-        int t1 = this.record.get(src);
-        this.record.remove(src);
-        this.record.put(src, t1 - i);
-    }
 }

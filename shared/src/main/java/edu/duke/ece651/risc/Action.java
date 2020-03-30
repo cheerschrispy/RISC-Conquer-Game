@@ -9,14 +9,13 @@ public class Action implements Serializable {
     private String end;
     //private int num;
     private ArrayList<Unit> soldiers;
-    private ArrayList<Integer> levels;
+    int requiredLevel;
 
     Action(String name, String start, String end) {
         this.name = name;
         this.start = start;
         this.end = end;
         this.soldiers = new ArrayList<>();
-        this.levels = new ArrayList<>();
     }
 
     public String getName(){
@@ -33,11 +32,15 @@ public class Action implements Serializable {
         this.soldiers.add(u);
     }
 
-    public void addLevels(Integer i){
-        this.levels.add(i);
+    public void setLevels(int i){
+        this.requiredLevel = i;
     }
 
-    public ArrayList<Integer> getLevels(){
-        return this.levels;
+    public int getLevels(){
+        return this.requiredLevel;
+    }
+
+    public ArrayList<Unit> getSoldiers() {
+        return soldiers;
     }
 }

@@ -10,10 +10,10 @@ public class Territory implements Serializable {
     private Set<Territory> neighbors;
     private int size;
 
-    Territory(String name, int owner, int num) {
+    Territory(String name, int owner) {
         this.name = name;
         this.owner = owner;
-        this.num = num;
+        this.soldiers = new ArrayList<>();
         neighbors = new HashSet<>();
         this.size = 3;
     }
@@ -41,5 +41,9 @@ public class Territory implements Serializable {
 
     public int getSize(){
         return this.size;
+    }
+
+    public ArrayList<Unit> getSoldiers() {
+        return soldiers;
     }
 }

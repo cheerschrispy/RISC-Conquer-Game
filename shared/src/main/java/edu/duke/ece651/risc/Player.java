@@ -6,7 +6,7 @@ import java.util.*;
 public class Player implements Serializable {
     private int id;
     private ArrayList<Action> actions;
-    public boolean isvalid=true; //for validating
+    public boolean isvalid = true; //for validating
     private int foodResources;
     private int techResources;
     private int techLevel;
@@ -16,7 +16,7 @@ public class Player implements Serializable {
         this.id = id;
         this.actions = new ArrayList<>();
         this.foodResources = 30;
-        this.techLevel = 0;
+        this.techLevel = 1;
         this.techResources = 50;
     }
 
