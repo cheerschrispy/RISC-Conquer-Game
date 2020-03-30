@@ -6,7 +6,7 @@ import java.util.*;
 public class Territory implements Serializable {
     private String name;
     private int owner;
-    private int num;//soldier num in this territory
+    private ArrayList<Unit> soldiers;
     private Set<Territory> neighbors;
     private int size;
 
@@ -27,20 +27,12 @@ public class Territory implements Serializable {
         return this.owner;
     }
 
-    public int getNum(){
-        return this.num;
-    }
-
     public String getName(){
         return this.name;
     }
 
     public Set<Territory> getNeighbors(){
         return this.neighbors;
-    }
-
-    public void setNum(int i){
-        this.num = i;
     }
 
     public void setOwner(int i){
