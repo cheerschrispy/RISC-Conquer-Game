@@ -3,51 +3,37 @@ package edu.duke.ece651.risc;
 import java.io.Serializable;
 import java.util.*;
 
-public class Territory implements Serializable {
+public class Unit {
+    private int bonus;
+    private int level;
     private String name;
-    private int owner;
-    private int num;//soldier num in this territory
-    private Set<Territory> neighbors;
-    private int size;
 
-    Territory(String name, int owner, int num) {
-        this.name = name;
-        this.owner = owner;
-        this.num = num;
-        neighbors = new HashSet<>();
-        this.size = 3;
-    }
-
-    //add  other territory to its neighbor list
-    public void connect(Territory t) {
-        this.neighbors.add(t);
-    }
-
-    public int getOwner(){
-        return this.owner;
-    }
-
-    public int getNum(){
-        return this.num;
+    public Unit(){
+        this.bonus = 0;
+        this.level = 0;
     }
 
     public String getName(){
         return this.name;
     }
 
-    public Set<Territory> getNeighbors(){
-        return this.neighbors;
+    public void setName(){
+        this.name = "Soldier " + level;
     }
 
-    public void setNum(int i){
-        this.num = i;
+    public void setBonus(int i){
+        this.bonus = i;
     }
 
-    public void setOwner(int i){
-        this.owner = i;
+    public int getBonus(){
+        return this.bonus;
     }
 
-    public int getSize(){
-        return this.size;
+    public int getLevel(){
+        return this.level;
+    }
+
+    public void setLevel(int i){
+        this.level = i;
     }
 }
