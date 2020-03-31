@@ -46,4 +46,8 @@ public class Territory implements Serializable {
     public ArrayList<Unit> getSoldiers() {
         return soldiers;
     }
+
+    public void setSoldiers(ArrayList<Unit> s) {
+        this.soldiers = s;
+    }
 }

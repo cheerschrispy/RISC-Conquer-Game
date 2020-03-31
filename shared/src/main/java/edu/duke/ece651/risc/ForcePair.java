@@ -3,65 +3,70 @@ package edu.duke.ece651.risc;
 import java.util.*;
 
 public class ForcePair {
-  private int owner;
-  private int soldierNum;
-
-  public ForcePair() {
-    this.owner = -1;
-    this.soldierNum = -1;
-  }
-  // Constructor
-  public ForcePair(int o, int s) {
+  // Constructor: Auto sort the taken in soldiers array
+  public ForcePair(int o, ArrayList<Unit> s) {
     this.owner = o;
-    this.soldierNum = s;
+    this.soldiers = sortByBonus(s);
   }
   
-   /*public static Position copyPos(Position p) {
-    Position out = new Position(p.x, p.y);
-    return out;
-  }*/
-
-  @Override
-  public boolean equals(Object o) { 
-  
-  if(!o.getClass().equals(ForcePair.class)) {
-    return false;
+  // Check if there is no soldier left
+  public boolean isLost() {
+    return soldiers.isEmpty();
   }
-              
-  // typecast o to Complex so that we can compare data members  
-  ForcePair c = (ForcePair) o; 
-          
-  // Compare the data members and return accordingly  
-  return Integer.compare(this.owner, c.owner) == 0
-                && Integer.compare(this.soldierNum, c.soldierNum) == 0; 
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(this.owner, this.soldierNum);
-  }
-
 
   public int getOwner() {
     return this.owner;
   }
 
-  public int getSoldier() {
-    return this.soldierNum;
+  public ArrayList<Unit> getSoldiers() {
+    return this.soldiers;
   }
 
-  public void lossFight() {
-    if(this.soldierNum > 0) {
-      this.soldierNum--;
+  public int getBonus(int id) {
+    return this.soldiers.get(id).getBonus();
+  }
+
+  // Remove soldier
+  public int getLowestSoldier() {
+    return 0;
+  }
+  public int getHighestSoldier() {
+    return this.soldiers.size() - 1;
+  }
+  public void dieByID(int id) {
+    this.soldiers.remove(id);
+  }
+
+  private int owner;
+  private ArrayList<Unit> soldiers;
+
+  // Just as is named
+  private ArrayList<Unit> sortByBonus(ArrayList<Unit> originalList) {
+    ArrayList<Unit> out = new ArrayList<Unit>();
+
+    // While old list is not empty
+    while(!originalList.isEmpty()){
+
+      int minBonus = originalList.get(0).getBonus();
+      int minIndex = 0;
+
+
+      // Find the smallest bounus index
+      for(int i = 0; i < originalList.size(); i++) {
+        Unit currU = originalList.get(i);
+        if(minBonus > currU.getBonus()) {
+          minBonus = currU.getBonus();
+          minIndex = i;
+        }
+      }
+
+      // Remove from old list, insert into new list
+      out.add(originalList.remove(minIndex));
+
     }
-  }
 
-/*  public void setOwner(int x) {
-    this.x = x;
-  }
+    return out;
 
-  public void setY(int y) {
-    this.y = y;
-  }*/
+  }
 
 }

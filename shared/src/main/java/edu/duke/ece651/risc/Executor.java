@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Executor {
     
-    private ForcePair selectAttacker(Map<Integer, Integer> attackSquads) {
+    private ForcePair selectAttacker(Map<Integer, ArrayList<Unit>> attackSquads) {
     
         Integer[] keyArray = attackSquads.keySet().toArray(new Integer[0]); // Store all keys in an array
         Random rand = new Random(System.currentTimeMillis());
@@ -12,79 +12,49 @@ public class Executor {
         // Generate random integers in range 0 to keyArray size
         int rand_index = rand.nextInt(keyArray.length);
         int squad_id = keyArray[rand_index];
-        int soldier_num = attackSquads.remove(squad_id); // Remove from attackSquads
+        ArrayList<Unit> soldierList = attackSquads.remove(squad_id); // Remove from attackSquads
         // System.out.println("Selecting attacker ... Squad " + squad_id 
         //                                        + "! (" + soldier_num + " soldiers)");
     
-        ForcePair out = new ForcePair(squad_id, soldier_num);
+        ForcePair out = new ForcePair(squad_id, soldierList);
 
         return out;
     }
 
     private ForcePair deployDefender(Territory terr) {
-  
-        ForcePair out = new ForcePair(terr.getOwner(), terr.getNum());
+        ArrayList<Unit> soldiers = terr.getSoldiers();
+        ForcePair out = new ForcePair(terr.getOwner(), soldiers);
         return out;
     }
-
-    private ForcePair combat(ForcePair attacker, ForcePair defender) {
-    
-        Random rand = new Random(System.nanoTime());
-        while (attacker.getSoldier() != 0 && defender.getSoldier() != 0) {
-            int attDice = rand.nextInt(20);
-            int defDice = rand.nextInt(20);
-            // System.out.println("Attacker (owned by " + attacker.getOwner() + 
-            //                        ") current: " + attacker.getSoldier() + " soldiers");
-            // System.out.println("Defender (owned by " + defender.getOwner() + 
-            //                        ") current: " + defender.getSoldier() + " soldiers");
-            // System.out.println("Attacker roll dice: " + attDice);
-            // System.out.println("Defender roll dice: " + defDice);
-            if (attDice <= defDice) {
-                attacker.lossFight();
-                // System.out.println("Attacker lost a fight!");
-            } 
-            else {
-                defender.lossFight();
-                // System.out.println("Defender lost a fight!");
-            }
-        }
-
-        if (attacker.getSoldier() == 0) {
-            // System.out.println("Defender won the combat!");
-            return defender;
-        } 
-        else {
-            // System.out.println("Attacker won the combat!");
-            return attacker;
-        }
-  }
 
     private void assertDomination(ForcePair survivor, Territory terr) {
      
         // System.out.println(terr.getName() + "'s new owner is " + survivor.getOwner() + 
         //                            " with " + survivor.getSoldier() + " soldiers");
         terr.setOwner(survivor.getOwner());
-        terr.setNum(survivor.getSoldier());
+        terr.setSoldiers(survivor.getSoldiers());
     }
 
-    public void attack(Map<String, Map<Integer, Integer>> attacks, Map<String, Territory> territories) {
+    public void attack(Map<String, Map<Integer, ArrayList<Unit>>> attacks, Map<String, Territory> territories) {
+
         Set<String> battleFields = attacks.keySet(); // Get the names of all lands
 
         // Loop through each land
         for (String currBFD : battleFields) { // For each current battle field
             // System.out.println("Current battle field is: " + currBFD + "!");
-            Map<Integer, Integer> attackSquads = attacks.get(currBFD);
-            Territory currTerr = territories.get(currBFD);
+            Map<Integer, ArrayList<Unit>> attackSquads = attacks.get(currBFD); // Get the attack squads
+            Territory currTerr = territories.get(currBFD);                // Get the current territory
             // System.out.println(currBFD + " is owned by: " + currTerr.getOwner() 
             //                             + " with " + currTerr.getNum() + " soldiers.");
-            ForcePair attacker = new ForcePair();
-            ForcePair defender = new ForcePair();
+            ForcePair attacker;
+            ForcePair defender;
 
             defender = deployDefender(currTerr);
             // Loop until one survivor
             while (!attackSquads.isEmpty()) {
                 attacker = selectAttacker(attackSquads); // Select and remove a attacker from attackSquads
-                defender = combat(attacker, defender); // One that survive become new defender
+                Arena currArena = new Arena(attacker, defender);
+                defender = currArena.run(); // One that survive become new defender
             }
             assertDomination(defender, currTerr); // Write combat result in currTerr
         }
