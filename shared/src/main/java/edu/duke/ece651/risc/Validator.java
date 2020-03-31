@@ -198,7 +198,7 @@ public class Validator {
     }
 
     //Search whether these two territories are connected
-    private int BFS(String src, String dest, Map<String, Territory> territories){
+    public int BFS(String src, String dest, Map<String, Territory> territories){
         Queue<Territory> q = new LinkedList<>();
         HashSet<Territory> visited = new HashSet<>();
         Territory start = territories.get(src);
@@ -209,7 +209,7 @@ public class Validator {
         while(!q.isEmpty()){
             Territory curr = q.peek();
             q.poll();
-            step++;
+            step+=curr.getSize();
             for(Territory t : curr.getNeighbors()){
                 if(!visited.contains(t) && t.getOwner() == start.getOwner()){
                     q.offer(t);

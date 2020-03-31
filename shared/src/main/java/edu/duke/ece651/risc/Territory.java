@@ -9,13 +9,25 @@ public class Territory implements Serializable {
     private ArrayList<Unit> soldiers;
     private Set<Territory> neighbors;
     private int size;
+    private int foodProduct;
+    private int techProduct;
+
+    public int getFoodProduct() {
+        return foodProduct;
+    }
+
+    public int getTechProduct() {
+        return techProduct;
+    }
 
     Territory(String name, int owner) {
         this.name = name;
         this.owner = owner;
         this.soldiers = new ArrayList<>();
-        neighbors = new HashSet<>();
+        this.neighbors = new HashSet<>();
         this.size = 3;
+        this.foodProduct = 5;
+        this.techProduct = 10;
     }
 
     //add  other territory to its neighbor list
@@ -49,5 +61,12 @@ public class Territory implements Serializable {
 
     public void setSoldiers(ArrayList<Unit> s) {
         this.soldiers = s;
+    }
+
+    //init territory to have num basic soldiers
+    public void initSoldiers(int num) {
+        for (int i = 0; i < num; i++) {
+            soldiers.add(new Unit());
+        }
     }
 }

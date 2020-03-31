@@ -61,50 +61,90 @@ public class Executor {
 
     }
 
-
+    //execution starts here
     public void execute(List<Player> players, Map<String, Territory> territories) {
+        Validator validator = new Validator();
         for (Player player : players) {
             List<Action> actions = player.getActions();
-            move(actions, territories);
+            move(player, actions, territories, validator);
+            unitUpgrade(player, actions);
         }
         attack(convert(players, territories), territories);
-        increase(territories);
-    }
-
-    public void increase(Map<String, Territory> territories) {
-        for (Map.Entry entry : territories.entrySet()) {
-            Territory t = (Territory) entry.getValue();
-            t.setNum(t.getNum() + 1);
+        increase(players, territories);
+        for (Player player : players) {
+            List<Action> actions = player.getActions();
+            techUpgrade(player, actions);
         }
     }
 
-    public void move(List<Action> actions, Map<String, Territory> territories) {
+    //upgrade units
+    public void unitUpgrade(Player player, List<Action> actions) {
         for (Action action : actions) {
-            if (action.getName().equals("M")) {
-                String start = action.getStart();
-                String end = action.getEnd();
-                int num = action.getNum();
-                territories.get(start).setNum(territories.get(start).getNum() - num);
-                territories.get(end).setNum(territories.get(end).getNum() + num);
+            if (action.getName().equals("U")) {
+                ArrayList<Unit> soldiers = action.getSoldiers();
+                int requiredLevel = action.getRequiredLevel();
+                for (Unit soldier:soldiers) {
+                    int cost = soldier.upgrade(requiredLevel);
+                    player.consumeTech(cost);
+                }
             }
         }
     }
 
-    public Map<String, Map<Integer, Integer>> convert(List<Player> players, Map<String, Territory> territories) {
-        Map<String, Map<Integer, Integer>> attacks = new HashMap<>();
+    //upgrade tech
+    public void techUpgrade(Player player, List<Action> actions) {
+        for (Action action : actions) {
+            if (action.getName().equals("T")) {
+                player.upgrade();
+                return;
+            }
+        }
+    }
+
+    //increase food, tech, unit
+    public void increase(List<Player> players, Map<String, Territory> territories) {
+        for (Map.Entry entry : territories.entrySet()) {
+            Territory t = (Territory) entry.getValue();
+            t.getSoldiers().add(new Unit());
+            for (Player player : players) {
+                if (t.getOwner() == player.getId()) {
+                    player.addFood(t.getFoodProduct());
+                    player.addTech(t.getTechProduct());
+                }
+            }
+        }
+    }
+
+    //move
+    public void move(Player player, List<Action> actions, Map<String, Territory> territories, Validator validator) {
+        for (Action action : actions) {
+            if (action.getName().equals("M")) {
+                String start = action.getStart();
+                String end = action.getEnd();
+                ArrayList<Unit> soldiers = action.getSoldiers();
+                territories.get(start).getSoldiers().removeAll(soldiers);
+                territories.get(end).getSoldiers().addAll(soldiers);
+                player.consumeFood(validator.BFS(start, end, territories) * action.getSoldiers().size());
+            }
+        }
+    }
+
+    //convert data format for attack
+    public Map<String, Map<Integer, ArrayList<Unit>>> convert(List<Player> players, Map<String, Territory> territories) {
+        Map<String, Map<Integer, ArrayList<Unit>>> attacks = new HashMap<>();
         for (Player player : players) {
             List<Action> actions = player.getActions();
             for (Action action : actions) {
                 if (action.getName().equals("A")) {
                     String start = action.getStart();
-                    int num = action.getNum();
-                    territories.get(start).setNum(territories.get(start).getNum() - num);
+                    ArrayList<Unit> soldiers = action.getSoldiers();
+                    territories.get(start).getSoldiers().removeAll(soldiers);
                     String subject = action.getEnd();
                     if (attacks.containsKey(subject)) {
-                        attacks.get(subject).put(player.getId(), action.getNum());
+                        attacks.get(subject).put(player.getId(), soldiers);
                     } else {
-                        Map<Integer, Integer> map = new HashMap<>();
-                        map.put(player.getId(), action.getNum());
+                        Map<Integer, ArrayList<Unit>> map = new HashMap<>();
+                        map.put(player.getId(), action.getSoldiers());
                         attacks.put(subject, map);
                     }
                 }

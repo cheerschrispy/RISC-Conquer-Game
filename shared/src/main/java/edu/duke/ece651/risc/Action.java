@@ -4,18 +4,34 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Action implements Serializable {
-    private String name;//Move or Attack
+    private String name;//Move or Attack or Upgrade
     private String start;//start territory name
-    private String end;
-    //private int num;
+    private String end;//end territory name
     private ArrayList<Unit> soldiers;
-    int requiredLevel;
+    private int requiredLevel;
 
-    Action(String name, String start, String end) {
+    public int getRequiredLevel() {
+        return requiredLevel;
+    }
+
+    //for Move("M") and Attack("A")
+    Action(String name, String start, String end, ArrayList<Unit> soldiers) {
         this.name = name;
         this.start = start;
         this.end = end;
-        this.soldiers = new ArrayList<>();
+        this.soldiers = soldiers;
+    }
+
+    //for unit upgrade("U")
+    Action(String name, ArrayList<Unit> soldiers, int requiredLevel) {
+        this.name = name;
+        this.soldiers = soldiers;
+        this.requiredLevel = requiredLevel;
+    }
+
+    //for tech upgrade("T")
+    Action(String name) {
+        this.name = name;
     }
 
     public String getName(){
@@ -26,14 +42,12 @@ public class Action implements Serializable {
         return this.start;
     }
 
-    public String getEnd(){ return this.end; }
-
-    public void addSoldiers(Unit u){
-        this.soldiers.add(u);
+    public String getEnd(){
+        return this.end;
     }
 
-    public void setLevels(int i){
-        this.requiredLevel = i;
+    public void addSoldier(Unit u){
+        this.soldiers.add(u);
     }
 
     public int getLevels(){

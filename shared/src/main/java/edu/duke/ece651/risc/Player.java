@@ -10,7 +10,7 @@ public class Player implements Serializable {
     private int foodResources;
     private int techResources;
     private int techLevel;
-
+    private final int[] costs = new int[] {0, 0, 50, 75, 125, 200, 300};
 
     public Player(int id) {
         this.id = id;
@@ -24,28 +24,38 @@ public class Player implements Serializable {
         return this.id;
     }
 
-    public void addTechLevel(){
+    //upgrade tech
+    public void upgrade(){
         this.techLevel++;
+        this.techResources -= costs[techLevel];
     }
 
     public int getTechLevel(){
         return this.techLevel;
     }
 
+    public void consumeTech(int tech) {
+        this.techLevel -= tech;
+    }
+
+    public void addTech(int tech) {
+        this.techLevel += tech;
+    }
+
     public int getFoodResources() {
         return foodResources;
     }
 
-    public void addFoodResources(){
-        this.foodResources += 5;
+    public void addFood(int food) {
+        this.foodResources += food;
+    }
+
+    public void consumeFood(int food) {
+        this.foodResources -= food;
     }
 
     public int getTechResources() {
         return techResources;
-    }
-
-    public void addTechResources(){
-        this.techResources += 10;
     }
 
     public ArrayList<Action> getActions(){
