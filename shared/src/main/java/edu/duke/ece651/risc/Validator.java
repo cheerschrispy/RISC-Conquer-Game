@@ -29,7 +29,7 @@ public class Validator {
 
     public boolean InputFormat_Validate(String input){
         //check if the user's input is valid, i.e. belonging to limited input options
-        if(input.equals("M")||input.equals("A")|| input.equals("D")) return true;
+        if(input.equals("M")||input.equals("A")|| input.equals("D")||input.equals("T")||input.equals("U")) return true;
         else{
             System.out.println("Invalid input! Please type the first character of each option given!");
         }
@@ -120,7 +120,7 @@ public class Validator {
                     return false;
                 }
             }
-            else if(action.equals("U1")){
+            else if(action.equals("T")){
                 int currLevel = player.getTechLevel();
                 if(currLevel == 6){
                     continue;
@@ -134,6 +134,7 @@ public class Validator {
                     return false;
                 }
             }
+            //it is "U" to upgrade the units
             else{
                 int requestLevel = a.getLevels();
                 int num = soldiers.size();

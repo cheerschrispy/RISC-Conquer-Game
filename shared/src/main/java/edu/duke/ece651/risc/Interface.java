@@ -1,4 +1,4 @@
-package edu.duke.ece651.server;
+package edu.duke.ece651.risc;
 
 import javax.swing.*;
 import javax.swing.Action;
@@ -50,8 +50,6 @@ public class Interface {
                 MapField.append(String.valueOf(player.getId()));
                 moveButtton.setEnabled(false);
                 //moveButtton.
-
-
             }
         });
 

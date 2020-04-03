@@ -19,7 +19,7 @@ public class Prompts {
         StringBuilder b = new StringBuilder();
         b.append("player ").append(playerId).append(":\n--------------------------\n");
         for(Territory t : this.graphInformation.get(playerId)){
-            int number = t.getNum();
+            int number = t.getSoldiers().size();
             String name = t.getName();
             StringBuilder neighbor = new StringBuilder();
             int i = 0;
@@ -50,9 +50,9 @@ public class Prompts {
         int index=1;
         for(Action a :actions){
             if(a.getName().equals("M")){
-                System.out.println(index+": Move "+a.getNum()+" soldiers From "+a.getStart()+" To "+a.getEnd());}
+                System.out.println(index+": Move "+a.getSoldiers().size()+" soldiers From "+a.getStart()+" To "+a.getEnd());}
             if(a.getName().equals("A")){
-                System.out.println(index+": Attack "+a.getEnd()+" From "+a.getStart()+" With "+a.getNum()+" soldiers");
+                System.out.println(index+": Attack "+a.getEnd()+" From "+a.getStart()+" With "+a.getSoldiers().size()+" soldiers");
             }
             index++;
         }

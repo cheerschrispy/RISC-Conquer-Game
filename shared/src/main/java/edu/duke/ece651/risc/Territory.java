@@ -63,6 +63,28 @@ public class Territory implements Serializable {
         this.soldiers = s;
     }
 
+    //get the totoal num of indicated level
+    public int getSoldierNumOfLevel(int level){
+        int ans=0;
+        for(Unit s:this.soldiers){
+            if(s.getLevel()==level) ans++;
+        }
+        return ans;
+    }
+    //get indicated num of indicated level of soldiers
+    public ArrayList<Unit> getSoldierOfLevel(int level, int toadd){
+        ArrayList <Unit> ans=new ArrayList<Unit>();
+        int total=toadd;
+        for(Unit s:this.soldiers){
+            if(s.getLevel()==level) {
+                ans.add(s);
+                total--;
+            }
+            if(total<=0) break;
+        }
+        return ans;
+    }
+
     //init territory to have num basic soldiers
     public void initSoldiers(int num) {
         for (int i = 0; i < num; i++) {

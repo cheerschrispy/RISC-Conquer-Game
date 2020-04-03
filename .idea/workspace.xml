@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ff038ec-4f5a-4b3e-a383-52350d96e2a5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Interface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Interface.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Interface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Prompts.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Prompts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Territory.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Territory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Validator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,18 +35,48 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="extract.method.default.visibility" value="private" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="show.unlinked.gradle.project.popup" value="false" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Client">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <module />
+    </configuration>
+    <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.duke.ece651.risc.Client" />
+      <module name="main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.duke.ece651.risc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.duke.ece651.risc.Server" />
+      <module name="main2" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.duke.ece651.risc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -89,8 +126,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Client" />
+      <item itemvalue="Application.Server" />
+      <item itemvalue="JUnit.TestAction.test_" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Client" />
+        <item itemvalue="Application.Server" />
         <item itemvalue="JUnit.TestAction.test_" />
       </list>
     </recent_temporary>
@@ -107,6 +151,44 @@
       <updated>1585528677799</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585952258271">
+      <screen x="0" y="23" width="1440" height="801" />
+    </state>
+    <state x="184" y="85" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.801@0.23.1440.801" timestamp="1585952258271" />
+    <state x="570" y="330" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1585945044272">
+      <screen x="0" y="23" width="1440" height="801" />
+    </state>
+    <state x="570" y="330" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.23.1440.801@0.23.1440.801" timestamp="1585945044272" />
+    <state x="494" y="290" width="451" height="276" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1585944755584">
+      <screen x="0" y="23" width="1440" height="801" />
+    </state>
+    <state x="494" y="290" width="451" height="276" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1440.801@0.23.1440.801" timestamp="1585944755584" />
+    <state width="1398" height="359" key="GridCell.Tab.0.bottom" timestamp="1585952405970">
+      <screen x="0" y="23" width="1440" height="801" />
+    </state>
+    <state width="1398" height="359" key="GridCell.Tab.0.bottom/0.23.1440.801@0.23.1440.801" timestamp="1585952405970" />
+    <state width="1398" height="359" key="GridCell.Tab.0.center" timestamp="1585952405970">
+      <screen x="0" y="23" width="1440" height="801" />
+    </state>
+    <state width="1398" height="359" key="GridCell.Tab.0.center/0.23.1440.801@0.23.1440.801" timestamp="1585952405970" />
+    <state width="1398" height="359" key="GridCell.Tab.0.left" timestamp="1585952405969">
+      <screen x="0" y="23" width="1440" height="801" />
+    </state>
+    <state width="1398" height="359" key="GridCell.Tab.0.left/0.23.1440.801@0.23.1440.801" timestamp="1585952405969" />
+    <state width="1398" height="359" key="GridCell.Tab.0.right" timestamp="1585952405970">
+      <screen x="0" y="23" width="1440" height="801" />
+    </state>
+    <state width="1398" height="359" key="GridCell.Tab.0.right/0.23.1440.801@0.23.1440.801" timestamp="1585952405970" />
+    <state x="515" y="208" key="chooseDestDirectoryDialog" timestamp="1585944706195">
+      <screen x="0" y="23" width="1440" height="801" />
+    </state>
+    <state x="515" y="208" key="chooseDestDirectoryDialog/0.23.1440.801@0.23.1440.801" timestamp="1585944706195" />
+    <state x="399" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1585944688489">
+      <screen x="0" y="23" width="1440" height="801" />
+    </state>
+    <state x="399" y="256" key="com.intellij.ide.util.TipDialog/0.23.1440.801@0.23.1440.801" timestamp="1585944688489" />
   </component>
   <component name="masterDetails">
     <states>

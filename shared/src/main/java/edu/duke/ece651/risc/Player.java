@@ -97,6 +97,72 @@ public class Player implements Serializable {
         prompts_helper.GraphPrompts();
     }
 
+
+    //------------------------
+    //addAction helper function
+    //------------------------
+    private String chooseFirstTerritory(Scanner sc,Map<String, Territory> territories){
+        Validator validate_helper=new Validator();
+        System.out.println("Please assign the source territory of YOURSELF");
+        String src = sc.nextLine();
+        while (!validate_helper.InputOnwer_Validate(this, src, territories)) {
+            src = sc.nextLine();
+        }
+        return src;
+    }
+    private String chooseSecondTerritory(Scanner sc,Map<String, Territory> territories,String action){
+        String des = "";
+        Validator validate_helper=new Validator();
+        if (action.equals("M")) {
+            System.out.println("Please assign the destination of YOURSELF");
+            des = sc.nextLine();
+            while (!validate_helper.InputOnwer_Validate(this, des, territories)) {
+                des = sc.nextLine();
+            }
+            //Action user_action = new Action(action, src, des, Integer.parseInt(num_string));
+        }
+
+        else if(action.equals("A")) {// it is attack command
+            System.out.println("Please assign the destination of ENEMY");
+            des = sc.nextLine();
+            while (!validate_helper.InputEnemy_Validate(this, des, territories)) {
+                des = sc.nextLine();
+            }
+        }
+        return des;
+    }
+
+    private ArrayList<Unit> updateCertainlevelSoldier(Scanner sc,Map<String, Territory> territories,String src){
+        Territory t=territories.get(src);
+        System.out.println("Please type the soldier level you want to assign");
+        int level=Integer.parseInt(sc.nextLine());
+        int num=t.getSoldierNumOfLevel(level);
+        while(num<=0){
+            System.out.println("you dont have that level soldiers,type again");
+            level=Integer.parseInt(sc.nextLine());
+            num=t.getSoldierNumOfLevel(level);
+        }
+        System.out.println("You have "+num+" soldiers of this level, how many do you want to upgrade");
+        int numToUpgrade=Integer.parseInt(sc.nextLine());
+        while(numToUpgrade>num){
+            numToUpgrade=Integer.parseInt(sc.nextLine());
+        }
+        return t.getSoldierOfLevel(level,numToUpgrade);
+    }
+
+    private ArrayList<Unit> assignSoldiers(Scanner sc,Map<String, Territory> territories,String src){
+        Territory t=territories.get(src);
+        ArrayList<Unit> ans=new ArrayList<>();
+        for(int i=0;i<7;i++){
+            int num=t.getSoldierNumOfLevel(i);
+            System.out.println("You have " +num+ " soldiers in level "+i);
+            System.out.println("How many do you want to select in level "+i);
+            int toSelect=Integer.parseInt(sc.nextLine());
+            ans.addAll(t.getSoldierOfLevel(i,toSelect));
+        }
+        return ans;
+     }
+
     public void addAction(Map<String, Territory> territories,String client_name,Scanner sc){
         //the argument is passed by server via socket
         // need to simply verify the user input
@@ -110,47 +176,45 @@ public class Player implements Serializable {
             prompts_helper.OPtionsPrompts(client_name);
             //add a history to record this round's movement
             prompts_helper.CurrentRoundHistory(this.actions);
-            //
+            //------------------------
+            //take the action first
+            //------------------------
             String action = sc.nextLine();
             while (!validate_helper.InputFormat_Validate(action)) {
                 action = sc.nextLine();
             }
             if (action.equals("D")) break;
-            System.out.println("Please assign the source territory of YOURSELF");
-            String src = sc.nextLine();
-            while (!validate_helper.InputOnwer_Validate(this, src, territories)) {
-                src = sc.nextLine();
+            if(action.equals("T")){
+                this.actions.add(new Action(action));
+                continue;
             }
-            System.out.println("Please type the soldier number you want to send");
-            String num_string = sc.nextLine();
-            while (!validate_helper.InputNumber_Validate(num_string)) {
-                num_string = sc.nextLine();
+            //------------------------
+            //take the first territory
+            String src=this.chooseFirstTerritory(sc,territories);
+            //if it is upgrade unit command
+            if(action.equals("U")){
+                ArrayList<Unit> toUpgrade=updateCertainlevelSoldier(sc,territories,src);
+                System.out.println("Select the level you want to upgrade to");
+                int desLevel=Integer.parseInt(sc.nextLine());
+                actions.add(new Action(action,src,toUpgrade,desLevel));
+                continue;
             }
-            String des = "";
-            if (action.equals("M")) {
-                System.out.println("Please assign the destination of YOURSELF");
-                des = sc.nextLine();
-                while (!validate_helper.InputOnwer_Validate(this, des, territories)) {
-                    des = sc.nextLine();
-                }
-            } else {// it is attack command
-                System.out.println("Please assign the destination of ENEMY");
-                des = sc.nextLine();
-                while (!validate_helper.InputEnemy_Validate(this, des, territories)) {
-                    des = sc.nextLine();
-                }
-            }
-            //now get all three arguments a Action object need
-            Action user_action = new Action(action, src, des, Integer.parseInt(num_string));
-            //add some valid action list to it
-            this.actions.add(user_action);
+            //it is attack/move command
+            ArrayList<Unit> toAssign=assignSoldiers(sc,territories,src);
+            //------------------------
+            //take the second territory
+            String des = this.chooseSecondTerritory(sc,territories,action);
+            this.actions.add(new Action(action,src,des,toAssign));
         }
     }
+
+
+
   public void setActions(Action a){
 	//actions.clear();
     actions.add(a);
   }
-	public void clearActions(){
+  public void clearActions(){
  actions.clear();
 }
   

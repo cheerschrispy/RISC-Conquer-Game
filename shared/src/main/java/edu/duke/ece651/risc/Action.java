@@ -23,8 +23,9 @@ public class Action implements Serializable {
     }
 
     //for unit upgrade("U")
-    Action(String name, ArrayList<Unit> soldiers, int requiredLevel) {
+    Action(String name, String start, ArrayList<Unit> soldiers, int requiredLevel) {
         this.name = name;
+        this.start=start;
         this.soldiers = soldiers;
         this.requiredLevel = requiredLevel;
     }
