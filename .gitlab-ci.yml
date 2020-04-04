@@ -1,39 +1,19 @@
+image: gradle:jdk11
+
 before_script:
-  - hostname
-  - whoami
-  - pwd
-  - ls -la
-  - docker --version
+  - export GRADLE_USER_HOME=`pwd`/.gradle
 
-stages:
-   - build
-   - test
-   - coverage
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
 
-   
-build:
-  tags:
-     - ece651
+package:
   stage: build
-  script: docker build --build-arg LOCAL_USER_ID=`id -u`  --tag citest .
+  script:
+    - ./gradlew assemble
 
 test:
-  tags:
-     - ece651
   stage: test
-  script: scripts/run-tests-in-docker.sh
-  artifacts:
-    paths:
-      - coverage
-      
-pages:
- stage: coverage
- tags:
-     - ece651
- dependencies:
-   - test
- script:
-   - mv coverage public/
- artifacts:
-   paths:
-     - public
+  script:
+    - ./gradlew check
