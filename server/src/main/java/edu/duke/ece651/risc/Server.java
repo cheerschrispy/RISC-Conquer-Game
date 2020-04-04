@@ -4,7 +4,6 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 
 public class Server {
@@ -89,9 +88,19 @@ public class Server {
                 thread.join();
             }
 
+            mapSoldiers(players);
+
             //operate on map and send map back
             executor.execute(players, territories);
             for (int i = 0; i < player_num; i++) {
+                for (Player player : players) {
+                    if (player.getId() == i) {
+                        os.get(i).writeObject(player);
+                        os.get(i).flush();
+                        os.get(i).reset();
+                        break;
+                    }
+                }
                 os.get(i).writeObject(territories);
                 os.get(i).flush();
                 os.get(i).reset();
@@ -101,6 +110,30 @@ public class Server {
             }
 
             System.out.println("sent back");
+        }
+    }
+
+    private void mapSoldiers(List<Player> players) {
+        for (Player player : players) {
+            for (Action action : player.getActions()) {
+                String start = action.getStart();
+                ArrayList<Unit> soldiers = action.getSoldiers();
+                if (soldiers == null) {
+                    break;
+                }
+                Territory territory = territories.get(start);
+                ArrayList<Unit> mappedSoldiers = new ArrayList<>();
+                while (!soldiers.isEmpty()) {
+                    Unit soldier = soldiers.remove(0);
+                    for (Unit unit : territory.getSoldiers()) {
+                        if (soldier.getLevel() == unit.getLevel() && !mappedSoldiers.contains(unit)) {
+                            mappedSoldiers.add(unit);
+                            break;
+                        }
+                    }
+                }
+                soldiers.addAll(mappedSoldiers);
+            }
         }
     }
 
@@ -198,9 +231,6 @@ public class Server {
                 }
                 System.out.println("input is valid");
                 //send the correct player whose flag is true;
-                os1.writeObject(player);
-                os1.flush();
-                os1.reset();
                 //now the new input from user is valid
                 players.add(player);
                 //this is for debugging
