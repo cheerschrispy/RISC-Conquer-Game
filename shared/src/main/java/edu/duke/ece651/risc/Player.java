@@ -10,7 +10,7 @@ public class Player implements Serializable {
     private int foodResources;
     private int techResources;
     private int techLevel;
-    private final int[] costs = new int[] {0, 0, 50, 75, 125, 200, 300};
+    private static int[] costs = new int[] { 0, 50, 75, 125, 200, 300};
 
     public Player(int id) {
         this.id = id;
@@ -35,11 +35,11 @@ public class Player implements Serializable {
     }
 
     public void consumeTech(int tech) {
-        this.techLevel -= tech;
+        this.techResources -= tech;
     }
 
     public void addTech(int tech) {
-        this.techLevel += tech;
+        this.techResources += tech;
     }
 
     public int getFoodResources() {
@@ -90,6 +90,7 @@ public class Player implements Serializable {
         }
     }
 
+
     public void addAction_afterFail(Map<String, Territory> territories){
         System.out.println("----------YOU FAIL(Watching Mode)------------");
         Prompts prompts_helper=new Prompts(territories);
@@ -132,36 +133,42 @@ public class Player implements Serializable {
         return des;
     }
 
+
     private ArrayList<Unit> updateCertainlevelSoldier(Scanner sc,Map<String, Territory> territories,String src){
+        ArrayList<Unit> ans=new ArrayList<>();
         Territory t=territories.get(src);
         System.out.println("Please type the soldier level you want to assign");
         int level=Integer.parseInt(sc.nextLine());
-        int num=t.getSoldierNumOfLevel(level);
+        /*int num=t.getSoldierNumOfLevel(level);
         while(num<=0){
             System.out.println("you dont have that level soldiers,type again");
             level=Integer.parseInt(sc.nextLine());
             num=t.getSoldierNumOfLevel(level);
-        }
-        System.out.println("You have "+num+" soldiers of this level, how many do you want to upgrade");
+        }*/
+        System.out.println("How many soldiers in this level do you want to upgrade");
         int numToUpgrade=Integer.parseInt(sc.nextLine());
-        while(numToUpgrade>num){
-            numToUpgrade=Integer.parseInt(sc.nextLine());
+        for(int i=0;i<numToUpgrade;i++){
+            ans.add(new Unit(level));
         }
-        return t.getSoldierOfLevel(level,numToUpgrade);
+        return ans;
     }
+
+
 
     private ArrayList<Unit> assignSoldiers(Scanner sc,Map<String, Territory> territories,String src){
         Territory t=territories.get(src);
         ArrayList<Unit> ans=new ArrayList<>();
         for(int i=0;i<7;i++){
             int num=t.getSoldierNumOfLevel(i);
-            System.out.println("You have " +num+ " soldiers in level "+i);
             System.out.println("How many do you want to select in level "+i);
             int toSelect=Integer.parseInt(sc.nextLine());
-            ans.addAll(t.getSoldierOfLevel(i,toSelect));
+            for(int j=0;j<toSelect;j++){
+                ans.add(new Unit(i));
+            }
         }
         return ans;
-     }
+    }
+
 
     public void addAction(Map<String, Territory> territories,String client_name,Scanner sc){
         //the argument is passed by server via socket
@@ -210,13 +217,14 @@ public class Player implements Serializable {
 
 
 
-  public void setActions(Action a){
-	//actions.clear();
-    actions.add(a);
-  }
-  public void clearActions(){
- actions.clear();
-}
-  
+
+    public void setActions(Action a){
+        //actions.clear();
+        actions.add(a);
+    }
+    public void clearActions(){
+        actions.clear();
+    }
+
 
 }

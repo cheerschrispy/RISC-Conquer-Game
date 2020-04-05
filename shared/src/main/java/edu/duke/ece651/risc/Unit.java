@@ -16,6 +16,12 @@ public class Unit implements Serializable{
         this.name = "Soldier " + level;
     }
 
+    public Unit(int level){
+        this.bonus=bonuses[level];
+        this.level=level;
+        this.name = "Soldier " + level;
+    }
+
     public String getName(){
         return this.name;
     }
