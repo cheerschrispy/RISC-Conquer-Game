@@ -22,6 +22,7 @@ public class Unit implements Serializable{
         this.name = "Soldier " + level;
     }
 
+
     public String getName(){
         return this.name;
     }

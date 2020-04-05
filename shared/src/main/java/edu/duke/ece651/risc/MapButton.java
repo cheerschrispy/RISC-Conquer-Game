@@ -35,4 +35,8 @@ public class MapButton extends JButton {
             }
         });
     }
+
+    public String getName(){
+        return this.name;
+    }
 }

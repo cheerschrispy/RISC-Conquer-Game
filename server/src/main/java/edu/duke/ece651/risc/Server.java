@@ -22,6 +22,7 @@ public class Server {
         this.players = new ArrayList<>();
         this.executor = new Executor();
         this.os=new ArrayList<>();
+        this.os=new ArrayList<>();
         this.is=new ArrayList<>();
 
     }
@@ -31,8 +32,8 @@ public class Server {
         createTerritories();
         createPlayers();
 
-        System.out.println("Territory is "+this.territories);
-        System.out.println("player is "+this.players);
+        //System.out.println("Territory is "+this.territories);
+        //System.out.println("player is "+this.players);
         try {
             ss = new ServerSocket(port);
             System.out.println("Starting Server on Port " + port);
@@ -43,7 +44,6 @@ public class Server {
             updatePeople(clients);
 
             play(clients);
-
             endGame(clients);
 
         } catch (Exception e) {
@@ -109,7 +109,7 @@ public class Server {
                 p.GraphPrompts();
             }
 
-            System.out.println("sent back");
+            System.out.println("sent back new terri");
         }
     }
 
