@@ -1,5 +1,6 @@
 package edu.duke.ece651.risc;
 
+import javax.swing.*;
 import java.util.*;
 
 public class Executor {
@@ -161,10 +162,22 @@ public class Executor {
         }
         return set;
     }
+    public boolean checkWin(Map<String, Territory> territories, JTextArea textArea) {
+        Set<Integer> set=win_helper(territories);
+        if (set.size() == 1){
+            textArea.setText("");
+            textArea.append("Player "+set.toArray()[0]+" is the Winner!\n");
+            textArea.append("Please Quit");
+            return true;
+        }
+        else return false;
+    }
     public boolean checkWin(Map<String, Territory> territories) {
         Set<Integer> set=win_helper(territories);
         if (set.size() == 1){
-            System.out.println("Player "+set.toArray()[0]+" is the Winner!");
+            //textArea.setText("");
+            System.out.println("Player "+set.toArray()[0]+" is the Winner!\n");
+            //textArea.append("Please Quit");
             return true;
         }
         else return false;

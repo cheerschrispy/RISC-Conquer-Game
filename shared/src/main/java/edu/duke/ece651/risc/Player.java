@@ -107,19 +107,18 @@ public class Player implements Serializable {
         Validator validate_helper=new Validator();
         System.out.println("Please assign the source territory of YOURSELF");
         String src = sc.nextLine();
-        while (!validate_helper.InputOnwer_Validate(this, src, territories)) {
-            src = sc.nextLine();
-        }
+        if (!validate_helper.InputOnwer_Validate(this, src, territories)) src="";
         return src;
     }
+
     private String chooseSecondTerritory(Scanner sc,Map<String, Territory> territories,String action){
         String des = "";
         Validator validate_helper=new Validator();
         if (action.equals("M")) {
             System.out.println("Please assign the destination of YOURSELF");
             des = sc.nextLine();
-            while (!validate_helper.InputOnwer_Validate(this, des, territories)) {
-                des = sc.nextLine();
+            if (!validate_helper.InputOnwer_Validate(this, des, territories)) {
+                des = "";
             }
             //Action user_action = new Action(action, src, des, Integer.parseInt(num_string));
         }
@@ -127,8 +126,8 @@ public class Player implements Serializable {
         else if(action.equals("A")) {// it is attack command
             System.out.println("Please assign the destination of ENEMY");
             des = sc.nextLine();
-            while (!validate_helper.InputEnemy_Validate(this, des, territories)) {
-                des = sc.nextLine();
+            if (!validate_helper.InputEnemy_Validate(this, des, territories)) {
+                des = "";
             }
         }
         return des;
@@ -137,17 +136,16 @@ public class Player implements Serializable {
 
     private ArrayList<Unit> updateCertainlevelSoldier(Scanner sc,Map<String, Territory> territories,String src){
         ArrayList<Unit> ans=new ArrayList<>();
-        Territory t=territories.get(src);
+        Validator v=new Validator();
         System.out.println("Please type the soldier level you want to assign");
-        int level=Integer.parseInt(sc.nextLine());
-        /*int num=t.getSoldierNumOfLevel(level);
-        while(num<=0){
-            System.out.println("you dont have that level soldiers,type again");
-            level=Integer.parseInt(sc.nextLine());
-            num=t.getSoldierNumOfLevel(level);
-        }*/
+        String firstNum=sc.nextLine();
+        if(!v.InputNumber_Validate(firstNum)) return null;
+        //else
+        int level=Integer.parseInt(firstNum);
         System.out.println("How many soldiers in this level do you want to upgrade");
-        int numToUpgrade=Integer.parseInt(sc.nextLine());
+        String secondNum=sc.nextLine();
+        if(!v.InputNumber_Validate(secondNum)) return null;
+        int numToUpgrade=Integer.parseInt(secondNum);
         for(int i=0;i<numToUpgrade;i++){
             ans.add(new Unit(level));
         }
@@ -157,12 +155,16 @@ public class Player implements Serializable {
 
 
     private ArrayList<Unit> assignSoldiers(Scanner sc,Map<String, Territory> territories,String src){
+        Validator v=new Validator();
         Territory t=territories.get(src);
         ArrayList<Unit> ans=new ArrayList<>();
         for(int i=0;i<7;i++){
-            int num=t.getSoldierNumOfLevel(i);
+           // int num=t.getSoldierNumOfLevel(i);
             System.out.println("How many do you want to select in level "+i);
-            int toSelect=Integer.parseInt(sc.nextLine());
+            String current=sc.nextLine();
+            if(!v.InputNumber_Validate(current)) return null;
+            //else: it is legal input
+            int toSelect=Integer.parseInt(current);
             for(int j=0;j<toSelect;j++){
                 ans.add(new Unit(i));
             }
@@ -170,8 +172,8 @@ public class Player implements Serializable {
         return ans;
     }
 
-
-    public void addAction(Map<String, Territory> territories,String client_name,Scanner sc,JTextArea prompts){
+    //true to indicate the format is okay
+    public boolean addAction(Map<String, Territory> territories,String client_name,Scanner sc){
         //the argument is passed by server via socket
         // need to simply verify the user input
         Validator validate_helper=new Validator();
@@ -188,9 +190,7 @@ public class Player implements Serializable {
             //take the action first
             //------------------------
             String action = sc.nextLine();
-            while (!validate_helper.InputFormat_Validate(action)) {
-                action = sc.nextLine();
-            }
+            if (!validate_helper.InputFormat_Validate(action)) return false;
             if (action.equals("D")) break;
             if(action.equals("T")){
                 this.actions.add(new Action(action));
@@ -199,22 +199,28 @@ public class Player implements Serializable {
             //------------------------
             //take the first territory
             String src=this.chooseFirstTerritory(sc,territories);
+            if(src.equals("")) return false;
+
             //if it is upgrade unit command
             if(action.equals("U")){
                 ArrayList<Unit> toUpgrade=updateCertainlevelSoldier(sc,territories,src);
                 System.out.println("Select the level you want to upgrade to");
-                prompts.append("Select the level you want to upgrade to");
-                int desLevel=Integer.parseInt(sc.nextLine());
+                String curr=sc.nextLine();
+                if(!validate_helper.InputNumber_Validate(curr)) return false;
+                int desLevel=Integer.parseInt(curr);
                 actions.add(new Action(action,src,toUpgrade,desLevel));
                 continue;
             }
             //it is attack/move command
             ArrayList<Unit> toAssign=assignSoldiers(sc,territories,src);
+            if(toAssign==null) return false;
             //------------------------
             //take the second territory
             String des = this.chooseSecondTerritory(sc,territories,action);
+            if(des.equals("")) return false;
             this.actions.add(new Action(action,src,des,toAssign));
         }
+        return true;
     }
 
 

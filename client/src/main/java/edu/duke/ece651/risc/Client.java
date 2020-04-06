@@ -1,14 +1,13 @@
 package edu.duke.ece651.risc;
 
 import javax.swing.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.*;
 import java.io.IOException;
 import java.io.*;
 import java.net.Socket;
 import java.util.*;
 //import java.util.concurrent.Executor;
-import java.util.concurrent.TimeUnit;
+
 
 public class Client extends Thread {
     //as a client------------------
@@ -16,7 +15,8 @@ public class Client extends Thread {
     private Scanner sc=new Scanner(System.in);
     private ObjectOutputStream os1 = null;
     private ObjectInputStream is1 = null;
-    final int totalsoldier=9;
+    final int totalSoldiers =3;
+    private Socket socket=null;
 
     ////---------------------------
     ///-----As an interface--------
@@ -44,7 +44,7 @@ public class Client extends Thread {
     private ArrayList<MapButton> mapButtons=new ArrayList<>();
 
     boolean sameAround=false;
-    public boolean commited=false;
+
     private int action = 0;
     private Player player=null;
     private Map<String, Territory> territories=null;
@@ -125,7 +125,7 @@ public class Client extends Thread {
     private void setInitialInfo(){
         //generate the map
         int playerNumber = territories.size() / 3;
-        System.out.println(playerNumber);
+        //System.out.println(playerNumber);
         for(int i = 0; i < playerNumber; i++) {
             for (int j = 0; j < 3; j++) {
                 char c = (char) ('a' + i);
@@ -169,6 +169,9 @@ public class Client extends Thread {
         textFieldCons.setConstraint(SpringLayout.HEIGHT,Spring.constant(200));
         textFieldCons.setConstraint(SpringLayout.WIDTH,Spring.constant(675));
         textField.setEditable(false);
+        Font font=new Font("buzhidao",Font.PLAIN,12);
+        textField.setFont(font);
+        textField.setForeground(Color.BLUE);
 
         SpringLayout.Constraints playerInfoFieldCons = layout.getConstraints(playerInfo);
         playerInfoFieldCons.setX(Spring.sum(MapFieldCons.getConstraint(SpringLayout.EAST),Spring.constant(10)));
@@ -201,6 +204,9 @@ public class Client extends Thread {
 
 
         //button constrains
+        SpringLayout.Constraints btnConss = layout.getConstraints(commitOnceButton);
+        btnConss.setConstraint(SpringLayout.HEIGHT,Spring.constant(50));
+
         SpringLayout.Constraints btnConsM = layout.getConstraints(moveButton);
         btnConsM.setX(Spring.constant(25));
         btnConsM.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
@@ -296,8 +302,8 @@ public class Client extends Thread {
                     textField.setText("");
                     textField.append("Move Instruction:\n\n");
                     textField.append("1.Choose the source territory,then click Done button.\n");
-                    textField.append("2.Type the number of soldiers you want to move in each level,then click Done button.\n\n");
-                    //textField.append("You are now choose level "+currentLevel+" soldiers(Max level:6)\n\n");
+                    textField.append("2.Choose the number of soldiers you want to move in each level,then click Done button.\n\n");
+                    textField.append("Attention!:Do Not Leave Num Default\n\n");
                     textField.append("3.Choose the source territory,then click Done button.\n");
                     textField.append("4.Click the left-top button to commit current single action.\n");
                     break;
@@ -308,8 +314,8 @@ public class Client extends Thread {
                     textField.setText("");
                     textField.append("Attack Instruction:\n\n");
                     textField.append("1.Choose the source territory,then click Done button.\n");
-                    textField.append("2.Type the number of soldiers you want to assign to attack in each level,then click Done button.\n\n");
-                    //textField.append("You are now choose level "+currentLevel+" soldiers(Max level:6)\n\n");
+                    textField.append("2.Choose the number of soldiers you want to assign to attack in each level,then click Done button.\n\n");
+                    textField.append("Attention!:Do Not Leave Num Default\n\n");
                     textField.append("3.Choose your enemy territory,then click Done button.\n");
                     textField.append("4.Click the left-top button to commit current single action.\n");
                     break;
@@ -358,7 +364,9 @@ public class Client extends Thread {
                     else b.setEnabled(false);
                 }
             }
+            //if it is commitAllActions
             if(actionName.equals("D")) {
+                Executor endHelper=new Executor();
                 actionHistoryField.setText("");
                 try {
                     System.setIn(new FileInputStream("./history"+player.getId()+".txt"));
@@ -366,8 +374,18 @@ public class Client extends Thread {
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
                 }
-                System.out.println("click Commit all,now it is true");
-                player.addAction(territories,name,sc,this.textField);
+                System.out.println("click Commit all");
+                if(!player.addAction(territories,name,sc)){
+                    //if the given format is wrong
+                    textField.setText("");
+                    textField.append("Your Given Input Order is Wrong, Please Follow the Instruction!");
+                    setEnableAllButton(true);
+                    actionHistoryField.setText("Action History: \r\n\r\n");
+                    return;
+                }else {
+                    textField.setText("");
+                    textField.append("Waiting for other players'input....\n");
+                }
                 try {
                     os1.writeObject(player);
                     os1.flush();
@@ -378,20 +396,29 @@ public class Client extends Thread {
                     this.player = (Player) is1.readObject();
                     if (player.isvalid) {
                         System.out.println("Waiting for other players'input....");
-                        this.textField.setText("");
-                        //System.out.println("------------------------");
+
                         territories = (Map<String, Territory>) is1.readObject();
-                        this.textField.append("This is New Round\n");
-                        setAttributes(player,territories);
-                        setEnableAllButton(true);
-                        setPlayerInfo();
-                        return;
+                        if(!endHelper.checkWin(territories,this.textField)) {
+                            if(!endHelper.singlePlayerFail(this.territories,this.player.getId())) {
+                                this.textField.append("This is New Round\n");
+                                setAttributes(player, territories);
+                                setEnableAllButton(true);
+                                setPlayerInfo();
+                                return;
+                            }
+                            else{
+                                textField.setText("");
+                                textField.append("Sorry, You Lose!");
+                                endGame();
+                            }
+                        }
+                        endGame();
                     }
                     //else , it is not valid
                     System.out.println("Collision! Type again");
                     this.textField.setText("");
                     this.textField.append("!!!!!!!!!!!!!!!!!!!!!!\n");
-                    this.textField.append("Collision! Again\n");
+                    this.textField.append("Collision! Operate Again\n");
                     this.textField.append("!!!!!!!!!!!!!!!!!!!!!!\n");
                     setEnableAllButton(true);
                 } catch (IOException | ClassNotFoundException ex) {
@@ -452,7 +479,7 @@ public class Client extends Thread {
     }
     private void doneButton(){
         doneButton.addActionListener(e -> {
-            Validator helper = new Validator();
+            //Validator helper = new Validator();
             String content = actionField.getText();
             actionField.setText("");
 
@@ -573,7 +600,7 @@ public class Client extends Thread {
 
     @Override
     public void run() {
-        Socket socket = null;
+        //Socket socket = null;
         Executor end_helper= new Executor();
         try {
             socket = new Socket("localhost", 8000);
@@ -598,38 +625,32 @@ public class Client extends Thread {
             setAttributes(player, territories);
             starWork();
             //now game begins
-            while(true) {
-                if(end_helper.checkWin(territories)) {
-                    setEnableAllButton(false);
-                    break;
-                }
-            }
-
-            //tell server it will close the client
-            PrintWriter pw = null;
-            try {
-                pw = new PrintWriter(socket.getOutputStream());
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            String msg="exit";
-            pw.println(msg);
-            pw.flush();
-
-            //close resources
-            pw.close();
-
+            System.out.println("Welcome to our games, now enter GUI");
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try{
-                System.out.println("Closing Client Socket");
-                assert socket != null;
-                socket.close();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
         }
+    }
+    private void endGame(){
+        setEnableAllButton(false);
+        this.doneButton.setEnabled(false);
+        this.commitOnceButton.setEnabled(false);
+        this.commitButton.setEnabled(false);
+        closeSocket();
+    }
+    private void closeSocket(){
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(socket.getOutputStream());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        String msg="exit";
+        assert pw != null;
+        pw.println(msg);
+        pw.flush();
+
+        //close resources
+        pw.close();
     }
 
     private boolean authenticate() throws IOException, ClassNotFoundException {
@@ -650,7 +671,7 @@ public class Client extends Thread {
     private Map<String, Territory> initMap(Player player, Map<String, Territory> territories) throws IOException, ClassNotFoundException {
         //fill the map in player
         HashMap<String, Integer> init_info = new HashMap<>();
-        player.initial_game(territories, sc, totalsoldier, init_info,textField);
+        player.initial_game(territories, sc, totalSoldiers, init_info,textField);
 
         //send it to server
         os1.writeObject(init_info);

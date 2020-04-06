@@ -1,6 +1,7 @@
 package edu.duke.ece651.risc;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.util.*;
 
@@ -42,6 +43,12 @@ public class Interface {
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        ImageIcon icon=new ImageIcon("./dan-schiumarini-dcL8ESbsGis-unsplash.jpg");
+        JLabel lbBg = new JLabel(icon);
+        lbBg.setBounds(0, 0, icon.getIconWidth(),icon.getIconHeight());
+        jf.getContentPane().add(lbBg);
+
+        //设置label的大小
         SpringLayout layout = new SpringLayout();
         //JPanel panel1 = new JPanel(layout);
         JPanel panel2 = new JPanel(layout);
@@ -67,6 +74,10 @@ public class Interface {
         gameInfoFieldCons.setConstraint(SpringLayout.WIDTH,Spring.constant(315));
         gameInfoField.setEditable(false);
 
+        Font font=new Font("buzhidao",Font.PLAIN,18);
+        gameInfoField.setFont(font);
+        gameInfoField.setForeground(Color.RED);
+
         SpringLayout.Constraints actionHistoryFieldCons = layout.getConstraints(scrollPane_1);
         actionHistoryFieldCons.setX(gameInfoFieldCons.getConstraint(SpringLayout.WEST));
         actionHistoryFieldCons.setY(Spring.sum(MapFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
@@ -76,6 +87,10 @@ public class Interface {
 
 
         //button constrains
+        SpringLayout.Constraints btnConss = layout.getConstraints(commitOnceButton);
+        btnConss.setConstraint(SpringLayout.HEIGHT,Spring.constant(70));
+
+
         SpringLayout.Constraints btnConsM = layout.getConstraints(moveButton);
         btnConsM.setX(Spring.constant(25));
         btnConsM.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
@@ -143,6 +158,7 @@ public class Interface {
             group++;
         }
         jf.setContentPane(panel2);
+        panel2.setOpaque(true);
         jf.setVisible(true);
 
     }
