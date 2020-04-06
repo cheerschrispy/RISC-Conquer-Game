@@ -2,60 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63b339cc-6266-4b70-990a-e0f532a29623" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/history.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Executor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Executor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main1/edu/duke/ece651/risc/Action.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main1/edu/duke/ece651/risc/Arena.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main1/edu/duke/ece651/risc/Executor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main1/edu/duke/ece651/risc/ForcePair.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main1/edu/duke/ece651/risc/Interface$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main1/edu/duke/ece651/risc/Interface.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main1/edu/duke/ece651/risc/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main1/edu/duke/ece651/risc/Prompts.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main1/edu/duke/ece651/risc/Territory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main1/edu/duke/ece651/risc/Unit.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main1/edu/duke/ece651/risc/Validator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main2/edu/duke/ece651/risc/Server$Initializer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main2/edu/duke/ece651/risc/Server$Receiver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/main2/edu/duke/ece651/risc/Server.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/test/edu/duke/ece651/risc/#ValidatorTest.java#" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/main2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/.classpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/history1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Executor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Validator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/main1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/test/test.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +32,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
