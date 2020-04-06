@@ -498,22 +498,20 @@ public class Client extends Thread {
             this.os1 = new ObjectOutputStream(socket.getOutputStream());
             this.is1 = new ObjectInputStream(socket.getInputStream());
 
+            //authenticate user
+            boolean exists = authenticate();
+
             //receive player
             Player player = (Player) is1.readObject();
             setName(player.getId());
             //receive map to be completed
             Map<String, Territory> territories = (Map<String, Territory>) is1.readObject();
 //new Added!
-            //fill the map in player
-            HashMap<String, Integer> init_info = new HashMap<>();
-            player.initial_game(territories, sc, totalsoldier, init_info,textField);
 
-            //send it to server
-            os1.writeObject(init_info);
-            os1.flush();
-            os1.reset();
-            //wait server send back completed map
-            territories = (Map<String, Territory>) is1.readObject();
+            //update map if user is new
+            if (!exists) {
+                territories = initMap(player, territories);
+            }
 
 
             setAttributes(player, territories);
@@ -548,6 +546,35 @@ public class Client extends Thread {
                 e.printStackTrace();
             }
         }
+    }
+
+    private boolean authenticate() throws IOException, ClassNotFoundException {
+        //set username & password
+        System.out.println("username:");
+        String username = sc.nextLine();
+        System.out.println("password:");
+        String password = sc.nextLine();
+        Credential credential = new Credential(username, password);
+        //send username & password
+        os1.writeObject(credential);
+        os1.flush();
+        os1.reset();
+        //if user exists
+        return (boolean) is1.readObject();
+    }
+
+    private Map<String, Territory> initMap(Player player, Map<String, Territory> territories) throws IOException, ClassNotFoundException {
+        //fill the map in player
+        HashMap<String, Integer> init_info = new HashMap<>();
+        player.initial_game(territories, sc, totalsoldier, init_info,textField);
+
+        //send it to server
+        os1.writeObject(init_info);
+        os1.flush();
+        os1.reset();
+        //wait server send back completed map
+        territories = (Map<String, Territory>) is1.readObject();
+        return territories;
     }
 
     private void setName(int id) {

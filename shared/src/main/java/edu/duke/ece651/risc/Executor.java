@@ -3,9 +3,9 @@ package edu.duke.ece651.risc;
 import java.util.*;
 
 public class Executor {
-    
+
     private ForcePair selectAttacker(Map<Integer, ArrayList<Unit>> attackSquads) {
-    
+
         Integer[] keyArray = attackSquads.keySet().toArray(new Integer[0]); // Store all keys in an array
         Random rand = new Random(System.currentTimeMillis());
 
@@ -15,7 +15,7 @@ public class Executor {
         ArrayList<Unit> soldierList = attackSquads.remove(squad_id); // Remove from attackSquads
         // System.out.println("Selecting attacker ... Squad " + squad_id 
         //                                        + "! (" + soldier_num + " soldiers)");
-    
+
         ForcePair out = new ForcePair(squad_id, soldierList);
 
         return out;
@@ -28,7 +28,7 @@ public class Executor {
     }
 
     private void assertDomination(ForcePair survivor, Territory terr) {
-     
+
         // System.out.println(terr.getName() + "'s new owner is " + survivor.getOwner() + 
         //                            " with " + survivor.getSoldier() + " soldiers");
         terr.setOwner(survivor.getOwner());
@@ -62,7 +62,7 @@ public class Executor {
     }
 
     //execution starts here
-    public void execute(List<Player> players, Map<String, Territory> territories) {
+    public void execute(Player[] players, Map<String, Territory> territories) {
         Validator validator = new Validator();
         for (Player player : players) {
             List<Action> actions = player.getActions();
@@ -102,7 +102,7 @@ public class Executor {
     }
 
     //increase food, tech, unit
-    public void increase(List<Player> players, Map<String, Territory> territories) {
+    public void increase(Player[] players, Map<String, Territory> territories) {
         for (Map.Entry entry : territories.entrySet()) {
             Territory t = (Territory) entry.getValue();
             t.getSoldiers().add(new Unit());
@@ -130,7 +130,7 @@ public class Executor {
     }
 
     //convert data format for attack
-    public Map<String, Map<Integer, ArrayList<Unit>>> convert(List<Player> players, Map<String, Territory> territories) {
+    public Map<String, Map<Integer, ArrayList<Unit>>> convert(Player[] players, Map<String, Territory> territories) {
         Map<String, Map<Integer, ArrayList<Unit>>> attacks = new HashMap<>();
         for (Player player : players) {
             List<Action> actions = player.getActions();

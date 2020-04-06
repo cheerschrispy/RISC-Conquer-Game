@@ -7,7 +7,7 @@ public class Validator {
     private HashMap<String, ArrayList<Integer>> record;
     private int foodRecord;
     private int techRecord;
-    private static int[] upLevelCost= {50, 75, 125, 200, 300};
+    private static int[] upLevelCost= {0, 50, 75, 125, 200, 300};
     private static int[] upSoldierCost= {0, 3, 11, 30, 55, 90, 140};
 
     public Validator(){

@@ -27,8 +27,8 @@ public class Player implements Serializable {
 
     //upgrade tech
     public void upgrade(){
-        this.techLevel++;
         this.techResources -= costs[techLevel];
+        this.techLevel++;
     }
 
     public int getTechLevel(){
