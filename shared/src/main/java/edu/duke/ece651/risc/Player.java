@@ -1,5 +1,6 @@
 package edu.duke.ece651.risc;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.*;
 
@@ -64,7 +65,7 @@ public class Player implements Serializable {
 
 
     //this will help fill in the arraylist the 3 number
-    public void initial_game(Map<String, Territory> territories,Scanner sc,int total,HashMap<String,Integer> init_info){
+    public void initial_game(Map<String, Territory> territories,Scanner sc,int total,HashMap<String,Integer> init_info,JTextArea promptes){
         Prompts prompts_helper=new Prompts(territories);
         Validator validator=new Validator();
         while(true){
@@ -91,7 +92,7 @@ public class Player implements Serializable {
     }
 
 
-    public void addAction_afterFail(Map<String, Territory> territories){
+    public void addAction_afterFail(Map<String, Territory> territories,JTextArea prompts){
         System.out.println("----------YOU FAIL(Watching Mode)------------");
         Prompts prompts_helper=new Prompts(territories);
         this.actions.clear();
@@ -170,7 +171,7 @@ public class Player implements Serializable {
     }
 
 
-    public void addAction(Map<String, Territory> territories,String client_name,Scanner sc){
+    public void addAction(Map<String, Territory> territories,String client_name,Scanner sc,JTextArea prompts){
         //the argument is passed by server via socket
         // need to simply verify the user input
         Validator validate_helper=new Validator();
@@ -202,6 +203,7 @@ public class Player implements Serializable {
             if(action.equals("U")){
                 ArrayList<Unit> toUpgrade=updateCertainlevelSoldier(sc,territories,src);
                 System.out.println("Select the level you want to upgrade to");
+                prompts.append("Select the level you want to upgrade to");
                 int desLevel=Integer.parseInt(sc.nextLine());
                 actions.add(new Action(action,src,toUpgrade,desLevel));
                 continue;

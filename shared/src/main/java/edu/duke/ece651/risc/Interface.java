@@ -24,7 +24,7 @@ public class Interface {
     JTextArea textField = new JTextArea("Game prompts:\n");
     JTextArea gameInfoField = new JTextArea("gameInfo");
     JTextArea actionHistoryField = new JTextArea();
-
+    JScrollPane scrollPane_1 = new JScrollPane();
     //
     ArrayList<MapButton> mapButtons=new ArrayList<>();
 
@@ -67,7 +67,7 @@ public class Interface {
         gameInfoFieldCons.setConstraint(SpringLayout.WIDTH,Spring.constant(315));
         gameInfoField.setEditable(false);
 
-        SpringLayout.Constraints actionHistoryFieldCons = layout.getConstraints(actionHistoryField);
+        SpringLayout.Constraints actionHistoryFieldCons = layout.getConstraints(scrollPane_1);
         actionHistoryFieldCons.setX(gameInfoFieldCons.getConstraint(SpringLayout.WEST));
         actionHistoryFieldCons.setY(Spring.sum(MapFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
         actionHistoryFieldCons.setConstraint(SpringLayout.HEIGHT,Spring.constant(200));
@@ -112,7 +112,9 @@ public class Interface {
         btnConsD.setConstraint(SpringLayout.HEIGHT,Spring.constant(70));
         btnConsD.setConstraint(SpringLayout.WIDTH,Spring.constant(100));
 
-
+        JTextArea ta = new JTextArea();
+        JScrollPane sp = new JScrollPane(ta);
+        panel2.add(sp);
         panel2.add(moveButton);
         panel2.add(attackButton);
         panel2.add(upgradeButton);
@@ -120,11 +122,15 @@ public class Interface {
         panel2.add(commitButton);
         panel2.add(doneButton);
         panel2.add(commitOnceButton);
-
+        scrollPane_1.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         //panel2.add(MapField);
         panel2.add(textField);
         panel2.add(gameInfoField);
         panel2.add(actionHistoryField);
+        panel2.add(scrollPane_1);
+        scrollPane_1.setViewportView(actionHistoryField);
+        //panel2.add(scrollPane_1);
 
         int group = 0;
         for(MapButton b : this.mapButtons){

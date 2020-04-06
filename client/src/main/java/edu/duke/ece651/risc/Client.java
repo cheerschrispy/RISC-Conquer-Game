@@ -21,6 +21,7 @@ public class Client extends Thread {
     ////---------------------------
     ///-----As an interface--------
     ////---------------------------
+    //private JTextField playerInfo
     private JButton moveButton = new JButton("Move");
     private JButton attackButton = new JButton("Attack");
     private JButton upgradeButton = new JButton("Upgrade Unit");
@@ -31,8 +32,11 @@ public class Client extends Thread {
 
     private JTextArea MapField = new JTextArea("Map");
     private JTextArea textField = new JTextArea("Game prompts:\n");
-    private JTextArea gameInfoField = new JTextArea("gameInfo");
-    private JTextArea actionHistoryField = new JTextArea();
+    private JTextArea gameInfoField = new JTextArea("Game Information:");
+    private JTextArea actionField = new JTextArea();
+    private JTextArea actionHistoryField = new JTextArea("Action History: \r\n\r\n");
+    private JTextArea playerInfo = new JTextArea("Player Information: \r\n\r\n");
+    JScrollPane scrollPane = new JScrollPane(actionHistoryField);
 
     JFrame jf = new JFrame("RISC evolution2");
     SpringLayout layout;
@@ -46,12 +50,38 @@ public class Client extends Thread {
     private Map<String, Territory> territories=null;
     ArrayList<String> stringBuffer=new ArrayList<>();
 
+
+    //--------------------------------
+    //FOR display the action history--
+    //--------------------------------
+    private StringBuilder actionPrompt = new StringBuilder();
+    private String actionName = "";
+    private String src = "";
+    private String dest = "";
+    private String temp = "";
+    private ArrayList<Integer> unitsNumber = new ArrayList<>();
+    //--------------------------------
+    // FOR display the prompts info--
+    //--------------------------------
+    private int currentLevel=0;
+
+
+
     public void setAttributes(Player player, Map<String, Territory> territories){
         this.player=player;
         this.territories=territories;
     }
+    public void setPlayerInfo(){
+        String s = "Hi, welcome player " + player.getId() + ".\r\n" +
+                "Now you are in TECHNIQUE level " + player.getTechLevel() + ".\r\n" +
+                "You have " + player.getFoodResources() + " food resources.\r\n" +
+                "You have " + player.getTechResources() + " tech resources.\r\n";
+        playerInfo.setText("");
+        playerInfo.append(s);
+    }
 
-    private void setLayout(){
+
+    private void setInitialInfo(){
         //generate the map
         int playerNumber = territories.size() / 3;
         System.out.println(playerNumber);
@@ -62,8 +92,11 @@ public class Client extends Thread {
                 this.mapButtons.add(new MapButton(true, name));
             }
         }
+        setPlayerInfo();
+
+    }
+    private void setLayout(){
         //other components
-        //JFrame jf = new JFrame("RISC evolution2");
         jf.setSize(1050, 960);
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -73,76 +106,87 @@ public class Client extends Thread {
         //JPanel panel1 = new JPanel(layout);
         panel2 = new JPanel(layout);
 
+
         SpringLayout.Constraints MapFieldCons = layout.getConstraints(MapField);
         MapFieldCons.setX(Spring.constant(25));
         MapFieldCons.setY(Spring.constant(25));
-        MapFieldCons.setConstraint(SpringLayout.HEIGHT, Spring.constant(450));
-        MapFieldCons.setConstraint(SpringLayout.WIDTH, Spring.constant(675));
+        MapFieldCons.setConstraint(SpringLayout.HEIGHT,Spring.constant(450));
+        MapFieldCons.setConstraint(SpringLayout.WIDTH,Spring.constant(675));
         MapField.setEditable(false);
-
 
         SpringLayout.Constraints textFieldCons = layout.getConstraints(textField);
         textFieldCons.setX(Spring.constant(25));
-        textFieldCons.setY(Spring.sum(MapFieldCons.getConstraint(SpringLayout.SOUTH), Spring.constant(10)));
-        textFieldCons.setConstraint(SpringLayout.HEIGHT, Spring.constant(200));
-        textFieldCons.setConstraint(SpringLayout.WIDTH, Spring.constant(675));
+        textFieldCons.setY(Spring.sum(MapFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
+        textFieldCons.setConstraint(SpringLayout.HEIGHT,Spring.constant(200));
+        textFieldCons.setConstraint(SpringLayout.WIDTH,Spring.constant(675));
         textField.setEditable(false);
 
+        SpringLayout.Constraints playerInfoFieldCons = layout.getConstraints(playerInfo);
+        playerInfoFieldCons.setX(Spring.sum(MapFieldCons.getConstraint(SpringLayout.EAST),Spring.constant(10)));
+        playerInfoFieldCons.setY(MapFieldCons.getConstraint(SpringLayout.NORTH));
+        playerInfoFieldCons.setConstraint(SpringLayout.HEIGHT,Spring.constant(100));
+        playerInfoFieldCons.setConstraint(SpringLayout.WIDTH,Spring.constant(315));
+        playerInfo.setEditable(false);
 
         SpringLayout.Constraints gameInfoFieldCons = layout.getConstraints(gameInfoField);
-        gameInfoFieldCons.setX(Spring.sum(MapFieldCons.getConstraint(SpringLayout.EAST), Spring.constant(10)));
-        gameInfoFieldCons.setY(MapFieldCons.getConstraint(SpringLayout.NORTH));
-        gameInfoFieldCons.setConstraint(SpringLayout.HEIGHT, Spring.constant(450));
-        gameInfoFieldCons.setConstraint(SpringLayout.WIDTH, Spring.constant(315));
+        gameInfoFieldCons.setX(Spring.sum(MapFieldCons.getConstraint(SpringLayout.EAST),Spring.constant(10)));
+        gameInfoFieldCons.setY(Spring.sum(playerInfoFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
+        gameInfoFieldCons.setConstraint(SpringLayout.HEIGHT,Spring.constant(170));
+        gameInfoFieldCons.setConstraint(SpringLayout.WIDTH,Spring.constant(315));
         gameInfoField.setEditable(false);
 
+        SpringLayout.Constraints actionHistoryFieldCons = layout.getConstraints(scrollPane);
+        actionHistoryFieldCons.setX(Spring.sum(MapFieldCons.getConstraint(SpringLayout.EAST),Spring.constant(10)));
+        actionHistoryFieldCons.setY(Spring.sum(gameInfoFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
+        actionHistoryFieldCons.setConstraint(SpringLayout.HEIGHT,Spring.constant(340));
+        actionHistoryFieldCons.setConstraint(SpringLayout.WIDTH,Spring.constant(315));
+        actionHistoryField.setEditable(false);
 
-        SpringLayout.Constraints actionHistoryFieldCons = layout.getConstraints(actionHistoryField);
-        actionHistoryFieldCons.setX(gameInfoFieldCons.getConstraint(SpringLayout.WEST));
-        actionHistoryFieldCons.setY(Spring.sum(MapFieldCons.getConstraint(SpringLayout.SOUTH), Spring.constant(10)));
-        actionHistoryFieldCons.setConstraint(SpringLayout.HEIGHT, Spring.constant(200));
-        actionHistoryFieldCons.setConstraint(SpringLayout.WIDTH, Spring.constant(315));
-        actionHistoryField.setEditable(true);
 
-
+        SpringLayout.Constraints actionFieldCons = layout.getConstraints(actionField);
+        actionFieldCons.setX(gameInfoFieldCons.getConstraint(SpringLayout.WEST));
+        actionFieldCons.setY(Spring.sum(actionHistoryFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
+        actionFieldCons.setConstraint(SpringLayout.HEIGHT,Spring.constant(20));
+        actionFieldCons.setConstraint(SpringLayout.WIDTH,Spring.constant(315));
+        actionField.setEditable(true);
 
 
         //button constrains
         SpringLayout.Constraints btnConsM = layout.getConstraints(moveButton);
         btnConsM.setX(Spring.constant(25));
-        btnConsM.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH), Spring.constant(10)));
-        btnConsM.setConstraint(SpringLayout.HEIGHT, Spring.constant(70));
-        btnConsM.setConstraint(SpringLayout.WIDTH, Spring.constant(150));
+        btnConsM.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
+        btnConsM.setConstraint(SpringLayout.HEIGHT,Spring.constant(70));
+        btnConsM.setConstraint(SpringLayout.WIDTH,Spring.constant(150));
 
         SpringLayout.Constraints btnConsA = layout.getConstraints(attackButton);
         btnConsA.setX(Spring.sum(Spring.constant(25),btnConsM.getConstraint(SpringLayout.EAST)));
-        btnConsA.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH), Spring.constant(10)));
-        btnConsA.setConstraint(SpringLayout.HEIGHT, Spring.constant(70));
-        btnConsA.setConstraint(SpringLayout.WIDTH, Spring.constant(150));
+        btnConsA.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
+        btnConsA.setConstraint(SpringLayout.HEIGHT,Spring.constant(70));
+        btnConsA.setConstraint(SpringLayout.WIDTH,Spring.constant(150));
 
         SpringLayout.Constraints btnConsU = layout.getConstraints(upgradeButton);
         btnConsU.setX(Spring.sum(Spring.constant(25),btnConsA.getConstraint(SpringLayout.EAST)));
-        btnConsU.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH), Spring.constant(10)));
-        btnConsU.setConstraint(SpringLayout.HEIGHT, Spring.constant(70));
-        btnConsU.setConstraint(SpringLayout.WIDTH, Spring.constant(150));
+        btnConsU.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
+        btnConsU.setConstraint(SpringLayout.HEIGHT,Spring.constant(70));
+        btnConsU.setConstraint(SpringLayout.WIDTH,Spring.constant(150));
 
         SpringLayout.Constraints btnConsT = layout.getConstraints(upgradeTechButton);
         btnConsT.setX(Spring.sum(Spring.constant(25),btnConsU.getConstraint(SpringLayout.EAST)));
-        btnConsT.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH), Spring.constant(10)));
-        btnConsT.setConstraint(SpringLayout.HEIGHT, Spring.constant(70));
-        btnConsT.setConstraint(SpringLayout.WIDTH, Spring.constant(150));
+        btnConsT.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
+        btnConsT.setConstraint(SpringLayout.HEIGHT,Spring.constant(70));
+        btnConsT.setConstraint(SpringLayout.WIDTH,Spring.constant(150));
 
         SpringLayout.Constraints btnConsC = layout.getConstraints(commitButton);
         btnConsC.setX(Spring.sum(Spring.constant(25),btnConsT.getConstraint(SpringLayout.EAST)));
-        btnConsC.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH), Spring.constant(10)));
-        btnConsC.setConstraint(SpringLayout.HEIGHT, Spring.constant(70));
-        btnConsC.setConstraint(SpringLayout.WIDTH, Spring.constant(150));
+        btnConsC.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
+        btnConsC.setConstraint(SpringLayout.HEIGHT,Spring.constant(70));
+        btnConsC.setConstraint(SpringLayout.WIDTH,Spring.constant(150));
 
         SpringLayout.Constraints btnConsD = layout.getConstraints(doneButton);
         btnConsD.setX(Spring.sum(Spring.constant(25),btnConsC.getConstraint(SpringLayout.EAST)));
-        btnConsD.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH), Spring.constant(10)));
-        btnConsD.setConstraint(SpringLayout.HEIGHT, Spring.constant(70));
-        btnConsD.setConstraint(SpringLayout.WIDTH, Spring.constant(100));
+        btnConsD.setY(Spring.sum(textFieldCons.getConstraint(SpringLayout.SOUTH),Spring.constant(10)));
+        btnConsD.setConstraint(SpringLayout.HEIGHT,Spring.constant(70));
+        btnConsD.setConstraint(SpringLayout.WIDTH,Spring.constant(100));
 
 
         panel2.add(moveButton);
@@ -156,8 +200,11 @@ public class Client extends Thread {
         //panel2.add(MapField);
         panel2.add(textField);
         panel2.add(gameInfoField);
-        panel2.add(actionHistoryField);
+        panel2.add(actionField);
+        panel2.add(playerInfo);
+        //panel2.add(actionHistoryField);
 
+        //add all map
         int group = 0;
         for(MapButton b : this.mapButtons){
             SpringLayout.Constraints btnCons = layout.getConstraints(b);
@@ -168,10 +215,12 @@ public class Client extends Thread {
             panel2.add(b);
             group++;
         }
+        //scrollPane_1.setViewportView(this.actionHistoryField);
+        panel2.add(scrollPane);
         jf.setContentPane(panel2);
         jf.setVisible(true);
-
     }
+
     //when choose one mode button, should not choose other options button again.
     private void setEnableAllButton(boolean ifEnable){
         this.moveButton.setEnabled(ifEnable);
@@ -179,28 +228,66 @@ public class Client extends Thread {
         this.upgradeButton.setEnabled(ifEnable);
         this.upgradeTechButton.setEnabled(ifEnable);
     }
-    private void getMovementName(JButton button, final String moveName){
+    private void getMovementName(JButton button, final String actionName){
         button.addActionListener(e -> {
-            if(moveName.equals("A"))
-                action = 1;
-            else if(moveName.equals("U"))
-                action = 2;
+            switch (actionName) {
+                case "M":
+                    //this.currentLevel=0;
+                    this.actionName = "Move";
+                    textField.setText("");
+                    textField.append("Move Instruction:\n\n");
+                    textField.append("1.Choose the source territory,then click Done button.\n");
+                    textField.append("2.Type the number of soldiers you want to move in each level,then click Done button.\n\n");
+                    //textField.append("You are now choose level "+currentLevel+" soldiers(Max level:6)\n\n");
+                    textField.append("3.Choose the source territory,then click Done button.\n");
+                    textField.append("4.Click the left-top button to commit current single action.\n");
+                    break;
+                case "A":
+                    action = 1;
+                    //this.currentLevel=0;
+                    this.actionName = "Attack";
+                    textField.setText("");
+                    textField.append("Attack Instruction:\n\n");
+                    textField.append("1.Choose the source territory,then click Done button.\n");
+                    textField.append("2.Type the number of soldiers you want to assign to attack in each level,then click Done button.\n\n");
+                    //textField.append("You are now choose level "+currentLevel+" soldiers(Max level:6)\n\n");
+                    textField.append("3.Choose your enemy territory,then click Done button.\n");
+                    textField.append("4.Click the left-top button to commit current single action.\n");
+                    break;
+                case "U":
+                    action = 2;
+                    this.actionName = "Update";
+                    textField.setText("");
+                    textField.append("Upgrade Unit Instruction:\n\n");
+                    textField.append("1.Choose the source territory the units in,then click Done button.\n");
+                    textField.append("2.Type assigned Units' current level ,then click Done button.\n");
+                    textField.append("3.Type the level you want to upgrade to ,then click Done button.\n");
+                    textField.append("4.Click the left-top button to commit current single action.\n");
+                    break;
+                case "T":
+                    textField.setText("");
+                    textField.append("Upgrade Unit Instruction:\n\n");
+                    //textField.append("1.Choose the source territory the units in,then click Done button.\n");
+                    textField.append("1.Just click the left-top button to commit current single action.\n");
 
-            if(!moveName.equals("D"))
+                    this.actionName = "Update Technique";
+                    break;
+            }
+
+            if(!actionName.equals("D"))
                 setEnableAllButton(false);
-
             BufferedWriter bw1;
             try {
-                bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("./history.txt"),sameAround)));
-                sameAround = !moveName.equals("D");
-                bw1.write(moveName+"\n");
+                bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("./history"+player.getId()+".txt"),sameAround)));
+                sameAround = !actionName.equals("D");
+                bw1.write(actionName+"\n");
                 bw1.close();
 
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
 
-            if(moveName.equals("A") || moveName.equals("U") || moveName.equals("M")) {
+            if(actionName.equals("A") || actionName.equals("U") || actionName.equals("M")) {
                 for(MapButton b:mapButtons){
                     b.setCanClickSelf(territories,player.getId());
                     if(b.canClick) {
@@ -210,7 +297,7 @@ public class Client extends Thread {
                     else b.setEnabled(false);
                 }
             }
-            if(moveName.equals("D")) {
+            if(actionName.equals("D")) {
                 //commited = true;
                 try {
                     System.setIn(new FileInputStream("./history"+player.getId()+".txt"));
@@ -219,38 +306,70 @@ public class Client extends Thread {
                     ex.printStackTrace();
                 }
                 System.out.println("click Commit all,now it is true");
-                player.addAction(territories,name,sc);
+                player.addAction(territories,name,sc,this.textField);
                 try {
                     os1.writeObject(player);
                     os1.flush();
                     os1.reset();
                     System.out.println("sending player...");
-                    while (true) {
-                        //System.out.println("receiving the player object from server");
-                        player = (Player) is1.readObject();
-                        if (player.isvalid) {
-                            System.out.println("Waiting for other players'input....");
-                            //System.out.println("------------------------");
-                            break;
-                        }
-
-                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
-                        System.out.println("Collision! Type again");
-                        System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
-                        player.addAction(territories, get_name(),sc);
-                        os1.writeObject(player);
-                        os1.flush();
-                        os1.reset();
+                    //this.textField.append("Sending Information to Server for Validating\n");
+                    //System.out.println("receiving the player object from server");
+                    this.player = (Player) is1.readObject();
+                    if (player.isvalid) {
+                        System.out.println("Waiting for other players'input....");
+                        this.textField.setText("");
+                        //System.out.println("------------------------");
+                        territories = (Map<String, Territory>) is1.readObject();
+                        this.textField.append("This is New Round\n");
+                        setAttributes(player,territories);
+                        setEnableAllButton(true);
+                        setPlayerInfo();
+                        return;
                     }
-                    territories = (Map<String, Territory>) is1.readObject();
-                    setAttributes(player,territories);
-
+                    //else , it is not valid
+                    System.out.println("Collision! Type again");
+                    this.textField.setText("");
+                    this.textField.append("!!!!!!!!!!!!!!!!!!!!!!\n");
+                    this.textField.append("Collision! Again\n");
+                    this.textField.append("!!!!!!!!!!!!!!!!!!!!!!\n");
+                    setEnableAllButton(true);
                 } catch (IOException | ClassNotFoundException ex) {
                     ex.printStackTrace();
                 }
             }
+        });
+    }
+    private void commitOnceCommand(){
+        commitOnceButton.addActionListener(e -> {
+            action = 0;
+            setEnableAllButton(true);
+            for(MapButton b : mapButtons){
+                b.setEnabled(true);
+            }
 
-
+            if(this.actionName.equals("Move") || this.actionName.equals("Attack")){
+                actionPrompt.append(this.actionName).append(" from ").append(this.src).append(" to ").append(this.dest).append(": ");
+                for(int i = 0; i < this.unitsNumber.size(); i++){
+                    if(this.unitsNumber.get(i) != 0){
+                        actionPrompt.append("\n").append(this.unitsNumber.get(i)).append("  level-").append(i).append(" soldiers").append(".");
+                    }
+                }
+            }
+            else if(this.actionName.equals("Update Technique")){
+                actionPrompt.append("Update Technique");
+            }
+            else{
+                actionPrompt.append("Update soldiers: ").append(this.unitsNumber.get(1)).append("    level-").append(this.unitsNumber.get(0));
+                actionPrompt.append(" solider(s) to level ").append(this.unitsNumber.get(2));
+            }
+            actionPrompt.append("\n=================================================\n");
+            actionHistoryField.append(String.valueOf(actionPrompt));
+            actionPrompt = new StringBuilder();
+            actionName = "";
+            src = "";
+            dest = "";
+            temp = "";
+            unitsNumber = new ArrayList<>();
         });
     }
 
@@ -258,71 +377,31 @@ public class Client extends Thread {
         for(MapButton b : this.mapButtons){
             b.addActionListener(e -> {
                 String name = b.getName();
+                this.temp = name;
                 Territory t = territories.get(name);
-                gameInfoField.setText("");
+                gameInfoField.setText("Game Information:\r\n\r\n");
                 StringBuilder s = new StringBuilder();
                 s.append("This is territory ").append(t.getName()).append(", owned by ").append(t.getOwner()).append(" now.\r\n");
                 for(int i = 0; i < 7; i++){
-                    s.append("It has ").append(t.getSoldierNumOfLevel(i)).append(" level ").append(i).append(" soldiers.\r\n");
+                    s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
                 }
                 gameInfoField.append(String.valueOf(s));
             });
         }
     }
-
-    private void attackCommand(Map<String, Territory> territories){
-        getMovementName(attackButton,"A");
-    }
-
-    private void moveCommand(Map<String, Territory> territories){
-        getMovementName(moveButton,"M");
-    }
-
-    private void UpdateTechCommand(Map<String, Territory> territories){
-        getMovementName(upgradeTechButton,"T");
-    }
-
-    private void UpgradeCommand(Map<String, Territory> territories){
-        getMovementName(upgradeButton,"U");
-    }
-
-    private void commitCommand(Map<String, Territory> territories){
-        getMovementName(commitButton,"D");
-    }
-
-    //好像是一个run forever的东西？？？？
-    public void setListener() {
-        //setLayout();
-        mapButtonAction();
-        moveCommand(territories);
-        attackCommand(territories);
-        UpdateTechCommand(territories);
-        UpgradeCommand(territories);
-        commitCommand(territories);
-
-        //commitOnce Button
-        commitOnceButton.addActionListener(e -> {
-            action = 0;
-            setEnableAllButton(true);
-            for(MapButton b : mapButtons){
-                b.setEnabled(true);
-            }
-        });
-
-        //the Done button
+    private void doneButton(){
         doneButton.addActionListener(e -> {
             Validator helper = new Validator();
-            String content = actionHistoryField.getText();
-            actionHistoryField.setText("");
+            String content = actionField.getText();
+            actionField.setText("");
 
-            if (!helper.InputNumber_Validate(content)) {
-                textField.append("Invalid number input，Type again!");
-                content = "";
-            }
             if (!content.equals("")) {
+
+                this.unitsNumber.add(Integer.parseInt(content));
+                //this.currentLevel++;
                 BufferedWriter bw1;
                 try {
-                    bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("./history.txt"), sameAround)));
+                    bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("./history"+player.getId()+".txt"), sameAround)));
                     bw1.write(content + "\n");
                     bw1.close();
                 } catch (IOException ex) {
@@ -348,17 +427,63 @@ public class Client extends Thread {
             if(stringBuffer.size()!=0) {
                 BufferedWriter bw1;
                 try {
-                    bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("./history.txt"), sameAround)));
+                    bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("./history"+player.getId()+".txt"), sameAround)));
                     bw1.write(stringBuffer.get(stringBuffer.size() - 1) + "\n");
                     bw1.close();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }
+
+            //Action History Addition
+            if(this.src.equals("")){
+                this.src = this.temp;
+            }
+            else{
+                this.dest = this.temp;
+            }
             stringBuffer.clear();
         });
     }
 
+    private void attackCommand(){
+        getMovementName(attackButton,"A");
+    }
+    private void moveCommand(){
+        getMovementName(moveButton,"M");
+    }
+    private void UpdateTechCommand(){
+        getMovementName(upgradeTechButton,"T");
+    }
+    private void UpgradeCommand(){
+        getMovementName(upgradeButton,"U");
+    }
+    private void commitCommand(){
+        getMovementName(commitButton,"D");
+    }
+
+    //好像是一个run forever的东西？？？？
+    public void setListener() {
+        //setLayout();
+        moveCommand();
+        attackCommand();
+        UpdateTechCommand();
+        UpgradeCommand();
+        commitCommand();
+        mapButtonAction();
+        commitOnceCommand();
+        doneButton();
+    }
+
+    private void starWork(){
+    setInitialInfo();
+    setLayout();
+    setListener();
+    }
+
+    //---------------------
+    //as a normal client---
+    //---------------------
     public String get_name(){
         return this.name;
     }
@@ -381,7 +506,7 @@ public class Client extends Thread {
 //new Added!
             //fill the map in player
             HashMap<String, Integer> init_info = new HashMap<>();
-            player.initial_game(territories, sc, totalsoldier, init_info);
+            player.initial_game(territories, sc, totalsoldier, init_info,textField);
 
             //send it to server
             os1.writeObject(init_info);
@@ -392,14 +517,12 @@ public class Client extends Thread {
 
 
             setAttributes(player, territories);
-            setLayout();
-            setListener();
+            starWork();
             //now game begins
-            //System.setIn(new FileInputStream("./history"+player.getId()+".txt"));
-            int times=0;
             while(true) {
                 if(end_helper.checkWin(territories)) break;
             }
+
             //tell server it will close the client
         PrintWriter pw = null;
         try {

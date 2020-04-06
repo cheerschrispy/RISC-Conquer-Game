@@ -105,8 +105,8 @@ public class Server {
                 os.get(i).flush();
                 os.get(i).reset();
                 System.out.println("new territory is ");
-                Prompts p=new Prompts(territories);
-                p.GraphPrompts();
+                //Prompts p=new Prompts(territories);
+                //p.GraphPrompts();
             }
 
             System.out.println("sent back new terri");

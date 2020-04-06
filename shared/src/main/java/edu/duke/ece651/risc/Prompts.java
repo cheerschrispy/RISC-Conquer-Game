@@ -1,14 +1,17 @@
 package edu.duke.ece651.risc;
 
+import javax.swing.*;
 import java.util.*;
 
 public class Prompts {
     //key is player id, value is corresponding own territories
     private HashMap<Integer, ArrayList<Territory>> graphInformation = new HashMap<>();
-
+    ///private JTextArea promptsArea;
 
     public Prompts(Map<String, Territory> territories){
         this.getInformation(territories);
+        //this.promptsArea=prompts;
+
     }
 
     public HashMap<Integer, ArrayList<Territory>> getGraphInformation(){
@@ -35,8 +38,9 @@ public class Prompts {
             else b.append(name).append(" (next to : ").append(neighbor).append(")\n");
         }
         System.out.println(b);
-
+        //this.promptsArea.append(b+"\n");
     }
+
     public void GraphPrompts(){
         //territories is the info got from server end(contains whole info of the graph)
         //this.getInformation(territories);
@@ -44,6 +48,7 @@ public class Prompts {
             gragh_helper(playerId,false);
         }
     }
+
 
     public void CurrentRoundHistory(ArrayList<Action> actions){
         System.out.println("***This round's movement(Press D to commit your change)***");
@@ -59,8 +64,6 @@ public class Prompts {
         System.out.println("**********************************************************");
 
     }
-
-
 
 
     public void getInformation(Map<String, Territory> territories){
@@ -84,6 +87,11 @@ public class Prompts {
         System.out.println("M(ove)");
         System.out.println("A(ttack)");
         System.out.println("D(one)");
+        //
+        //this.promptsArea.append("You are the "+client_name+" player, what would you like to do?");
+        //this.promptsArea.append("M(ove)");
+        //this.promptsArea.append("A(ttack)");
+        //this.promptsArea.append("D(one)");
     }
 
 
