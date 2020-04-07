@@ -164,6 +164,9 @@ public class Validator {
 
     //Initialize the record of the number in each territory
     public void initializeRecord(Player player, Map<String, Territory> territories){
+        this.foodRecord = 0;
+        this.techRecord = 0;
+        this.record = new HashMap<>();
         int playerId = player.getId();
         for(String key : territories.keySet()){
             if(territories.get(key).getOwner() == playerId){
