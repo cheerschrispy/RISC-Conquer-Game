@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.*;
+import java.net.ConnectException;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.*;
 //import java.util.concurrent.Executor;
 
@@ -605,14 +607,28 @@ public class Client extends Thread {
         try {
             System.out.println("Choose one game to play (start from 0):");
             int port = Integer.parseInt(sc.nextLine());
+            try {
+                socket = new Socket("localhost", 8000 + port);
+            } catch (ConnectException e) {
+                System.out.println("Game not available, please choose another game:");
+                run();
+                return;
+            }
 
-            socket = new Socket("localhost", 8000 + port);
             System.out.println("Client Connected");
             this.os1 = new ObjectOutputStream(socket.getOutputStream());
             this.is1 = new ObjectInputStream(socket.getInputStream());
 
             //authenticate user
-            boolean exists = authenticate();
+            boolean exists;
+            try {
+                exists = authenticate();
+            } catch (SocketException e) {
+                System.out.println("Authentication failed, try again");
+                run();
+                return;
+            }
+
 
             //receive player
             Player player = (Player) is1.readObject();
@@ -668,6 +684,7 @@ public class Client extends Thread {
         String username = sc.nextLine();
         System.out.println("password:");
         String password = sc.nextLine();
+        System.out.println("Waiting for others to join...");
         Credential credential = new Credential(username, password);
         //send username & password
         os1.writeObject(credential);
