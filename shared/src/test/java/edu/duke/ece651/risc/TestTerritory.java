@@ -24,7 +24,7 @@ public class TestTerritory {
     assertEquals(3, china.getSize());
     china.setSoldiers(japan.getSoldiers());
 
-    assertEquals(100, china.getSoldierOfLevel(0, china.getSoldierNumOfLevel(0)));
+    assertEquals(50, china.getSoldierOfLevel(0, china.getSoldierNumOfLevel(0)).size());
     
   }
 

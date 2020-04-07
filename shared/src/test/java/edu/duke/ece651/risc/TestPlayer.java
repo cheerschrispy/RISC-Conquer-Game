@@ -25,7 +25,7 @@ public class TestPlayer {
     Scanner sc = new Scanner(System.in);
     
     HashMap<String, Integer> init_info = new HashMap<>();
-    player.initial_game(territories, sc, 9, init_info, new JTextArea());
+//    player.initial_game(territories, sc, 9, init_info, new JTextArea());
     player.addAction(territories, "a", sc);
     territories.get("a2").setOwner(1);
     player.addAction(territories, "a", sc);

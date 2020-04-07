@@ -29,7 +29,7 @@ public class TestValidator {
 
     Action a5 = new Action("M", "a0", "a2", territories.get("a0").getSoldierOfLevel(0, 5));
     p0.setActions(a5);
-    assertEquals(false, v.validate(p0, territories));
+    assertEquals(true, v.validate(p0, territories));
 
     //p1.setActions(a3);
     p1.setActions(a4);
@@ -38,7 +38,7 @@ public class TestValidator {
 
     Action a6 = new Action("A", "b0", "a0", territories.get("b0").getSoldierOfLevel(0, 5));
     p1.setActions(a6);
-    assertEquals(false, v.validate(p1, territories));
+    assertEquals(true, v.validate(p1, territories));
     p1.clearActions();
 
    

@@ -16,43 +16,43 @@ public class TestResolusion {
 
         ArrayList<Unit> ozListA = new ArrayList<Unit>(
                 Arrays.asList(new Unit(4),
-                        new Unit(11),
-                        new Unit(20),
+                        new Unit(5),
+                        new Unit(6),
                         new Unit(4))
         );
 
         ArrayList<Unit> azerothListA = new ArrayList<Unit>(
-                Arrays.asList(new Unit(14),
-                        new Unit(10),
+                Arrays.asList(new Unit(4),
+                        new Unit(3),
                         new Unit(6),
-                        new Unit(9))
+                        new Unit(5))
         );
 
         ArrayList<Unit> lordaeronListA = new ArrayList<Unit>(
                 Arrays.asList(new Unit(3),
-                        new Unit(22),
+                        new Unit(4),
                         new Unit(2),
-                        new Unit(15))
+                        new Unit(1))
         );
         ArrayList<Unit> ozListD = new ArrayList<Unit>(
-                Arrays.asList(new Unit(25),
-                        new Unit(11),
-                        new Unit(20),
-                        new Unit(14))
+                Arrays.asList(new Unit(5),
+                        new Unit(1),
+                        new Unit(2),
+                        new Unit(4))
         );
 
         ArrayList<Unit> azerothListD = new ArrayList<Unit>(
                 Arrays.asList(new Unit(5),
                         new Unit(3),
                         new Unit(3),
-                        new Unit(9))
+                        new Unit(6))
         );
 
         ArrayList<Unit> lordaeronListD = new ArrayList<Unit>(
                 Arrays.asList(new Unit(3),
-                        new Unit(22),
                         new Unit(2),
-                        new Unit(15))
+                        new Unit(2),
+                        new Unit(5))
         );
 
         Territory terrO = new Territory("OZ", 1);
