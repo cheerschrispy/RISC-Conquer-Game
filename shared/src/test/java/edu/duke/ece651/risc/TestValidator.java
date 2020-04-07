@@ -14,10 +14,10 @@ public class TestValidator {
     createTerritories();
     Player p0 = new Player(0);
     Player p1 = new Player(1);
-    Action a1 = new Action("M", "a0", "a2", 1);
-    Action a2 = new Action("M", "b0", "b2", 1);
-    Action a3 = new Action("A", "a0", "b0", 1);
-    Action a4 = new Action("A", "b0", "a2", 2);
+    Action a1 = new Action("M", "a0", "a2", territories.get("a0").getSoldierOfLevel(0, 1));
+    Action a2 = new Action("M", "b0", "b2", territories.get("b0").getSoldierOfLevel(0, 1));
+    Action a3 = new Action("A", "a0", "b0", territories.get("a0").getSoldierOfLevel(0, 1));
+    Action a4 = new Action("A", "b0", "a2", territories.get("b0").getSoldierOfLevel(0, 2));
 
     p0.setActions(a3);
     assertEquals(true, v.validate(p0, territories));
@@ -27,7 +27,7 @@ public class TestValidator {
     assertEquals(true, v.validate(p0, territories));
     p0.clearActions();
 
-    Action a5 = new Action("M", "a0", "a2", 5);
+    Action a5 = new Action("M", "a0", "a2", territories.get("a0").getSoldierOfLevel(0, 5));
     p0.setActions(a5);
     assertEquals(false, v.validate(p0, territories));
 
@@ -36,7 +36,7 @@ public class TestValidator {
     assertEquals(false, v.validate(p1, territories));
     p1.clearActions();
 
-    Action a6 = new Action("A", "b0", "a0", 5);
+    Action a6 = new Action("A", "b0", "a0", territories.get("b0").getSoldierOfLevel(0, 5));
     p1.setActions(a6);
     assertEquals(false, v.validate(p1, territories));
     p1.clearActions();
@@ -79,13 +79,15 @@ public class TestValidator {
 
 	if(j == 1 && i == 1){
 
-	   newTerritory = new Territory(tName, 0, 3);
+	   newTerritory = new Territory(tName, 0);
+	   newTerritory.initSoldiers(3);
 
 	}
 
 	else{
 
-	   newTerritory = new Territory(tName, i, 3);
+        newTerritory = new Territory(tName, i);
+        newTerritory.initSoldiers(3);
 
 	}
 
