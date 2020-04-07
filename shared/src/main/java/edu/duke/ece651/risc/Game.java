@@ -14,14 +14,14 @@ public class Game extends Thread {
     private Player[] players;
     private Executor executor;
     private int port;
-    private final int player_num=2;
+    private int player_num;
     private ServerSocket ss = null;
     private ObjectOutputStream[] os;
     private ObjectInputStream[] is;
     private Map<Integer, Credential> credentials;
 
 
-    Game(int port) {
+    Game(int port, int player_num) {
         this.territories = new HashMap<>();
         this.players = new Player[player_num];
         this.executor = new Executor();
@@ -29,6 +29,7 @@ public class Game extends Thread {
         this.is = new ObjectInputStream[player_num];
         this.credentials = new HashMap<>();
         this.port = port;
+        this.player_num = player_num;
     }
 
     public void run() {
@@ -59,7 +60,7 @@ public class Game extends Thread {
 
             play(clients);
 
-            endGame(clients);
+//            endGame(clients);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,15 +87,15 @@ public class Game extends Thread {
     }
 
     //after every client close,it will close
-    private void endGame(Socket[] clients) throws IOException {
-        for(int i=0;i<player_num;i++) {
-            BufferedReader end_signal = new BufferedReader(new InputStreamReader(clients[i].getInputStream()));
-            String line = end_signal.readLine();
-            if (line.equals("exit")) {
-                System.out.println("Player " + i + " exits");
-            }
-        }
-    }
+//    private void endGame(Socket[] clients) throws IOException {
+//        for(int i=0;i<player_num;i++) {
+//            BufferedReader end_signal = new BufferedReader(new InputStreamReader(clients[i].getInputStream()));
+//            String line = end_signal.readLine();
+//            if (line.equals("exit")) {
+//                System.out.println("Player " + i + " exits");
+//            }
+//        }
+//    }
 
     //receive player & send territories to each player
     private void play(Socket[] clients) throws InterruptedException, IOException {
@@ -103,6 +104,9 @@ public class Game extends Thread {
             //players = new ArrayList<>();
             System.out.println("new around");
             for (int i = 0; i < player_num; i++) {
+                if (executor.singlePlayerFail(territories, i)) {
+                    continue;
+                }
                 receivers[i] = new Receiver(clients, i);
                 //get the correct actions list from user
                 receivers[i].start();
@@ -110,6 +114,9 @@ public class Game extends Thread {
             }
 
             for (Thread thread : receivers) {
+                if (thread == null) {
+                    continue;
+                }
                 thread.join();
             }
 
@@ -118,6 +125,9 @@ public class Game extends Thread {
             //operate on map and send map back
             executor.execute(players, territories);
             for (int i = 0; i < player_num; i++) {
+                if (executor.singlePlayerFail(territories, i)) {
+                    continue;
+                }
                 try {
                     sendAll(i);
                     System.out.println("new territory is ");

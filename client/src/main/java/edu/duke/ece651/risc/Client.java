@@ -603,7 +603,10 @@ public class Client extends Thread {
         //Socket socket = null;
         Executor end_helper= new Executor();
         try {
-            socket = new Socket("localhost", 8000);
+            System.out.println("Choose one game to play (start from 0):");
+            int port = Integer.parseInt(sc.nextLine());
+
+            socket = new Socket("localhost", 8000 + port);
             System.out.println("Client Connected");
             this.os1 = new ObjectOutputStream(socket.getOutputStream());
             this.is1 = new ObjectInputStream(socket.getInputStream());
@@ -630,14 +633,14 @@ public class Client extends Thread {
             e.printStackTrace();
         }
     }
-    private void endGame(){
+    private void endGame() throws IOException {
         setEnableAllButton(false);
         this.doneButton.setEnabled(false);
         this.commitOnceButton.setEnabled(false);
         this.commitButton.setEnabled(false);
         closeSocket();
     }
-    private void closeSocket(){
+    private void closeSocket() throws IOException {
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(socket.getOutputStream());
@@ -648,9 +651,15 @@ public class Client extends Thread {
         assert pw != null;
         pw.println(msg);
         pw.flush();
-
         //close resources
         pw.close();
+
+        //new added
+
+        System.out.println("Closing Client Socket");
+        assert socket != null;
+        socket.close();
+
     }
 
     private boolean authenticate() throws IOException, ClassNotFoundException {
