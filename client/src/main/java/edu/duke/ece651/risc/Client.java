@@ -28,7 +28,7 @@ public class Client extends Thread {
     private JButton attackButton = new JButton("Attack");
     private JButton upgradeButton = new JButton("Upgrade Unit");
     private JButton upgradeTechButton = new JButton("Upgrade Tech");
-    private JButton commitButton = new JButton("Commit All Actions");
+    private JButton commitButton = new JButton("Commit All");
     private JButton commitOnceButton=new JButton(("Commit Current Action"));
     private JButton doneButton=new JButton(("Done"));
 
@@ -98,7 +98,7 @@ public class Client extends Thread {
     private void setBox() {
         for (int i = 0; i < 7; i++) {
             String temp = "Level-" + String.valueOf(i);
-            temp += "                 ";
+            temp += "              ";
             this.SoldierField.append(temp);
         }
         this.boxes.add(c0);
@@ -266,10 +266,10 @@ public class Client extends Thread {
         int group = 0;
         for(MapButton b : this.mapButtons){
             SpringLayout.Constraints btnCons = layout.getConstraints(b);
-            btnCons.setX(Spring.sum(Spring.constant(10 + group % 3 * 60),MapFieldCons.getConstraint(SpringLayout.WEST)));
-            btnCons.setY(Spring.constant(100 + group / 3 * 60));
-            btnCons.setConstraint(SpringLayout.HEIGHT,Spring.constant(50));
-            btnCons.setConstraint(SpringLayout.WIDTH,Spring.constant(50));
+            btnCons.setX(Spring.sum(Spring.constant(10 + group % 3 * 70),MapFieldCons.getConstraint(SpringLayout.WEST)));
+            btnCons.setY(Spring.constant(100 + group / 3 * 70));
+            btnCons.setConstraint(SpringLayout.HEIGHT,Spring.constant(60));
+            btnCons.setConstraint(SpringLayout.WIDTH,Spring.constant(60));
             panel2.add(b);
             group++;
         }
