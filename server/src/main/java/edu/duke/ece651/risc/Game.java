@@ -133,7 +133,7 @@ public class Game extends Thread {
                     System.out.println("new territory is ");
                     Prompts p=new Prompts(territories);
                     p.GraphPrompts();
-                } catch (SocketException e) {
+                } catch (Exception e) {
                     continue;
                 }
             }
@@ -258,11 +258,9 @@ public class Game extends Thread {
                 //player.showActionContent();
                 //close the resources
 
-            } catch (SocketException e) {
+            } catch (Exception e) {
                 reconnect();
                 run();
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
 
