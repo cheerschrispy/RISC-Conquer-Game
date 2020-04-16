@@ -6,7 +6,9 @@ public class Server {
         int player_num = 2;
         for (int i = 0; i < game_num; i++) {
             Game game = new Game(8000 + i, player_num);
+            ChatServer cs = new ChatServer(7999 - i, player_num);
             game.start();
+            cs.start();
         }
     }
 }
