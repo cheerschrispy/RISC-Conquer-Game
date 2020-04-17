@@ -9,6 +9,7 @@ public class Action implements Serializable {
     private String end;//end territory name
     private ArrayList<Unit> soldiers;
     private int requiredLevel;
+    private int alliance;
 
     public int getRequiredLevel() {
         return requiredLevel;
@@ -35,6 +36,12 @@ public class Action implements Serializable {
         this.name = name;
     }
 
+    //for alliance("A")
+    Action(String name, int id) {
+        this.name = name;
+        this.alliance = id;
+    }
+
     public String getName(){
         return this.name;
     }
@@ -57,5 +64,9 @@ public class Action implements Serializable {
 
     public ArrayList<Unit> getSoldiers() {
         return soldiers;
+    }
+
+    public int getAlliance() {
+        return alliance;
     }
 }

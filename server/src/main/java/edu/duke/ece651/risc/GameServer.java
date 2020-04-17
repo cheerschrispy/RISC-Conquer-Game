@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Game extends Thread {
+public class GameServer extends Thread {
     public  Map<String, Territory> territories;
     private Player[] players;
     private Executor executor;
@@ -21,7 +21,7 @@ public class Game extends Thread {
     private Map<Integer, Credential> credentials;
 
 
-    Game(int port, int player_num) {
+    GameServer(int port, int player_num) {
         this.territories = new HashMap<>();
         this.players = new Player[player_num];
         this.executor = new Executor();

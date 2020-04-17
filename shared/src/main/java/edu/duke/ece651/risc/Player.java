@@ -12,6 +12,11 @@ public class Player implements Serializable {
     private int techResources;
     private int techLevel;
     private static int[] costs = new int[] { 0, 50, 75, 125, 200, 300};
+    private Set<Integer> alliances;
+
+    public Set<Integer> getAlliances() {
+        return alliances;
+    }
 
     public Player(int id) {
         this.id = id;
@@ -19,6 +24,7 @@ public class Player implements Serializable {
         this.foodResources = 30;
         this.techLevel = 1;
         this.techResources = 50;
+        this.alliances = new HashSet<>();
     }
 
     public int getId(){

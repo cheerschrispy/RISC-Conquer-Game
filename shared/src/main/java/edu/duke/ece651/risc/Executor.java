@@ -76,6 +76,34 @@ public class Executor {
             List<Action> actions = player.getActions();
             techUpgrade(player, actions);
         }
+        findAlliance(players);
+    }
+
+    //find alliance
+    public void findAlliance(Player[] players) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (Player player : players) {
+            List<Action> actions = player.getActions();
+            for (Action action : actions) {
+                if (action.getName().equals("A")) {
+                    map.put(player.getId(), action.getAlliance());
+                    break;
+                }
+            }
+        }
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            int key = entry.getKey();
+            int value = entry.getValue();
+            if (map.get(value) == key) {
+                bind(key, value, players);
+            }
+        }
+    }
+
+    //form alliance
+    public void bind(int key, int value, Player[] players) {
+        players[key].getAlliances().add(value);
+        players[value].getAlliances().add(key);
     }
 
     //upgrade units
@@ -104,8 +132,8 @@ public class Executor {
 
     //increase food, tech, unit
     public void increase(Player[] players, Map<String, Territory> territories) {
-        for (Map.Entry entry : territories.entrySet()) {
-            Territory t = (Territory) entry.getValue();
+        for (Map.Entry<String, Territory> entry : territories.entrySet()) {
+            Territory t = entry.getValue();
             t.getSoldiers().add(new Unit());
             for (Player player : players) {
                 if (t.getOwner() == player.getId()) {

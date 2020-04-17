@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01068f57-f986-4c32-90bf-537792d2eff7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/ChatRoom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/ChatServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/ChatThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/shared/src/test/java/edu/duke/ece651/risc/TestChat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/server/edu/duke/ece651/risc/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/edu/duke/ece651/risc/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/GameServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Executor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +152,7 @@
       <updated>1586201687516</updated>
       <workItem from="1586737431444" duration="2219000" />
       <workItem from="1586823959664" duration="2999000" />
-      <workItem from="1586906588174" duration="24488000" />
+      <workItem from="1586906588174" duration="28980000" />
     </task>
     <servers />
   </component>
@@ -170,18 +168,23 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1586230511392" />
-    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser" timestamp="1587010490671">
+    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser" timestamp="1587105189089">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1587105189089" />
     <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/234.-768.1024.768/0.0.1440.900@0.0.1440.900" timestamp="1587010490671" />
-    <state x="260" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587052071619">
+    <state x="260" y="0" width="649" height="900" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587105517697">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="260" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1587052071619" />
+    <state x="260" y="0" width="649" height="900" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1587105517697" />
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587070533189">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1587070533189" />
+    <state x="458" y="204" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1587107007502">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="458" y="204" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1440.900@0.0.1440.900" timestamp="1587107007502" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1586824156267">
       <screen x="0" y="23" width="1440" height="797" />
     </state>
