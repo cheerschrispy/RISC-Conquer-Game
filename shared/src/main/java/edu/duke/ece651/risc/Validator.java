@@ -80,82 +80,102 @@ public class Validator {
             String dest = a.getEnd();
             ArrayList<Unit> soldiers = a.getSoldiers();
 
-            if(action.equals("M")){
-                int step = this.BFS(src, dest, territories);
-                if(step == -1){
-                    player.isvalid = false;
-                    System.out.println("BFS error");
-                    return false;
+            switch (action) {
+                case "M":
+                    int step = this.BFS(player, src, dest, territories);
+                    if (step == -1) {
+                        player.isvalid = false;
+                        System.out.println("BFS error");
+                        return false;
+                    }
+                    this.foodRecord += soldiers.size() * territories.get(src).getSize();
+                    this.moveChange(soldiers, src, dest);
+                    if (!this.checkNumber()) {
+                        player.isvalid = false;
+                        System.out.println("cannot moveChange due to number of units");
+                        return false;
+                    }
+                    if (foodRecord > player.getFoodResources()) {
+                        player.isvalid = false;
+                        System.out.println("cannot moveChange due to lack of food");
+                        return false;
+                    }
+                    break;
+                case "A":
+                    //it is Attack command
+                    if (!this.findEnemy(src, dest, territories)) {
+                        player.isvalid = false;
+                        System.out.println("cannot find enemy");
+                        return false;
+                    }
+                    this.foodRecord += soldiers.size();
+                    this.attackChange(soldiers, src);
+                    if (!this.checkNumber()) {
+                        player.isvalid = false;
+                        System.out.println("check number error");
+                        return false;
+                    }
+                    if (foodRecord > player.getFoodResources()) {
+                        player.isvalid = false;
+                        System.out.println("cannot moveChange due to lack of food");
+                        return false;
+                    }
+                    break;
+                case "T": {
+                    int currLevel = player.getTechLevel();
+                    if (currLevel == 6) {
+                        continue;
+                    } else {
+                        this.techRecord += upLevelCost[currLevel];
+                    }
+                    if (techRecord > player.getTechResources()) {
+                        player.isvalid = false;
+                        System.out.println("cannot update tech due to lack of TechResources");
+                        return false;
+                    }
+                    break;
                 }
-                this.foodRecord += soldiers.size() * territories.get(src).getSize();
-                this.moveChange(soldiers, src, dest);
-                if(!this.checkNumber()){
-                    player.isvalid = false;
-                    System.out.println("cannot moveChange due to number of units");
-                    return false;
-                }
-                if(foodRecord > player.getFoodResources()){
-                    player.isvalid = false;
-                    System.out.println("cannot moveChange due to lack of food");
-                    return false;
-                }
-            }
-            else if(action.equals("A")){
-                //it is Attack command
-                if(!this.findEnemy(src, dest, territories)){
-                    player.isvalid = false;
-                    System.out.println("cannot find enemy");
-                    return false;
-                }
-                this.foodRecord += soldiers.size();
-                this.attackChange(soldiers, src);
-                if(!this.checkNumber()){
-                    player.isvalid = false;
-                    System.out.println("check number error");
-                    return false;
-                }
-                if(foodRecord > player.getFoodResources()){
-                    player.isvalid = false;
-                    System.out.println("cannot moveChange due to lack of food");
-                    return false;
-                }
-            }
-            else if(action.equals("T")){
-                int currLevel = player.getTechLevel();
-                if(currLevel == 6){
-                    continue;
-                }
-                else{
-                    this.techRecord += upLevelCost[currLevel];
-                }
-                if(techRecord > player.getTechResources()){
-                    player.isvalid = false;
-                    System.out.println("cannot update tech due to lack of TechResources");
-                    return false;
-                }
-            }
-            //it is "U" to upgrade the units
-            else{
-                int requestLevel = a.getLevels();
-                int num = soldiers.size();
-                int currLevel = soldiers.get(0).getLevel();
-                if(record.get(src).get(currLevel) < num){
-                    player.isvalid = false;
-                    System.out.println("cannot update soldiers due to lack of numbers");
-                    return false;
-                }
-                else if(player.getTechLevel() < requestLevel){
-                    player.isvalid = false;
-                    System.out.println("Maximum tech level is not allowed");
-                    return false;
-                }
+                //it is "U" to upgrade the units
+                case "U": {
+                    int requestLevel = a.getLevels();
+                    int num = soldiers.size();
+                    int currLevel = soldiers.get(0).getLevel();
+                    if (record.get(src).get(currLevel) < num) {
+                        player.isvalid = false;
+                        System.out.println("cannot update soldiers due to lack of numbers");
+                        return false;
+                    } else if (player.getTechLevel() < requestLevel) {
+                        player.isvalid = false;
+                        System.out.println("Maximum tech level is not allowed");
+                        return false;
+                    }
 
-                techRecord += num * (upSoldierCost[requestLevel] - upSoldierCost[currLevel]);
-                if(techRecord > player.getTechResources()){
-                    player.isvalid = false;
-                    System.out.println("cannot update soldiers due to lack of TechResources");
-                    return false;
+                    techRecord += num * (upSoldierCost[requestLevel] - upSoldierCost[currLevel]);
+                    if (techRecord > player.getTechResources()) {
+                        player.isvalid = false;
+                        System.out.println("cannot update soldiers due to lack of TechResources");
+                        return false;
+                    }
+                    break;
                 }
+                //Upgrade the ability to produce tech
+                case "P":
+                    this.techRecord += (player.getTechLevel() + 1) * 10;
+                    if (techRecord > player.getTechResources()) {
+                        player.isvalid = false;
+                        System.out.println("cannot update tech production due to lack of TechResources");
+                        return false;
+                    }
+                    break;
+                //Upgrade the ability to produce food
+                case "Q":
+                    this.foodRecord += (player.getTechLevel() + 1) * 10;
+                    if (this.foodRecord > player.getFoodResources()) {
+                        player.isvalid = false;
+                        System.out.println("cannot update food production due to lack of TechResources");
+                        return false;
+                    }
+                    break;
             }
         }
         player.isvalid = true;
@@ -202,7 +222,7 @@ public class Validator {
     }
 
     //Search whether these two territories are connected
-    public int BFS(String src, String dest, Map<String, Territory> territories){
+    public int BFS(Player player, String src, String dest, Map<String, Territory> territories){
         Queue<Territory> q = new LinkedList<>();
         HashSet<Territory> visited = new HashSet<>();
         Territory start = territories.get(src);
@@ -215,11 +235,15 @@ public class Validator {
             q.poll();
             step+=curr.getSize();
             for(Territory t : curr.getNeighbors()){
-                if(!visited.contains(t) && t.getOwner() == start.getOwner()){
-                    q.offer(t);
-                    visited.add(t);
-                    if(t.getName().equals(dest)){
-                        return step;
+                if(!visited.contains(t)){
+                    Set<Integer> alliances = player.getAlliances();
+                    alliances.add(player.getId());
+                    if(alliances.contains(t.getOwner())) {
+                        q.offer(t);
+                        visited.add(t);
+                        if(t.getName().equals(dest)){
+                            return step;
+                        }
                     }
                 }
             }
