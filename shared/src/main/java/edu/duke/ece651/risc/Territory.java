@@ -6,6 +6,7 @@ import java.util.*;
 public class Territory implements Serializable {
     private String name;
     private int owner;
+    private HashMap<Integer, ArrayList<Unit>> allies;
     private ArrayList<Unit> soldiers;
     private Set<Territory> neighbors;
     private int size;
@@ -19,12 +20,21 @@ public class Territory implements Serializable {
     public int getTechProduct() {
         return techProduct;
     }
+    
+    public ArrayList<Unit> getOwnUnit(int i){
+        return allies.get(i);
+    }
+
+    public HashMap<Integer, ArrayList<Unit>> getAllies(){
+        return this.allies;
+    }
 
     Territory(String name, int owner) {
         this.name = name;
         this.owner = owner;
         this.soldiers = new ArrayList<>();
         this.neighbors = new HashSet<>();
+        this.allies = new HashMap<>();
         this.size = 3;
         this.foodProduct = 5;
         this.techProduct = 10;
@@ -81,6 +91,17 @@ public class Territory implements Serializable {
                 total--;
             }
             if(total<=0) break;
+        }
+        return ans;
+    }
+    
+    //get the total num of indicated level
+    public int getAllyNumOfLevel(int level, int id){
+        int ans = 0;
+        ArrayList<Unit> a = getOwnUnit(id);
+        for(Unit s : a){
+            if(s.getLevel() ==level)
+                ans++;
         }
         return ans;
     }
