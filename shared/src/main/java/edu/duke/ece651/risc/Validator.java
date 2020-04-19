@@ -187,9 +187,11 @@ public class Validator {
         this.foodRecord = 0;
         this.techRecord = 0;
         this.record = new HashMap<>();
-        int playerId = player.getId();
+        int id = player.getId();
+        Set<Integer> alliances = player.getAlliances();
+        alliances.add(id);
         for(String key : territories.keySet()){
-            if(territories.get(key).getOwner() == playerId){
+            if(alliances.contains(territories.get(key).getOwner())){
                 ArrayList<Integer> numbers = new ArrayList<>();
                 numbers.add(0);
                 numbers.add(0);
@@ -198,8 +200,14 @@ public class Validator {
                 numbers.add(0);
                 numbers.add(0);
                 record.put(territories.get(key).getName(), numbers);
-                ArrayList<Unit> units = territories.get(key).getSoldiers();
-                for(Unit u : units){
+                ArrayList<Unit> units;
+                if(territories.get(key).getOwner() == id) {
+                    units = territories.get(key).getSoldiers();
+                }
+                else{
+                    units = territories.get(key).getOwnUnit(id);
+                }
+                for(Unit u : units) {
                     int level = u.getLevel();
                     int curr = numbers.get(level);
                     numbers.set(level, 1 + curr);
