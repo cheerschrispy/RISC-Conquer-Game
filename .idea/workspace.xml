@@ -1,72 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01068f57-f986-4c32-90bf-537792d2eff7" name="Default Changelist" comment="">
+    <list default="true" id="95aa7dda-1492-4f8a-8db3-a991f1aa9a25" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/WechatIMG1705.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WechatIMG1706.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WechatIMG1707.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WechatIMG1708.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WechatIMG1709.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WechatIMG1710.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WechatIMG1711.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Attack.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/AttackController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Main.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Mapbutton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Move.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/MoveController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Upgrade.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/mainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/upgradeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/GameServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Executor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/test/test.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CoverageViewManager">
-    <option name="myElementSize" value="203" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1aBGgvyaNoO7L5a5pfsT6frF4lm" />
+  <component name="ProjectId" id="1ame9xoq28rJ2gUOnf74Z8pBA4Z" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestChat">
-    <configuration name="ChatClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.duke.ece651.risc.ChatClient" />
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.duke.ece651.risc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Client" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.duke.ece651.risc.Client" />
       <module name="client" />
       <extension name="coverage">
@@ -79,63 +67,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.duke.ece651.risc.Server" />
-      <module name="server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.duke.ece651.risc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestChat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.duke.ece651.risc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.duke.ece651.risc" />
-      <option name="MAIN_CLASS_NAME" value="edu.duke.ece651.risc.TestChat" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestChat.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.duke.ece651.risc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="edu.duke.ece651.risc" />
-      <option name="MAIN_CLASS_NAME" value="edu.duke.ece651.risc.TestChat" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.Server" />
-      <item itemvalue="Application.Client" />
-      <item itemvalue="JUnit.TestChat" />
-      <item itemvalue="JUnit.TestChat.test" />
-      <item itemvalue="Application.ChatClient" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestChat" />
-        <item itemvalue="Application.ChatClient" />
-        <item itemvalue="JUnit.TestChat.test" />
-        <item itemvalue="Application.Server" />
         <item itemvalue="Application.Client" />
       </list>
     </recent_temporary>
@@ -145,126 +78,34 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="01068f57-f986-4c32-90bf-537792d2eff7" name="Default Changelist" comment="" />
-      <created>1586201687516</created>
+      <changelist id="95aa7dda-1492-4f8a-8db3-a991f1aa9a25" name="Default Changelist" comment="" />
+      <created>1587345048624</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1586201687516</updated>
-      <workItem from="1586737431444" duration="2219000" />
-      <workItem from="1586823959664" duration="2999000" />
-      <workItem from="1586906588174" duration="28980000" />
+      <updated>1587345048624</updated>
     </task>
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="89" key="#Project_Structure" timestamp="1586202140412">
-      <screen x="0" y="23" width="1440" height="806" />
-    </state>
-    <state x="320" y="89" key="#Project_Structure/0.23.1440.806@0.23.1440.806" timestamp="1586202140412" />
-    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586230511392">
+    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1587345131928">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="184" y="112" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1586230511392" />
-    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser" timestamp="1587105189089">
+    <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1587345131928" />
+    <state width="1398" height="108" key="GridCell.Tab.0.bottom" timestamp="1587345641992">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1587105189089" />
-    <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/234.-768.1024.768/0.0.1440.900@0.0.1440.900" timestamp="1587010490671" />
-    <state x="260" y="0" width="649" height="900" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587105517697">
+    <state width="1398" height="108" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587345641992" />
+    <state width="1398" height="108" key="GridCell.Tab.0.center" timestamp="1587345641991">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="260" y="0" width="649" height="900" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1587105517697" />
-    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587070533189">
+    <state width="1398" height="108" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587345641991" />
+    <state width="1398" height="108" key="GridCell.Tab.0.left" timestamp="1587345641990">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1587070533189" />
-    <state x="458" y="204" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1587107007502">
+    <state width="1398" height="108" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587345641990" />
+    <state width="1398" height="108" key="GridCell.Tab.0.right" timestamp="1587345641991">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="458" y="204" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1440.900@0.0.1440.900" timestamp="1587107007502" />
-    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1586824156267">
-      <screen x="0" y="23" width="1440" height="797" />
-    </state>
-    <state x="100" y="100" width="1240" height="700" key="DiffContextDialog/0.23.1440.797@0.23.1440.797" timestamp="1586824156267" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom" timestamp="1587070570644">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587070570644" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1587052138507" />
-    <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.800@0.23.1440.800" timestamp="1586225750663" />
-    <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.803@0.23.1440.803" timestamp="1586225753528" />
-    <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.805@0.23.1440.805" timestamp="1586225771368" />
-    <state width="1398" height="2" key="GridCell.Tab.0.bottom/0.23.1440.808@0.23.1440.808" timestamp="1586203530444" />
-    <state width="1398" height="245" key="GridCell.Tab.0.bottom/234.-768.1024.768/0.0.1440.900@0.0.1440.900" timestamp="1586744455048" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center" timestamp="1587070570643">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587070570643" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1587052138506" />
-    <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.800@0.23.1440.800" timestamp="1586225750661" />
-    <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.803@0.23.1440.803" timestamp="1586225753528" />
-    <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.805@0.23.1440.805" timestamp="1586225771367" />
-    <state width="1398" height="2" key="GridCell.Tab.0.center/0.23.1440.808@0.23.1440.808" timestamp="1586203530443" />
-    <state width="1398" height="245" key="GridCell.Tab.0.center/234.-768.1024.768/0.0.1440.900@0.0.1440.900" timestamp="1586744455046" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left" timestamp="1587070570642">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587070570642" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1587052138506" />
-    <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.800@0.23.1440.800" timestamp="1586225750660" />
-    <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.803@0.23.1440.803" timestamp="1586225753528" />
-    <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.805@0.23.1440.805" timestamp="1586225771367" />
-    <state width="1398" height="2" key="GridCell.Tab.0.left/0.23.1440.808@0.23.1440.808" timestamp="1586203530443" />
-    <state width="1398" height="245" key="GridCell.Tab.0.left/234.-768.1024.768/0.0.1440.900@0.0.1440.900" timestamp="1586744455046" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right" timestamp="1587070570644">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587070570644" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1587052138507" />
-    <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.800@0.23.1440.800" timestamp="1586225750663" />
-    <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.803@0.23.1440.803" timestamp="1586225753528" />
-    <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.805@0.23.1440.805" timestamp="1586225771368" />
-    <state width="1398" height="2" key="GridCell.Tab.0.right/0.23.1440.808@0.23.1440.808" timestamp="1586203530444" />
-    <state width="1398" height="245" key="GridCell.Tab.0.right/234.-768.1024.768/0.0.1440.900@0.0.1440.900" timestamp="1586744455047" />
-    <state width="1398" height="303" key="GridCell.Tab.1.bottom" timestamp="1587070363389">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="303" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587070363389" />
-    <state width="1398" height="303" key="GridCell.Tab.1.center" timestamp="1587070363387">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="303" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1587070363387" />
-    <state width="1398" height="303" key="GridCell.Tab.1.left" timestamp="1587070363387">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="303" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1587070363387" />
-    <state width="1398" height="303" key="GridCell.Tab.1.right" timestamp="1587070363388">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state width="1398" height="303" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1587070363388" />
-    <state x="424" y="351" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1586222486050">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="424" y="351" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1440.900@0.0.1440.900" timestamp="1586222486050" />
-    <state x="598" y="133" width="670" height="676" key="search.everywhere.popup" timestamp="1586740688708">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="598" y="133" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1586740688708" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <default-breakpoints>
-        <breakpoint enabled="true" type="javascript-exception" />
-      </default-breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/server$All_in_test.ic" NAME="All in test Coverage Results" MODIFIED="1586231627805" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/server$All_in_test__3_.ic" NAME="All in test (3) Coverage Results" MODIFIED="1586230378983" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/server$All_in_test__1_.ic" NAME="All in test (1) Coverage Results" MODIFIED="1586231745211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/server$All_in_test__2_.ic" NAME="All in test (2) Coverage Results" MODIFIED="1586230024264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <state width="1398" height="108" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587345641991" />
   </component>
 </project>

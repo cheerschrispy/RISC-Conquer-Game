@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.risc.mainController">
+    <children>
+        <TextArea editable="false" layoutX="27.0" layoutY="401.0" prefHeight="89.0" prefWidth="421.0">
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+        </TextArea>
+        <HBox layoutX="-1.0" layoutY="547.0" prefHeight="220.0" prefWidth="800.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#MoveStage" prefHeight="40.0" prefWidth="100.0" text="Move" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Button mnemonicParsing="false" onAction="#AttackStage" prefHeight="40.0" prefWidth="100.0" text="Attack" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Button mnemonicParsing="false" onAction="#upgradePop" prefHeight="40.0" prefWidth="100.0" text="Upgrade" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Button mnemonicParsing="false" onAction="#alliancePop" prefHeight="40.0" prefWidth="100.0" text="Alliance" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Commit" />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </padding>
+        </HBox>
+        <TextArea layoutX="27.0" layoutY="498.0" prefHeight="33.0" prefWidth="329.0" />
+        <TextArea layoutX="27.0" layoutY="31.0" prefHeight="357.0" prefWidth="421.0" />
+        <Button layoutX="371.0" layoutY="501.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" text="Send" />
+        <TextArea editable="false" layoutX="482.0" layoutY="14.0" prefHeight="126.0" prefWidth="295.0" />
+        <TextArea fx:id="mapInfo" editable="false" layoutX="482.0" layoutY="153.0" prefHeight="220.0" prefWidth="295.0" />
+        <TextArea editable="false" layoutX="482.0" layoutY="393.0" prefHeight="138.0" prefWidth="295.0" />
+        <Label layoutX="35.0" layoutY="14.0" prefHeight="17.0" prefWidth="421.0" text="New Around" />
+      <Button fx:id="Map2" layoutX="133.0" layoutY="127.0" mnemonicParsing="false" onAction="#showMapInfo_2" text="T2" />
+      <Button layoutX="179.0" layoutY="183.0" mnemonicParsing="false" text="T6" />
+      <Button layoutX="91.0" layoutY="274.0" mnemonicParsing="false" text="T4" />
+      <Button layoutX="51.0" layoutY="197.0" mnemonicParsing="false" text="T3" />
+      <Button layoutX="274.0" layoutY="287.0" mnemonicParsing="false" text="T7" />
+      <Button layoutX="340.0" layoutY="109.0" mnemonicParsing="false" text="T10" />
+      <Button layoutX="208.0" layoutY="354.0" mnemonicParsing="false" text="T8" />
+      <Button layoutX="51.0" layoutY="340.0" mnemonicParsing="false" text="T5" />
+      <Button layoutX="356.0" layoutY="211.0" mnemonicParsing="false" text="T9" />
+      <Button layoutX="231.0" layoutY="77.0" mnemonicParsing="false" text="T12" />
+      <Button layoutX="274.0" layoutY="184.0" mnemonicParsing="false" text="T11" />
+      <Button fx:id="Map1" layoutX="51.0" layoutY="77.0" mnemonicParsing="false" onAction="#showMapInfo_1" text="T1" />
+    </children>
+</Pane>

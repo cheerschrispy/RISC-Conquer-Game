@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.risc.AttackController">
+    <children>
+        <TextArea layoutX="27.0" layoutY="453.0" prefHeight="80.0" prefWidth="447.0">
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+        </TextArea>
+        <HBox layoutX="-1.0" layoutY="547.0" prefHeight="220.0" prefWidth="800.0">
+            <children>
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </padding>
+        </HBox>
+        <TextArea layoutX="27.0" layoutY="37.0" prefHeight="408.0" prefWidth="447.0" />
+        <TextArea layoutX="482.0" layoutY="14.0" prefHeight="154.0" prefWidth="295.0" />
+        <Label layoutX="29.0" layoutY="14.0" prefHeight="17.0" prefWidth="421.0" text="New Around" />
+        <ComboBox fx:id="Src" layoutX="527.0" layoutY="182.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="Dest" layoutX="710.0" layoutY="182.0" prefHeight="31.0" prefWidth="67.0" />
+        <Label layoutX="484.0" layoutY="185.0" text="Src" />
+        <Label layoutX="672.0" layoutY="185.0" text="Dest" />
+        <ComboBox fx:id="l2" layoutX="569.0" layoutY="353.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l3" layoutX="713.0" layoutY="347.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l4" layoutX="569.0" layoutY="418.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l5" layoutX="713.0" layoutY="418.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l6" layoutX="569.0" layoutY="493.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l1" layoutX="713.0" layoutY="273.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l0" layoutX="569.0" layoutY="273.0" prefHeight="31.0" prefWidth="67.0" />
+        <Button layoutX="680.0" layoutY="487.0" mnemonicParsing="false" onAction="#finish_AM_Action" prefHeight="40.0" prefWidth="100.0" text="Done" />
+      <ImageView fx:id="lv3Soldier" fitHeight="54.0" fitWidth="67.0" layoutX="646.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1705.jpeg" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="-0.02" />
+         </effect>
+      </ImageView>
+      <ImageView fx:id="lv2Soldier" fitHeight="61.0" fitWidth="67.0" layoutX="496.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1706.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lv5Soldier" fitHeight="54.0" fitWidth="67.0" layoutX="639.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1707.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lv6Soldier" fitHeight="61.0" fitWidth="67.0" layoutX="496.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1708.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lv4Soldier" fitHeight="61.0" fitWidth="67.0" layoutX="494.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1710.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lv1Soldier" fitHeight="54.0" fitWidth="53.0" layoutX="652.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1709.jpeg" />
+         </image>
+      </ImageView>
+      <Label layoutX="589.0" layoutY="254.0" text="Lv 0" />
+      <Label layoutX="589.0" layoutY="328.0" text="Lv 2" />
+      <Label layoutX="589.0" layoutY="399.0" text="Lv 4" />
+      <Label layoutX="589.0" layoutY="469.0" text="Lv 6" />
+      <Label layoutX="730.0" layoutY="399.0" text="Lv 5" />
+      <Label layoutX="730.0" layoutY="328.0" text="Lv 3" />
+      <Label layoutX="730.0" layoutY="254.0" text="Lv 1" />
+      <Button layoutX="284.0" layoutY="194.0" mnemonicParsing="false" text="T11" />
+      <Button layoutX="241.0" layoutY="87.0" mnemonicParsing="false" text="T12" />
+      <Button layoutX="366.0" layoutY="221.0" mnemonicParsing="false" text="T9" />
+      <Button layoutX="61.0" layoutY="350.0" mnemonicParsing="false" text="T5" />
+      <Button layoutX="218.0" layoutY="364.0" mnemonicParsing="false" text="T8" />
+      <Button layoutX="350.0" layoutY="119.0" mnemonicParsing="false" text="T10" />
+      <Button layoutX="284.0" layoutY="297.0" mnemonicParsing="false" text="T7" />
+      <Button layoutX="61.0" layoutY="207.0" mnemonicParsing="false" text="T3" />
+      <Button layoutX="101.0" layoutY="284.0" mnemonicParsing="false" text="T4" />
+      <Button layoutX="189.0" layoutY="193.0" mnemonicParsing="false" text="T6" />
+      <Button layoutX="77.0" layoutY="87.0" mnemonicParsing="false" text="T1" />
+      <Button layoutX="159.0" layoutY="137.0" mnemonicParsing="false" text="T2" />
+      <ImageView fx:id="lv0Soldier" fitHeight="54.0" fitWidth="53.0" layoutX="501.0" layoutY="262.0">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1711.jpeg" />
+         </image>
+      </ImageView>
+    </children>
+</Pane>

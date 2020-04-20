@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.upgradeController">
+    <children>
+        <TextArea layoutX="27.0" layoutY="453.0" prefHeight="80.0" prefWidth="447.0">
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+        </TextArea>
+        <HBox layoutX="-1.0" layoutY="547.0" prefHeight="220.0" prefWidth="800.0">
+            <children>
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </padding>
+        </HBox>
+        <TextArea layoutX="27.0" layoutY="37.0" prefHeight="408.0" prefWidth="447.0" />
+        <TextArea layoutX="482.0" layoutY="15.0" prefHeight="125.0" prefWidth="295.0" />
+        <TextArea layoutX="482.0" layoutY="153.0" prefHeight="154.0" prefWidth="295.0" />
+        <Label layoutX="29.0" layoutY="14.0" prefHeight="17.0" prefWidth="421.0" text="New Around" />
+        <ComboBox fx:id="source" layoutX="544.0" layoutY="319.0" prefHeight="27.0" prefWidth="33.0" />
+        <Label layoutX="482.0" layoutY="324.0" text="Territory" />
+        <ComboBox fx:id="num" layoutX="544.0" layoutY="380.0" prefHeight="27.0" prefWidth="50.0" />
+        <ComboBox fx:id="destLevel" layoutX="727.0" layoutY="380.0" prefHeight="27.0" prefWidth="50.0" />
+        <ComboBox fx:id="srcLevel" layoutX="727.0" layoutY="319.0" prefHeight="27.0" prefWidth="50.0" />
+        <Button fx:id="done" layoutX="594.0" layoutY="493.0" mnemonicParsing="false" onAction="#finishUpgradeAction" prefHeight="40.0" prefWidth="100.0" text="Done" />
+        <Label layoutX="639.0" layoutY="324.0" text="Src Level" />
+        <Label layoutX="638.0" layoutY="385.0" text="Des Level" />
+        <Label layoutX="482.0" layoutY="385.0" text="Num" />
+    </children>
+</Pane>

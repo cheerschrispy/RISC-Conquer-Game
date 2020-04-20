@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.risc.MoveController">
+    <children>
+        <TextArea layoutX="27.0" layoutY="453.0" prefHeight="80.0" prefWidth="447.0">
+            <padding>
+                <Insets left="10.0" />
+            </padding>
+        </TextArea>
+        <HBox layoutX="-1.0" layoutY="547.0" prefHeight="220.0" prefWidth="800.0">
+            <children>
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            </padding>
+        </HBox>
+        <TextArea layoutX="27.0" layoutY="37.0" prefHeight="408.0" prefWidth="447.0" />
+        <TextArea layoutX="482.0" layoutY="14.0" prefHeight="154.0" prefWidth="295.0" />
+        <Label layoutX="29.0" layoutY="14.0" prefHeight="17.0" prefWidth="421.0" text="New Around" />
+        <ComboBox fx:id="Src" layoutX="527.0" layoutY="182.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="Dest" layoutX="710.0" layoutY="182.0" prefHeight="31.0" prefWidth="67.0" />
+        <Label layoutX="484.0" layoutY="185.0" text="Src" />
+        <Label layoutX="672.0" layoutY="185.0" text="Dest" />
+      <Label layoutX="730.0" layoutY="263.0" text="Lv 1" />
+      <Label layoutX="730.0" layoutY="337.0" text="Lv 3" />
+      <Label layoutX="730.0" layoutY="408.0" text="Lv 5" />
+      <Label layoutX="589.0" layoutY="478.0" text="Lv 6" />
+      <Label layoutX="589.0" layoutY="408.0" text="Lv 4" />
+      <Label layoutX="589.0" layoutY="337.0" text="Lv 2" />
+      <Label layoutX="589.0" layoutY="263.0" text="Lv 0" />
+      <ImageView fx:id="lv1Soldier" fitHeight="54.0" fitWidth="53.0" layoutX="652.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1709.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lv4Soldier" fitHeight="61.0" fitWidth="67.0" layoutX="494.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1710.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lv0Soldier" fitHeight="54.0" fitWidth="53.0" layoutX="504.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1711.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lv6Soldier" fitHeight="61.0" fitWidth="67.0" layoutX="496.0" layoutY="486.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1708.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lv5Soldier" fitHeight="54.0" fitWidth="67.0" layoutX="639.0" layoutY="416.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1707.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lv2Soldier" fitHeight="61.0" fitWidth="67.0" layoutX="496.0" layoutY="332.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1706.jpeg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="lv3Soldier" fitHeight="54.0" fitWidth="67.0" layoutX="646.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
+         <effect>
+            <ColorAdjust brightness="-0.02" />
+         </effect>
+         <image>
+            <Image url="@../../../../../../../../WechatIMG1705.jpeg" />
+         </image>
+      </ImageView>
+      <Button layoutX="680.0" layoutY="496.0" mnemonicParsing="false" onAction="#finish_AM_Action" prefHeight="40.0" prefWidth="100.0" text="Done" />
+      <ComboBox fx:id="l0" layoutX="569.0" layoutY="282.0" prefHeight="31.0" prefWidth="67.0" />
+      <ComboBox fx:id="l1" layoutX="713.0" layoutY="282.0" prefHeight="31.0" prefWidth="67.0" />
+      <ComboBox fx:id="l6" layoutX="569.0" layoutY="502.0" prefHeight="31.0" prefWidth="67.0" />
+      <ComboBox fx:id="l5" layoutX="713.0" layoutY="427.0" prefHeight="31.0" prefWidth="67.0" />
+      <ComboBox fx:id="l4" layoutX="569.0" layoutY="427.0" prefHeight="31.0" prefWidth="67.0" />
+      <ComboBox fx:id="l3" layoutX="713.0" layoutY="356.0" prefHeight="31.0" prefWidth="67.0" />
+      <ComboBox fx:id="l2" layoutX="569.0" layoutY="362.0" prefHeight="31.0" prefWidth="67.0" />
+      <Button layoutX="153.0" layoutY="147.0" mnemonicParsing="false" text="T2" />
+      <Button layoutX="199.0" layoutY="203.0" mnemonicParsing="false" text="T6" />
+      <Button layoutX="111.0" layoutY="294.0" mnemonicParsing="false" text="T4" />
+      <Button layoutX="71.0" layoutY="217.0" mnemonicParsing="false" text="T3" />
+      <Button layoutX="294.0" layoutY="307.0" mnemonicParsing="false" text="T7" />
+      <Button layoutX="360.0" layoutY="129.0" mnemonicParsing="false" text="T10" />
+      <Button layoutX="228.0" layoutY="374.0" mnemonicParsing="false" text="T8" />
+      <Button layoutX="71.0" layoutY="360.0" mnemonicParsing="false" text="T5" />
+      <Button layoutX="376.0" layoutY="231.0" mnemonicParsing="false" text="T9" />
+      <Button layoutX="251.0" layoutY="97.0" mnemonicParsing="false" text="T12" />
+      <Button layoutX="294.0" layoutY="204.0" mnemonicParsing="false" text="T11" />
+      <Button layoutX="71.0" layoutY="97.0" mnemonicParsing="false" text="T1" />
+    </children>
+</Pane>
