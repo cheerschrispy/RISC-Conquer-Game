@@ -118,6 +118,10 @@ public class Client extends Application {
             return null;
         });
         Scene mainScene = new Scene(mainRoot.load());
+        mainScene.getStylesheets().add(
+                getClass().getResource("MainStyle.css")
+                        .toExternalForm());
+
         window.setTitle("RISC Game");
         window.setScene(mainScene);
         window.show();

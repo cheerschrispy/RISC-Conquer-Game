@@ -113,7 +113,7 @@ public class upgradeController {
         //write into history fields
         StringBuilder description=new StringBuilder();
         description.append("Upgrade: ").append(num.getValue()+" Lv"+srcLevel.getValue()+" Soldiers");
-        description.append(" to Lv"+destLevel+"\n");
+        description.append(" to Lv"+destLevel.getValue()+"\n");
         this.savedText.addAction(String.valueOf(description));
 
 
