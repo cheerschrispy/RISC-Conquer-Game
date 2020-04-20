@@ -71,7 +71,7 @@ public class Player implements Serializable {
 
 
     //this will help fill in the arraylist the 3 number
-    public void initial_game(Map<String, Territory> territories,Scanner sc,int total,HashMap<String,Integer> init_info,JTextArea promptes){
+    public void initial_game(Map<String, Territory> territories,Scanner sc,int total,HashMap<String,Integer> init_info){
         Prompts prompts_helper=new Prompts(territories);
         Validator validator=new Validator();
         while(true){
@@ -179,7 +179,7 @@ public class Player implements Serializable {
     }
 
     //true to indicate the format is okay
-    public boolean addAction(Map<String, Territory> territories,String client_name,Scanner sc){
+    public boolean addAction(Map<String, Territory>territories ,String client_name,Scanner sc){
         //the argument is passed by server via socket
         // need to simply verify the user input
         Validator validate_helper=new Validator();
@@ -228,7 +228,6 @@ public class Player implements Serializable {
         }
         return true;
     }
-
 
 
 

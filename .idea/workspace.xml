@@ -2,38 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95aa7dda-1492-4f8a-8db3-a991f1aa9a25" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/WechatIMG1705.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WechatIMG1706.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WechatIMG1707.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WechatIMG1708.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WechatIMG1709.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WechatIMG1710.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WechatIMG1711.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Attack.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/AttackController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Main.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Mapbutton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Move.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/MoveController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Upgrade.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/mainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/upgradeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/savedText.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/history3.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/client.iml" beforeDir="false" afterPath="$PROJECT_DIR$/client/client.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/history0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/history1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/history2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Attack.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Attack.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/AttackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/AttackController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Move.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Move.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/MoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/MoveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Upgrade.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Upgrade.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/mainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/mainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/upgradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/upgradeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/history0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/history0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Attack.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Attack.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/AttackController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/AttackController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/test/test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Move.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Move.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/MoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/MoveController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Upgrade.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Upgrade.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/mainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/mainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/upgradeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/upgradeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Action.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Executor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Executor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Territory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Territory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Validator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Validator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Executor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,6 +60,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -87,25 +103,37 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="287" y="126" key="#Project_Structure" timestamp="1587348072749">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="287" y="126" key="#Project_Structure/0.0.1440.900@0.0.1440.900" timestamp="1587348072749" />
     <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser" timestamp="1587345131928">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="166" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1587345131928" />
-    <state width="1398" height="108" key="GridCell.Tab.0.bottom" timestamp="1587345641992">
+    <state width="1398" height="195" key="GridCell.Tab.0.bottom" timestamp="1587419102397">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="108" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587345641992" />
-    <state width="1398" height="108" key="GridCell.Tab.0.center" timestamp="1587345641991">
+    <state width="1398" height="195" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587419102397" />
+    <state width="1398" height="63" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1587412251290" />
+    <state width="1398" height="195" key="GridCell.Tab.0.center" timestamp="1587419102395">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="108" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587345641991" />
-    <state width="1398" height="108" key="GridCell.Tab.0.left" timestamp="1587345641990">
+    <state width="1398" height="195" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587419102395" />
+    <state width="1398" height="63" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1587412251290" />
+    <state width="1398" height="195" key="GridCell.Tab.0.left" timestamp="1587419102395">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="108" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587345641990" />
-    <state width="1398" height="108" key="GridCell.Tab.0.right" timestamp="1587345641991">
+    <state width="1398" height="195" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587419102395" />
+    <state width="1398" height="63" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1587412251289" />
+    <state width="1398" height="195" key="GridCell.Tab.0.right" timestamp="1587419102396">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="108" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587345641991" />
+    <state width="1398" height="195" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587419102396" />
+    <state width="1398" height="63" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1587412251290" />
+    <state x="399" y="254" key="com.intellij.ide.util.TipDialog" timestamp="1587394763050">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="399" y="254" key="com.intellij.ide.util.TipDialog/0.23.1440.797@0.23.1440.797" timestamp="1587394763050" />
   </component>
 </project>

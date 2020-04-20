@@ -28,7 +28,7 @@
             </padding>
         </HBox>
         <TextArea layoutX="27.0" layoutY="37.0" prefHeight="408.0" prefWidth="447.0" />
-        <TextArea layoutX="482.0" layoutY="14.0" prefHeight="154.0" prefWidth="295.0" />
+        <TextArea fx:id="mapInfo" layoutX="482.0" layoutY="14.0" prefHeight="154.0" prefWidth="295.0" />
         <Label layoutX="29.0" layoutY="14.0" prefHeight="17.0" prefWidth="421.0" text="New Around" />
         <ComboBox fx:id="Src" layoutX="527.0" layoutY="182.0" prefHeight="31.0" prefWidth="67.0" />
         <ComboBox fx:id="Dest" layoutX="710.0" layoutY="182.0" prefHeight="31.0" prefWidth="67.0" />
@@ -79,7 +79,7 @@
             <Image url="@../../../../../../../../WechatIMG1705.jpeg" />
          </image>
       </ImageView>
-      <Button layoutX="680.0" layoutY="496.0" mnemonicParsing="false" onAction="#finish_AM_Action" prefHeight="40.0" prefWidth="100.0" text="Done" />
+      <Button fx:id="done" layoutX="680.0" layoutY="496.0" mnemonicParsing="false" onAction="#doneAction" prefHeight="40.0" prefWidth="100.0" text="Done" />
       <ComboBox fx:id="l0" layoutX="569.0" layoutY="282.0" prefHeight="31.0" prefWidth="67.0" />
       <ComboBox fx:id="l1" layoutX="713.0" layoutY="282.0" prefHeight="31.0" prefWidth="67.0" />
       <ComboBox fx:id="l6" layoutX="569.0" layoutY="502.0" prefHeight="31.0" prefWidth="67.0" />
@@ -87,17 +87,17 @@
       <ComboBox fx:id="l4" layoutX="569.0" layoutY="427.0" prefHeight="31.0" prefWidth="67.0" />
       <ComboBox fx:id="l3" layoutX="713.0" layoutY="356.0" prefHeight="31.0" prefWidth="67.0" />
       <ComboBox fx:id="l2" layoutX="569.0" layoutY="362.0" prefHeight="31.0" prefWidth="67.0" />
-      <Button layoutX="153.0" layoutY="147.0" mnemonicParsing="false" text="T2" />
-      <Button layoutX="199.0" layoutY="203.0" mnemonicParsing="false" text="T6" />
-      <Button layoutX="111.0" layoutY="294.0" mnemonicParsing="false" text="T4" />
-      <Button layoutX="71.0" layoutY="217.0" mnemonicParsing="false" text="T3" />
-      <Button layoutX="294.0" layoutY="307.0" mnemonicParsing="false" text="T7" />
-      <Button layoutX="360.0" layoutY="129.0" mnemonicParsing="false" text="T10" />
-      <Button layoutX="228.0" layoutY="374.0" mnemonicParsing="false" text="T8" />
-      <Button layoutX="71.0" layoutY="360.0" mnemonicParsing="false" text="T5" />
-      <Button layoutX="376.0" layoutY="231.0" mnemonicParsing="false" text="T9" />
-      <Button layoutX="251.0" layoutY="97.0" mnemonicParsing="false" text="T12" />
-      <Button layoutX="294.0" layoutY="204.0" mnemonicParsing="false" text="T11" />
-      <Button layoutX="71.0" layoutY="97.0" mnemonicParsing="false" text="T1" />
+      <Button fx:id="Map10" layoutX="169.0" layoutY="147.0" mnemonicParsing="false" onAction="#showMapInfo_10" text="T10" />
+      <Button fx:id="Map1" layoutX="87.0" layoutY="97.0" mnemonicParsing="false" onAction="#showMapInfo_1" text="T1" />
+      <Button fx:id="Map6" layoutX="199.0" layoutY="203.0" mnemonicParsing="false" onAction="#showMapInfo_6" text="T6" />
+      <Button fx:id="Map2" layoutX="111.0" layoutY="294.0" mnemonicParsing="false" onAction="#showMapInfo_2" text="T2" />
+      <Button fx:id="Map5" layoutX="71.0" layoutY="217.0" mnemonicParsing="false" onAction="#showMapInfo_5" text="T5" />
+      <Button fx:id="Map9" layoutX="294.0" layoutY="307.0" mnemonicParsing="false" onAction="#showMapInfo_9" text="T9" />
+      <Button fx:id="Map12" layoutX="360.0" layoutY="129.0" mnemonicParsing="false" onAction="#showMapInfo_12" text="T12" />
+      <Button fx:id="Map4" layoutX="228.0" layoutY="374.0" mnemonicParsing="false" onAction="#showMapInfo_4" text="T4" />
+      <Button fx:id="Map3" layoutX="71.0" layoutY="360.0" mnemonicParsing="false" onAction="#showMapInfo_3" text="T3" />
+      <Button fx:id="Map8" layoutX="376.0" layoutY="231.0" mnemonicParsing="false" onAction="#showMapInfo_8" text="T8" />
+      <Button fx:id="Map11" layoutX="251.0" layoutY="97.0" mnemonicParsing="false" onAction="#showMapInfo_11" text="T11" />
+      <Button fx:id="Map7" layoutX="294.0" layoutY="204.0" mnemonicParsing="false" onAction="#showMapInfo_7" text="T7" />
     </children>
 </Pane>

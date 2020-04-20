@@ -153,7 +153,7 @@ public class Executor {
                 ArrayList<Unit> soldiers = action.getSoldiers();
                 territories.get(start).getSoldiers().removeAll(soldiers);
                 territories.get(end).getSoldiers().addAll(soldiers);
-                player.consumeFood(validator.BFS(start, end, territories) * action.getSoldiers().size());
+                player.consumeFood(validator.BFS(player,start, end, territories) * action.getSoldiers().size());
             }
         }
     }
@@ -200,15 +200,13 @@ public class Executor {
         }
         else return false;
     }
-    public boolean checkWin(Map<String, Territory> territories) {
+    public int checkWin(Map<String, Territory> territories) {
         Set<Integer> set=win_helper(territories);
         if (set.size() == 1){
-            //textArea.setText("");
             System.out.println("Player "+set.toArray()[0]+" is the Winner!\n");
-            //textArea.append("Please Quit");
-            return true;
+            return (int) set.toArray()[0];
         }
-        else return false;
+        else return -1;
     }
 
     public boolean singlePlayerFail(Map<String, Territory> territories,int id){
