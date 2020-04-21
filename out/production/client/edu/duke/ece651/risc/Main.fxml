@@ -1,52 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.risc.mainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.risc.mainController">
     <children>
-        <TextArea editable="false" layoutX="27.0" layoutY="401.0" prefHeight="89.0" prefWidth="421.0">
+        <TextArea editable="false" layoutX="14.0" layoutY="599.0" prefHeight="64.0" prefWidth="619.0">
             <padding>
                 <Insets left="10.0" />
             </padding>
         </TextArea>
-        <HBox layoutX="-1.0" layoutY="547.0" prefHeight="220.0" prefWidth="800.0">
+        <HBox layoutY="699.0" prefHeight="101.0" prefWidth="1000.0">
             <children>
-                <Button fx:id="move" mnemonicParsing="false" onAction="#MoveStage" prefHeight="40.0" prefWidth="100.0" text="Move" />
+                <Button fx:id="move" mnemonicParsing="false" onAction="#MoveStage" prefHeight="40.0" prefWidth="100.0" text="Move">
+               <HBox.margin>
+                  <Insets bottom="10.0" top="30.0" />
+               </HBox.margin></Button>
                 <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                <Button fx:id="attack" mnemonicParsing="false" onAction="#AttackStage" prefHeight="40.0" prefWidth="100.0" text="Attack" />
+                <Button fx:id="attack" mnemonicParsing="false" onAction="#AttackStage" prefHeight="40.0" prefWidth="100.0" text="Attack">
+               <HBox.margin>
+                  <Insets top="30.0" />
+               </HBox.margin></Button>
                 <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                <Button fx:id="upgrade" mnemonicParsing="false" onAction="#upgradePop" prefHeight="40.0" prefWidth="100.0" text="Upgrade" />
+                <Button fx:id="upgrade" mnemonicParsing="false" onAction="#upgradePop" prefHeight="40.0" prefWidth="100.0" text="Upgrade">
+               <HBox.margin>
+                  <Insets top="30.0" />
+               </HBox.margin></Button>
                 <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                <Button fx:id="alliance" mnemonicParsing="false" onAction="#alliancePop" prefHeight="40.0" prefWidth="100.0" text="Alliance" />
+                <Button fx:id="alliance" mnemonicParsing="false" onAction="#alliancePop" prefHeight="40.0" prefWidth="100.0" text="Alliance">
+               <HBox.margin>
+                  <Insets top="30.0" />
+               </HBox.margin></Button>
                 <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                <Button fx:id="commit" mnemonicParsing="false" onAction="#commitAction" prefHeight="40.0" prefWidth="100.0" text="Commit" />
+                <Button fx:id="commit" mnemonicParsing="false" onAction="#commitAction" prefHeight="40.0" prefWidth="100.0" text="Commit">
+               <HBox.margin>
+                  <Insets top="30.0" />
+               </HBox.margin></Button>
             </children>
             <padding>
                 <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
             </padding>
         </HBox>
-        <TextArea layoutX="27.0" layoutY="498.0" prefHeight="33.0" prefWidth="329.0" />
-        <TextArea fx:id="P" layoutX="27.0" layoutY="31.0" prefHeight="357.0" prefWidth="421.0" />
-        <Button layoutX="371.0" layoutY="501.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" text="Send" />
-        <TextArea fx:id="playerInfo" editable="false" layoutX="482.0" layoutY="14.0" prefHeight="126.0" prefWidth="295.0" />
-        <TextArea fx:id="mapInfo" editable="false" layoutX="482.0" layoutY="153.0" prefHeight="220.0" prefWidth="295.0" />
-        <TextArea fx:id="history" editable="false" layoutX="482.0" layoutY="393.0" prefHeight="138.0" prefWidth="295.0" />
-        <Label fx:id="gameStatus" layoutX="35.0" layoutY="14.0" prefHeight="17.0" prefWidth="421.0" text="New Around" />
-      <Button fx:id="Map10" layoutX="157.0" layoutY="119.0" mnemonicParsing="false" onAction="#showMapInfo_10" text="T10" />
-      <Button fx:id="Map1" layoutX="75.0" layoutY="69.0" mnemonicParsing="false" onAction="#showMapInfo_1" text="T1" />
-      <Button fx:id="Map6" layoutX="187.0" layoutY="175.0" mnemonicParsing="false" onAction="#showMapInfo_6" text="T6" />
-      <Button fx:id="Map2" layoutX="99.0" layoutY="266.0" mnemonicParsing="false" onAction="#showMapInfo_2" text="T2" />
-      <Button fx:id="Map5" layoutX="59.0" layoutY="189.0" mnemonicParsing="false" onAction="#showMapInfo_5" text="T5" />
-      <Button fx:id="Map9" layoutX="282.0" layoutY="279.0" mnemonicParsing="false" onAction="#showMapInfo_9" text="T9" />
-      <Button fx:id="Map12" layoutX="348.0" layoutY="101.0" mnemonicParsing="false" onAction="#showMapInfo_12" text="T12" />
-      <Button fx:id="Map4" layoutX="216.0" layoutY="346.0" mnemonicParsing="false" onAction="#showMapInfo_4" text="T4" />
-      <Button fx:id="Map3" layoutX="59.0" layoutY="332.0" mnemonicParsing="false" onAction="#showMapInfo_3" text="T3" />
-      <Button fx:id="Map8" layoutX="364.0" layoutY="203.0" mnemonicParsing="false" onAction="#showMapInfo_8" text="T8" />
-      <Button fx:id="Map11" layoutX="239.0" layoutY="69.0" mnemonicParsing="false" onAction="#showMapInfo_11" text="T11" />
-      <Button fx:id="Map7" layoutX="282.0" layoutY="176.0" mnemonicParsing="false" onAction="#showMapInfo_7" text="T7" />
+        <TextArea layoutX="17.0" layoutY="686.0" prefHeight="27.0" prefWidth="531.0" />
+        <Button layoutX="556.0" layoutY="686.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" text="Send" />
+        <TextArea fx:id="playerInfo" editable="false" layoutX="653.0" layoutY="37.0" prefHeight="149.0" prefWidth="332.0" />
+        <TextArea fx:id="mapInfo" editable="false" layoutX="653.0" layoutY="199.0" prefHeight="235.0" prefWidth="332.0" />
+        <TextArea fx:id="history" editable="false" layoutX="653.0" layoutY="442.0" prefHeight="275.0" prefWidth="332.0" />
+        <Label fx:id="gameStatus" layoutX="653.0" layoutY="10.0" prefHeight="27.0" prefWidth="262.0" text="New Around" />
+      <ImageView fx:id="map" fitHeight="574.0" fitWidth="619.0" layoutX="14.0" layoutY="15.0">
+         <image>
+            <Image url="@../../../../../../../../out/production/client/edu/duke/ece651/risc/map.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="Map7" layoutX="402.0" layoutY="320.0" mnemonicParsing="false" onAction="#showMapInfo_7" text="T7" />
+      <Button fx:id="Map11" layoutX="316.0" layoutY="173.0" mnemonicParsing="false" onAction="#showMapInfo_11" text="T11" />
+      <Button fx:id="Map8" layoutX="513.0" layoutY="380.0" mnemonicParsing="false" onAction="#showMapInfo_8" text="T8" />
+      <Button fx:id="Map3" layoutX="99.0" layoutY="442.0" mnemonicParsing="false" onAction="#showMapInfo_3" text="T3" />
+      <Button fx:id="Map4" layoutX="265.0" layoutY="421.0" mnemonicParsing="false" onAction="#showMapInfo_4" text="T4" />
+      <Button fx:id="Map12" layoutX="437.0" layoutY="102.0" mnemonicParsing="false" onAction="#showMapInfo_12" text="T12" />
+      <Button fx:id="Map9" layoutX="402.0" layoutY="442.0" mnemonicParsing="false" onAction="#showMapInfo_9" text="T9" />
+      <Button fx:id="Map5" layoutX="133.0" layoutY="277.0" mnemonicParsing="false" onAction="#showMapInfo_5" text="T5" />
+      <Button fx:id="Map2" layoutX="199.0" layoutY="387.0" mnemonicParsing="false" onAction="#showMapInfo_2" text="T2" />
+      <Button fx:id="Map6" layoutX="281.0" layoutY="291.0" mnemonicParsing="false" onAction="#showMapInfo_6" text="T6" />
+      <Button fx:id="Map1" layoutX="171.0" layoutY="75.0" mnemonicParsing="false" onAction="#showMapInfo_1" text="T1" />
+      <Button fx:id="Map10" layoutX="213.0" layoutY="149.0" mnemonicParsing="false" onAction="#showMapInfo_10" text="T10" />
     </children>
 </Pane>

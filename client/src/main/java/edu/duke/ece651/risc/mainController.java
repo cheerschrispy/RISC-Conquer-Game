@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -47,6 +49,7 @@ public class mainController {
     @FXML private TextArea mapInfo;
     @FXML private TextArea playerInfo;
     @FXML private TextArea history;
+    @FXML private ImageView map;
 
     @FXML private Button Map1;
     @FXML private Button Map2;
@@ -106,6 +109,8 @@ public class mainController {
         playerInfo.setText(s);
         //this.savedText.clearActionHistory();
         history.setText(this.savedText.getActionHistory());
+        Image mapImage=new Image("file:./map.jpg");
+        map.setImage(mapImage);
     }
 
 
@@ -217,6 +222,9 @@ public class mainController {
             return null;
         });
         Scene nextScene = new Scene(Root.load());
+        nextScene.getStylesheets().add(
+                getClass().getResource("MainStyle.css")
+                        .toExternalForm());
         this.windows.setScene(nextScene);
         windows.show();
     }
@@ -233,6 +241,9 @@ public class mainController {
             return null;
         });
         Scene nextScene = new Scene(Root.load());
+        nextScene.getStylesheets().add(
+                getClass().getResource("MainStyle.css")
+                        .toExternalForm());
         this.windows.setScene(nextScene);
         windows.show();
     }
@@ -310,6 +321,9 @@ public class mainController {
         });
         Scene nextScene=new Scene(MainRoot.load());
         this.windows.setScene(nextScene);
+        nextScene.getStylesheets().add(
+                getClass().getResource("MainStyle.css")
+                        .toExternalForm());
         this.windows.show();
     }
 
@@ -463,7 +477,13 @@ public class mainController {
                     this.savedText);
         });
         Scene nextScene = new Scene(Root.load());
+        nextScene.getStylesheets().add(
+                getClass().getResource("MainStyle.css")
+                        .toExternalForm());
         this.windows.setScene(nextScene);
+        nextScene.getStylesheets().add(
+                getClass().getResource("MainStyle.css")
+                        .toExternalForm());
         windows.show();
     }
 

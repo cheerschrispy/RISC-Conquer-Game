@@ -30,6 +30,7 @@ public class AttackController {
     //current windows
     private Stage windows;
     @FXML private TextArea mapInfo;
+    @FXML private ImageView map;
 
 
     //all the button
@@ -65,6 +66,8 @@ public class AttackController {
 
     @FXML
     public void initialize(){
+        Image mapImage=new Image("file:./map.jpg");
+        map.setImage(mapImage);
 
         ObservableList<Integer> options=FXCollections.observableArrayList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25);
         l0.setItems(options);
@@ -187,6 +190,9 @@ public class AttackController {
             return null;
         });
         Scene nextScene=new Scene(MainRoot.load());
+        nextScene.getStylesheets().add(
+                getClass().getResource("MainStyle.css")
+                        .toExternalForm());
         this.windows.setScene(nextScene);
         this.windows.show();
     }

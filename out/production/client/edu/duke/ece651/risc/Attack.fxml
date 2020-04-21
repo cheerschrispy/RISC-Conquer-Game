@@ -9,40 +9,33 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.risc.AttackController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.risc.AttackController">
     <children>
-        <TextArea layoutX="27.0" layoutY="453.0" prefHeight="80.0" prefWidth="447.0">
+      <ImageView fx:id="map" fitHeight="574.0" fitWidth="619.0" layoutX="14.0" layoutY="20.0">
+         <image>
+            <Image url="@../../../../../../../../out/production/client/edu/duke/ece651/risc/map.jpg" />
+         </image>
+      </ImageView>
+        <TextArea layoutX="15.0" layoutY="614.0" prefHeight="130.0" prefWidth="619.0">
             <padding>
                 <Insets left="10.0" />
             </padding>
         </TextArea>
-        <HBox layoutX="-1.0" layoutY="547.0" prefHeight="220.0" prefWidth="800.0">
-            <children>
-                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-            </children>
-            <padding>
-                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-            </padding>
-        </HBox>
-        <TextArea fx:id="P" layoutX="27.0" layoutY="37.0" prefHeight="408.0" prefWidth="447.0" />
-        <TextArea fx:id="mapInfo" layoutX="482.0" layoutY="14.0" prefHeight="154.0" prefWidth="295.0" />
-        <Label layoutX="29.0" layoutY="14.0" prefHeight="17.0" prefWidth="421.0" text="New Around" />
-        <ComboBox fx:id="Src" layoutX="527.0" layoutY="182.0" prefHeight="31.0" prefWidth="67.0" />
-        <ComboBox fx:id="Dest" layoutX="710.0" layoutY="182.0" prefHeight="31.0" prefWidth="67.0" />
-        <Label layoutX="484.0" layoutY="185.0" text="Src" />
-        <Label layoutX="672.0" layoutY="185.0" text="Dest" />
-        <ComboBox fx:id="l2" layoutX="569.0" layoutY="353.0" prefHeight="31.0" prefWidth="67.0" />
-        <ComboBox fx:id="l3" layoutX="713.0" layoutY="347.0" prefHeight="31.0" prefWidth="67.0" />
-        <ComboBox fx:id="l4" layoutX="569.0" layoutY="418.0" prefHeight="31.0" prefWidth="67.0" />
-        <ComboBox fx:id="l5" layoutX="713.0" layoutY="418.0" prefHeight="31.0" prefWidth="67.0" />
-        <ComboBox fx:id="l6" layoutX="569.0" layoutY="493.0" prefHeight="31.0" prefWidth="67.0" />
-        <ComboBox fx:id="l1" layoutX="713.0" layoutY="273.0" prefHeight="31.0" prefWidth="67.0" />
-        <ComboBox fx:id="l0" layoutX="569.0" layoutY="273.0" prefHeight="31.0" prefWidth="67.0" />
-        <Button fx:id="done" layoutX="680.0" layoutY="487.0" mnemonicParsing="false" onAction="#doneAction" prefHeight="40.0" prefWidth="100.0" text="Done" />
-      <ImageView fx:id="lv3Soldier" fitHeight="54.0" fitWidth="67.0" layoutX="646.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
+        <TextArea fx:id="mapInfo" layoutX="648.0" layoutY="38.0" prefHeight="191.0" prefWidth="346.0" />
+        <Label layoutX="646.0" layoutY="22.0" prefHeight="17.0" prefWidth="421.0" text="New Around" />
+        <ComboBox fx:id="Src" layoutX="697.0" layoutY="262.0" prefHeight="31.0" prefWidth="94.0" />
+        <ComboBox fx:id="Dest" layoutX="880.0" layoutY="262.0" prefHeight="31.0" prefWidth="100.0" />
+        <Label layoutX="654.0" layoutY="265.0" text="Src" />
+        <Label layoutX="842.0" layoutY="265.0" text="Dest" />
+        <ComboBox fx:id="l2" layoutX="751.0" layoutY="464.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l3" layoutX="917.0" layoutY="459.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l4" layoutX="751.0" layoutY="557.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l5" layoutX="917.0" layoutY="557.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l6" layoutX="751.0" layoutY="638.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l1" layoutX="917.0" layoutY="377.0" prefHeight="31.0" prefWidth="67.0" />
+        <ComboBox fx:id="l0" layoutX="752.0" layoutY="377.0" prefHeight="31.0" prefWidth="67.0" />
+        <Button fx:id="done" layoutX="867.0" layoutY="718.0" mnemonicParsing="false" onAction="#doneAction" prefHeight="40.0" prefWidth="100.0" text="Done" />
+      <ImageView fx:id="lv3Soldier" fitHeight="71.0" fitWidth="74.0" layoutX="827.0" layoutY="439.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../WechatIMG1705.jpeg" />
          </image>
@@ -50,54 +43,54 @@
             <ColorAdjust brightness="-0.02" />
          </effect>
       </ImageView>
-      <ImageView fx:id="lv2Soldier" fitHeight="61.0" fitWidth="67.0" layoutX="496.0" layoutY="323.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lv2Soldier" fitHeight="80.0" fitWidth="88.0" layoutX="646.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../WechatIMG1706.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="lv5Soldier" fitHeight="54.0" fitWidth="67.0" layoutX="639.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lv5Soldier" fitHeight="80.0" fitWidth="88.0" layoutX="825.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../WechatIMG1707.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="lv6Soldier" fitHeight="61.0" fitWidth="67.0" layoutX="496.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lv6Soldier" fitHeight="86.0" fitWidth="88.0" layoutX="654.0" layoutY="622.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../WechatIMG1708.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="lv4Soldier" fitHeight="61.0" fitWidth="67.0" layoutX="494.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lv4Soldier" fitHeight="86.0" fitWidth="89.0" layoutX="646.0" layoutY="514.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../WechatIMG1710.jpeg" />
          </image>
       </ImageView>
-      <ImageView fx:id="lv1Soldier" fitHeight="54.0" fitWidth="53.0" layoutX="652.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="lv1Soldier" fitHeight="71.0" fitWidth="70.0" layoutX="836.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../WechatIMG1709.jpeg" />
          </image>
       </ImageView>
-      <Label layoutX="589.0" layoutY="254.0" text="Lv 0" />
-      <Label layoutX="589.0" layoutY="328.0" text="Lv 2" />
-      <Label layoutX="589.0" layoutY="399.0" text="Lv 4" />
-      <Label layoutX="589.0" layoutY="469.0" text="Lv 6" />
-      <Label layoutX="730.0" layoutY="399.0" text="Lv 5" />
-      <Label layoutX="730.0" layoutY="328.0" text="Lv 3" />
-      <Label layoutX="730.0" layoutY="254.0" text="Lv 1" />
-      <Button fx:id="Map7" layoutX="284.0" layoutY="194.0" mnemonicParsing="false" onAction="#showMapInfo_7" text="T7" />
-      <Button fx:id="Map11" layoutX="241.0" layoutY="87.0" mnemonicParsing="false" onAction="#showMapInfo_11" text="T11" />
-      <Button fx:id="Map8" layoutX="366.0" layoutY="221.0" mnemonicParsing="false" onAction="#showMapInfo_8" text="T8" />
-      <Button fx:id="Map3" layoutX="61.0" layoutY="350.0" mnemonicParsing="false" onAction="#showMapInfo_3" text="T3" />
-      <Button fx:id="Map4" layoutX="218.0" layoutY="364.0" mnemonicParsing="false" onAction="#showMapInfo_4" text="T4" />
-      <Button fx:id="Map12" layoutX="350.0" layoutY="119.0" mnemonicParsing="false" onAction="#showMapInfo_12" text="T12" />
-      <Button fx:id="Map9" layoutX="284.0" layoutY="297.0" mnemonicParsing="false" onAction="#showMapInfo_9" text="T9" />
-      <Button fx:id="Map5" layoutX="61.0" layoutY="207.0" mnemonicParsing="false" onAction="#showMapInfo_5" text="T5" />
-      <Button fx:id="Map2" layoutX="101.0" layoutY="284.0" mnemonicParsing="false" onAction="#showMapInfo_2" text="T2" />
-      <Button fx:id="Map6" layoutX="189.0" layoutY="193.0" mnemonicParsing="false" onAction="#showMapInfo_6" text="T6" />
-      <Button fx:id="Map1" layoutX="77.0" layoutY="87.0" mnemonicParsing="false" onAction="#showMapInfo_1" text="T1" />
-      <Button fx:id="Map10" layoutX="159.0" layoutY="137.0" mnemonicParsing="false" onAction="#showMapInfo_10" text="T10" />
-      <ImageView fx:id="lv0Soldier" fitHeight="54.0" fitWidth="53.0" layoutX="501.0" layoutY="262.0">
+      <Label layoutX="772.0" layoutY="344.0" text="Lv 0" />
+      <Label layoutX="771.0" layoutY="431.0" text="Lv 2" />
+      <Label layoutX="772.0" layoutY="521.0" text="Lv 4" />
+      <Label layoutX="771.0" layoutY="613.0" text="Lv 6" />
+      <Label layoutX="934.0" layoutY="521.0" text="Lv 5" />
+      <Label layoutX="934.0" layoutY="431.0" text="Lv 3" />
+      <Label layoutX="935.0" layoutY="344.0" text="Lv 1" />
+      <ImageView fx:id="lv0Soldier" fitHeight="71.0" fitWidth="70.0" layoutX="662.0" layoutY="350.0">
          <image>
             <Image url="@../../../../../../../../WechatIMG1711.jpeg" />
          </image>
       </ImageView>
+      <Button fx:id="Map10" layoutX="213.0" layoutY="154.0" mnemonicParsing="false" onAction="#showMapInfo_10" text="T10" />
+      <Button fx:id="Map1" layoutX="171.0" layoutY="80.0" mnemonicParsing="false" onAction="#showMapInfo_1" text="T1" />
+      <Button fx:id="Map6" layoutX="281.0" layoutY="296.0" mnemonicParsing="false" onAction="#showMapInfo_6" text="T6" />
+      <Button fx:id="Map2" layoutX="199.0" layoutY="392.0" mnemonicParsing="false" onAction="#showMapInfo_2" text="T2" />
+      <Button fx:id="Map5" layoutX="133.0" layoutY="282.0" mnemonicParsing="false" onAction="#showMapInfo_5" text="T5" />
+      <Button fx:id="Map9" layoutX="402.0" layoutY="447.0" mnemonicParsing="false" onAction="#showMapInfo_9" text="T9" />
+      <Button fx:id="Map12" layoutX="437.0" layoutY="107.0" mnemonicParsing="false" onAction="#showMapInfo_12" text="T12" />
+      <Button fx:id="Map4" layoutX="265.0" layoutY="426.0" mnemonicParsing="false" onAction="#showMapInfo_4" text="T4" />
+      <Button fx:id="Map3" layoutX="99.0" layoutY="447.0" mnemonicParsing="false" onAction="#showMapInfo_3" text="T3" />
+      <Button fx:id="Map8" layoutX="513.0" layoutY="385.0" mnemonicParsing="false" onAction="#showMapInfo_8" text="T8" />
+      <Button fx:id="Map11" layoutX="316.0" layoutY="178.0" mnemonicParsing="false" onAction="#showMapInfo_11" text="T11" />
+      <Button fx:id="Map7" layoutX="402.0" layoutY="325.0" mnemonicParsing="false" onAction="#showMapInfo_7" text="T7" />
     </children>
 </Pane>

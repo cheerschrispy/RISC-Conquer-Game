@@ -1,53 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.risc.upgradeController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.risc.upgradeController">
     <children>
-        <TextArea layoutX="27.0" layoutY="453.0" prefHeight="80.0" prefWidth="447.0">
+        <TextArea layoutX="18.0" layoutY="629.0" prefHeight="109.0" prefWidth="612.0">
             <padding>
                 <Insets left="10.0" />
             </padding>
         </TextArea>
-        <HBox layoutX="-1.0" layoutY="547.0" prefHeight="220.0" prefWidth="800.0">
-            <children>
-                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-                <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
-            </children>
-            <padding>
-                <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
-            </padding>
-        </HBox>
-        <TextArea layoutX="27.0" layoutY="37.0" prefHeight="408.0" prefWidth="447.0" />
-        <TextArea fx:id="playerInfo" layoutX="482.0" layoutY="15.0" prefHeight="125.0" prefWidth="295.0" />
-        <TextArea fx:id="mapInfo" layoutX="482.0" layoutY="153.0" prefHeight="154.0" prefWidth="295.0" />
-        <Label layoutX="29.0" layoutY="14.0" prefHeight="17.0" prefWidth="421.0" text="New Around" />
-        <ComboBox fx:id="source" layoutX="544.0" layoutY="319.0" prefHeight="27.0" prefWidth="33.0" />
-        <Label layoutX="482.0" layoutY="324.0" text="Territory" />
-        <ComboBox fx:id="num" layoutX="544.0" layoutY="380.0" prefHeight="27.0" prefWidth="50.0" />
-        <ComboBox fx:id="destLevel" layoutX="727.0" layoutY="380.0" prefHeight="27.0" prefWidth="50.0" />
-        <ComboBox fx:id="srcLevel" layoutX="727.0" layoutY="319.0" prefHeight="27.0" prefWidth="50.0" />
-        <Button fx:id="done" layoutX="594.0" layoutY="493.0" mnemonicParsing="false" onAction="#finishUpgradeAction" prefHeight="40.0" prefWidth="100.0" text="Done" />
-        <Label layoutX="639.0" layoutY="324.0" text="Src Level" />
-        <Label layoutX="638.0" layoutY="385.0" text="Des Level" />
-        <Label layoutX="482.0" layoutY="385.0" text="Num" />
-      <Button fx:id="Map10" layoutX="169.0" layoutY="147.0" mnemonicParsing="false" onAction="#showMapInfo_10" text="T10" />
-      <Button fx:id="Map1" layoutX="87.0" layoutY="97.0" mnemonicParsing="false" onAction="#showMapInfo_1" text="T1" />
-      <Button fx:id="Map6" layoutX="199.0" layoutY="203.0" mnemonicParsing="false" onAction="#showMapInfo_6" text="T6" />
-      <Button fx:id="Map2" layoutX="111.0" layoutY="294.0" mnemonicParsing="false" onAction="#showMapInfo_2" text="T2" />
-      <Button fx:id="Map5" layoutX="71.0" layoutY="217.0" mnemonicParsing="false" onAction="#showMapInfo_5" text="T5" />
-      <Button fx:id="Map9" layoutX="294.0" layoutY="307.0" mnemonicParsing="false" onAction="#showMapInfo_9" text="T9" />
-      <Button fx:id="Map12" layoutX="360.0" layoutY="129.0" mnemonicParsing="false" onAction="#showMapInfo_12" text="T12" />
-      <Button fx:id="Map4" layoutX="228.0" layoutY="374.0" mnemonicParsing="false" onAction="#showMapInfo_4" text="T4" />
-      <Button fx:id="Map3" layoutX="71.0" layoutY="360.0" mnemonicParsing="false" onAction="#showMapInfo_3" text="T3" />
-      <Button fx:id="Map8" layoutX="376.0" layoutY="231.0" mnemonicParsing="false" onAction="#showMapInfo_8" text="T8" />
-      <Button fx:id="Map11" layoutX="251.0" layoutY="97.0" mnemonicParsing="false" onAction="#showMapInfo_11" text="T11" />
-      <Button fx:id="Map7" layoutX="294.0" layoutY="204.0" mnemonicParsing="false" onAction="#showMapInfo_7" text="T7" />
+        <TextArea fx:id="playerInfo" layoutX="651.0" layoutY="51.0" prefHeight="141.0" prefWidth="336.0" />
+        <TextArea fx:id="mapInfo" layoutX="650.0" layoutY="208.0" prefHeight="164.0" prefWidth="336.0" />
+        <Label layoutX="647.0" layoutY="28.0" prefHeight="17.0" prefWidth="421.0" text="New Around" />
+        <ComboBox fx:id="source" layoutX="713.0" layoutY="400.0" prefHeight="27.0" prefWidth="109.0" />
+      <ImageView fx:id="map" fitHeight="574.0" fitWidth="619.0" layoutX="14.0" layoutY="14.0">
+         <image>
+            <Image url="@../../../../../../../../out/production/client/edu/duke/ece651/risc/map.jpg" />
+         </image>
+      </ImageView>
+        <Label layoutX="651.0" layoutY="405.0" text="Territory" />
+        <ComboBox fx:id="num" layoutX="725.0" layoutY="510.0" prefHeight="27.0" prefWidth="75.0" />
+        <ComboBox fx:id="destLevel" layoutX="907.0" layoutY="510.0" prefHeight="27.0" prefWidth="75.0" />
+        <ComboBox fx:id="srcLevel" layoutX="908.0" layoutY="400.0" prefHeight="27.0" prefWidth="75.0" />
+        <Button fx:id="done" layoutX="789.0" layoutY="609.0" mnemonicParsing="false" onAction="#finishUpgradeAction" prefHeight="40.0" prefWidth="100.0" text="Done" />
+        <Label layoutX="839.0" layoutY="405.0" text="Src Level" />
+        <Label layoutX="818.0" layoutY="515.0" text="Des Level" />
+        <Label layoutX="663.0" layoutY="515.0" text="Num" />
+      <Button fx:id="Map10" layoutX="213.0" layoutY="148.0" mnemonicParsing="false" onAction="#showMapInfo_10" text="T10" />
+      <Button fx:id="Map1" layoutX="171.0" layoutY="74.0" mnemonicParsing="false" onAction="#showMapInfo_1" text="T1" />
+      <Button fx:id="Map6" layoutX="281.0" layoutY="290.0" mnemonicParsing="false" onAction="#showMapInfo_6" text="T6" />
+      <Button fx:id="Map2" layoutX="199.0" layoutY="386.0" mnemonicParsing="false" onAction="#showMapInfo_2" text="T2" />
+      <Button fx:id="Map5" layoutX="133.0" layoutY="276.0" mnemonicParsing="false" onAction="#showMapInfo_5" text="T5" />
+      <Button fx:id="Map9" layoutX="402.0" layoutY="441.0" mnemonicParsing="false" onAction="#showMapInfo_9" text="T9" />
+      <Button fx:id="Map12" layoutX="437.0" layoutY="101.0" mnemonicParsing="false" onAction="#showMapInfo_12" text="T12" />
+      <Button fx:id="Map4" layoutX="265.0" layoutY="420.0" mnemonicParsing="false" onAction="#showMapInfo_4" text="T4" />
+      <Button fx:id="Map3" layoutX="99.0" layoutY="441.0" mnemonicParsing="false" onAction="#showMapInfo_3" text="T3" />
+      <Button fx:id="Map8" layoutX="513.0" layoutY="379.0" mnemonicParsing="false" onAction="#showMapInfo_8" text="T8" />
+      <Button fx:id="Map11" layoutX="316.0" layoutY="172.0" mnemonicParsing="false" onAction="#showMapInfo_11" text="T11" />
+      <Button fx:id="Map7" layoutX="402.0" layoutY="319.0" mnemonicParsing="false" onAction="#showMapInfo_7" text="T7" />
     </children>
 </Pane>

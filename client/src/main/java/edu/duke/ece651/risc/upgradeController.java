@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -24,7 +26,7 @@ public class upgradeController {
     private savedText savedText;
 
     private Stage windows;
-
+    @FXML private ImageView map;
     @FXML private TextArea mapInfo;
     @FXML private TextArea playerInfo;
 
@@ -64,6 +66,8 @@ public class upgradeController {
 
     @FXML
     public void initialize(){
+        Image mapImage=new Image("file:./map.jpg");
+        map.setImage(mapImage);
         String pInfo = "Hi, welcome player " + player.getId() + ".\r\n" +
                 "Now you are in TECHNIQUE level " + player.getTechLevel() + ".\r\n" +
                 "You have " + player.getFoodResources() + " food resources.\r\n" +
@@ -129,6 +133,9 @@ public class upgradeController {
         });
         Scene nextScene=new Scene(MainRoot.load());
         this.windows.setScene(nextScene);
+        nextScene.getStylesheets().add(
+                getClass().getResource("MainStyle.css")
+                        .toExternalForm());
         this.windows.show();
     }
 
