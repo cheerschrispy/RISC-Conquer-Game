@@ -18,7 +18,7 @@ import java.util.*;
 
 public class Client extends Application {
     //----------------------------------------
-    //-------------Fields--------------------
+    //------------ -Fields--------------------
     //----------------------------------------
     ///basic information
     final int totalSoldiers = 3;
@@ -66,6 +66,7 @@ public class Client extends Application {
             return;
         }
     }
+    //todo:put into UI
     private Map<String, Territory> initMap(Player player, Map<String, Territory> territories) throws IOException, ClassNotFoundException {
         //fill the map in player
         HashMap<String, Integer> init_info = new HashMap<>();
@@ -96,11 +97,13 @@ public class Client extends Application {
             connectServer();
             return;
         }
+
         //receive info
         this.player = (Player) is1.readObject();
         //receive map to be completed
         this.territories = (Map<String, Territory>) is1.readObject();
         //initialize map if user is new
+        //todo:
         if (!exists) {
             territories = initMap(player, territories);
         }

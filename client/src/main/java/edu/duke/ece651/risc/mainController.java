@@ -34,7 +34,7 @@ public class mainController {
     private ObjectOutputStream os1;
     private ObjectInputStream is1;
     private savedText savedText;
-
+    //todo:private sender
 
     private boolean sameAround;
 
@@ -45,6 +45,10 @@ public class mainController {
     @FXML private Button move;
     @FXML private Button commit;
     @FXML private Button alliance;
+
+    @FXML private TextArea chatInput;
+    @FXML private TextArea chatOutput;
+
 
     @FXML private TextArea mapInfo;
     @FXML private TextArea playerInfo;
@@ -72,7 +76,7 @@ public class mainController {
     //------------------
     //from mainWindow to subWindows
     public mainController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc, ObjectOutputStream os,
-                          ObjectInputStream is,savedText savedText) {
+                          ObjectInputStream is,savedText savedText){//todo: sender) {
         this.windows=windows;
         this.player=player;
         this.territories=territories;
@@ -113,12 +117,24 @@ public class mainController {
         history.setText(this.savedText.getActionHistory());
         Image mapImage=new Image("file:./map.jpg");
         map.setImage(mapImage);
+
+        //todo:add receiver
+        String output=receiver;
+        savedText.addChat(output);
+
     }
 
 
     //------------------
     //----Button function------
     //------------------
+
+    public void send() {
+        //todo: use Sender(),passing
+        String input=chatInput.getText();
+
+
+    }
 
     public void alliancePop(){
         int result = chooseAlliance("Choose the player");

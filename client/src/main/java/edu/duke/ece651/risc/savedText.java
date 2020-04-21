@@ -12,18 +12,23 @@ public class savedText {
     public String getActionHistory(){
         return this.actionHistory;
     }
+
     public String getChattingHistory(){
         return this.actionHistory;
     }
+
     public void clearActionHistory(){
         this.actionHistory="Current Round History:\n\n";
     }
+
     public void addAction(String action){
         this.actionHistory+=action;
         this.actionHistory+="-------------------\n";
     }
 
-    public void addChat(){
+    public void addChat(String action){
+        this.chattingHistory+=action;
+        this.chattingHistory+="\n";
 
     }
 }
