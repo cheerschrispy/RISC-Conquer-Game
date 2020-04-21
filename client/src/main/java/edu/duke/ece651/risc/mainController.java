@@ -34,7 +34,8 @@ public class mainController {
     private ObjectOutputStream os1;
     private ObjectInputStream is1;
     private savedText savedText;
-    //todo:private sender
+    private Receiver receiver;
+    private Sender sender;
 
     private boolean sameAround;
 
@@ -76,7 +77,7 @@ public class mainController {
     //------------------
     //from mainWindow to subWindows
     public mainController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc, ObjectOutputStream os,
-                          ObjectInputStream is,savedText savedText){//todo: sender) {
+                          ObjectInputStream is,savedText savedText, Receiver receiver, Sender sender){//todo: sender) {
         this.windows=windows;
         this.player=player;
         this.territories=territories;
@@ -86,7 +87,8 @@ public class mainController {
         //append or override the history file
         this.sameAround=false;
         this.savedText=savedText;
-
+        this.receiver = receiver;
+        this.sender = sender;
     }
     //from subWindows to mainWindow
     public mainController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc, ObjectOutputStream os,
@@ -118,9 +120,7 @@ public class mainController {
         Image mapImage=new Image("file:./map.jpg");
         map.setImage(mapImage);
 
-        //todo:add receiver
-        String output=receiver;
-        savedText.addChat(output);
+        receiver.start();
 
     }
 
@@ -130,10 +130,11 @@ public class mainController {
     //------------------
 
     public void send() {
-        //todo: use Sender(),passing
-        String input=chatInput.getText();
-
-
+        //todo: parse in target id
+        int target = 0;
+        String text = chatInput.getText();
+        sender.setMsg(text, target);
+        sender.start();
     }
 
     public void alliancePop(){
@@ -308,7 +309,7 @@ public class mainController {
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
         MainRoot.setControllerFactory(c->{
             return new mainController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,
-                    this.savedText);
+                    this.savedText, this.receiver, this.sender);
         });
         Scene nextScene=new Scene(MainRoot.load());
         this.windows.setScene(nextScene);

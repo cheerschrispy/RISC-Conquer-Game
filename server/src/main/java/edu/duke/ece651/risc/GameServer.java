@@ -100,7 +100,7 @@ public class GameServer extends Thread {
     //receive player & send territories to each player
     private void play(Socket[] clients) throws InterruptedException, IOException {
         Receiver[] receivers = new Receiver[player_num];
-        while (!executor.checkWin(territories)) {
+        while (executor.checkWin(territories) != -1) {
             //players = new ArrayList<>();
             System.out.println("new around");
             for (int i = 0; i < player_num; i++) {
@@ -201,26 +201,32 @@ public class GameServer extends Thread {
     }
 
     public void createTerritories() {
-        Territory[][] matrix = new Territory[player_num][3];
-        for (int i = 0; i < player_num; i++) {
-            for (int j = 0; j < 3; j++) {
-                String tName = (char) ('a' + i) + String.valueOf(j);
-                Territory newTerritory = new Territory(tName, i);
-                territories.put(tName, newTerritory);
-                matrix[i][j] = newTerritory;
-                if (j > 0) {
-                    connect(newTerritory, matrix[i][j - 1]);
-                }
-                if (i > 0) {
-                    connect(newTerritory, matrix[i - 1][j]);
-                }
-            }
+        int n = 12/player_num;
+        for (int i = 1; i < 13; i++) {
+            String tName = "t" + i;
+            Territory t = new Territory(tName, (i-1)/n);
+            territories.put(tName, t);
         }
+        connect("t1", "t5");
+        connect("t1", "t10");
+        connect("t2", "t5");
+        connect("t2", "t3");
+        connect("t3", "t4");
+        connect("t4", "t6");
+        connect("t5", "t6");
+        connect("t6", "t7");
+        connect("t6", "t9");
+        connect("t7", "t8");
+        connect("t7", "t11");
+        connect("t7", "t12");
+        connect("t8", "t9");
+        connect("t10", "t11");
+        connect("t11", "t12");
     }
 
-    private void connect(Territory t1, Territory t2) {
-        t1.connect(t2);
-        t2.connect(t1);
+    private void connect(String t1, String t2) {
+        territories.get(t1).connect(territories.get(t2));
+        territories.get(t2).connect(territories.get(t1));
     }
 
     private void createPlayers() {

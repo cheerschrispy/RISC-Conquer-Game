@@ -34,13 +34,15 @@ public class LoginController {
     private ObjectOutputStream os;
     private ObjectInputStream is;
     private savedText savedText;
+    private Receiver receiver;
+    private Sender sender;
     //current windows
     private Stage window;
     private ObjectOutputStream os1;
     private ObjectInputStream is1;
 
     public LoginController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc,
-                            ObjectOutputStream os, ObjectInputStream is,Boolean sameAround,savedText savedText) throws IOException {
+                           ObjectOutputStream os, ObjectInputStream is, Boolean sameAround, savedText savedText, Receiver receiver, Sender sender) throws IOException {
         this.window = windows;
         this.player = player;
         this.territories = territories;
@@ -50,13 +52,15 @@ public class LoginController {
         //append or override the history file
         this.sameAround = sameAround;
         this.savedText=savedText;
+        this.receiver = receiver;
+        this.sender = sender;
     }
 
     public void goToMainPage() throws IOException {
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
         MainRoot.setControllerFactory(c->{
             return new mainController(this.window,this.player,this.territories,this.sc,this.os1,this.is1,
-                    this.savedText);
+                    this.savedText, this.receiver, this.sender);
         });
         Scene nextScene=new Scene(MainRoot.load());
         nextScene.getStylesheets().add(

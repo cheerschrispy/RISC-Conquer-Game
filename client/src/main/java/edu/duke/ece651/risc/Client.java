@@ -21,6 +21,7 @@ public class Client extends Application {
     //------------ -Fields--------------------
     //----------------------------------------
     ///basic information
+    private int gameId;
     final int totalSoldiers = 3;
     private Player player=null;
     private Map<String, Territory> territories=null;
@@ -30,6 +31,8 @@ public class Client extends Application {
     private ObjectOutputStream os1 = null;
     private ObjectInputStream is1 = null;
     private Socket socket = null;
+    private Receiver receiver;
+    private Sender sender;
 
     //for display
     private Stage window;
@@ -55,10 +58,11 @@ public class Client extends Application {
 
 
     private void connectServer() throws IOException, ClassNotFoundException {
+        //todo: get gameId from UI
         System.out.println("Choose one game to play (start from 0):");
-        int port = Integer.parseInt(sc.nextLine());
+        gameId = Integer.parseInt(sc.nextLine());
         try {
-            socket = new Socket("localhost", 8000 + port);
+            socket = new Socket("localhost", 8000 + gameId);
             System.out.println("Client Connected");
         } catch (ConnectException e) {
             System.out.println("Game not available, please choose another game:");
@@ -102,8 +106,14 @@ public class Client extends Application {
         this.player = (Player) is1.readObject();
         //receive map to be completed
         this.territories = (Map<String, Territory>) is1.readObject();
+        //connect to Chat Server
+        Socket socket = new Socket("localhost", 7999 - gameId);
+        System.out.println("Connected to Chat Server");
+        ObjectOutputStream cos = new ObjectOutputStream(socket.getOutputStream());
+        ObjectInputStream cis = new ObjectInputStream(socket.getInputStream());
+        this.receiver = new Receiver(cis, player.getId(), savedText);
+        this.sender = new Sender(cos, player.getId());
         //initialize map if user is new
-        //todo:
         if (!exists) {
             territories = initMap(player, territories);
         }
@@ -114,7 +124,7 @@ public class Client extends Application {
         mainRoot.setControllerFactory(c -> {
             try {
                 return new LoginController(this.window,this.player,this.territories,this.sc,this.os1,this.is1, false,
-                        this.savedText);
+                        this.savedText, this.receiver, this.sender);
             } catch (IOException e) {
                 e.printStackTrace();
             }
