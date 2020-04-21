@@ -132,7 +132,7 @@ public class AttackController {
 
 
     public AttackController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc,
-                            ObjectOutputStream os, ObjectInputStream is,Boolean sameAround,savedText savedText) throws IOException {
+                            ObjectOutputStream os, ObjectInputStream is,Boolean sameAround,savedText savedText) {
         this.windows=windows;
         this.player=player;
         this.territories=territories;
@@ -167,28 +167,28 @@ public class AttackController {
         //write into history fields
         StringBuilder description=new StringBuilder();
         description.append("Attack ").append(Dest.getValue()).append(" from ").append(Src.getValue()).append(" with:\n");
-        description.append(l0.getValue()+" lv0 Soldiers\n");
-        description.append(l1.getValue()+" lv1 Soldiers\n");
-        description.append(l2.getValue()+" lv2 Soldiers\n");
-        description.append(l3.getValue()+" lv3 Soldiers\n");
-        description.append(l4.getValue()+" lv4 Soldiers\n");
-        description.append(l5.getValue()+" lv5 Soldiers\n");
-        description.append(l6.getValue()+" lv6 Soldiers\n");
+        if(l0.getValue() != 0)
+            description.append(l0.getValue()).append(" lv0 Soldiers\n");
+        if(l1.getValue() != 0)
+            description.append(l1.getValue()).append(" lv1 Soldiers\n");
+        if(l2.getValue() != 0)
+            description.append(l2.getValue()).append(" lv2 Soldiers\n");
+        if(l3.getValue() != 0)
+            description.append(l3.getValue()).append(" lv3 Soldiers\n");
+        if(l4.getValue() != 0)
+            description.append(l4.getValue()).append(" lv4 Soldiers\n");
+        if(l5.getValue() != 0)
+            description.append(l5.getValue()).append(" lv5 Soldiers\n");
+        if(l6.getValue() != 0)
+            description.append(l6.getValue()).append(" lv6 Soldiers\n");
         this.savedText.addAction(String.valueOf(description));
 
 
         //------------------
         this.sameAround=true;
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
-        MainRoot.setControllerFactory(c->{
-            try {
-                return new mainController(this.windows,this.player,this.territories,this.sc,this.os,this.is,this.sameAround,
-                        this.savedText);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+        MainRoot.setControllerFactory(c-> new mainController(this.windows,this.player,this.territories,this.sc,this.os,this.is,this.sameAround,
+                this.savedText));
         Scene nextScene=new Scene(MainRoot.load());
         nextScene.getStylesheets().add(
                 getClass().getResource("MainStyle.css")
@@ -198,14 +198,8 @@ public class AttackController {
     }
 
 
-
-
-
-
-
     //From Map button 1 to 12
     public void showMapInfo_1(){
-        //todo: find the territory in map
         String name = Map1.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -217,7 +211,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -231,7 +224,6 @@ public class AttackController {
     }
 
     public void showMapInfo_2(){
-        //todo: find the territory in map
         String name = Map2.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -243,7 +235,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -257,7 +248,6 @@ public class AttackController {
     }
 
     public void showMapInfo_3(){
-        //todo: find the territory in map
         String name = Map3.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -269,7 +259,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -283,7 +272,6 @@ public class AttackController {
     }
 
     public void showMapInfo_4(){
-        //todo: find the territory in map
         String name = Map4.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -295,7 +283,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -309,7 +296,6 @@ public class AttackController {
     }
 
     public void showMapInfo_5(){
-        //todo: find the territory in map
         String name = Map5.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -321,7 +307,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -335,7 +320,6 @@ public class AttackController {
     }
 
     public void showMapInfo_6(){
-        //todo: find the territory in map
         String name = Map6.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -347,7 +331,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -361,7 +344,6 @@ public class AttackController {
     }
 
     public void showMapInfo_7(){
-        //todo: find the territory in map
         String name = Map7.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -373,7 +355,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -387,7 +368,6 @@ public class AttackController {
     }
 
     public void showMapInfo_8(){
-        //todo: find the territory in map
         String name = Map8.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -399,7 +379,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -413,7 +392,6 @@ public class AttackController {
     }
 
     public void showMapInfo_9(){
-        //todo: find the territory in map
         String name = Map9.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -425,7 +403,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -439,7 +416,6 @@ public class AttackController {
     }
 
     public void showMapInfo_10(){
-        //todo: find the territory in map
         String name = Map10.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -451,7 +427,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -465,7 +440,6 @@ public class AttackController {
     }
 
     public void showMapInfo_11(){
-        //todo: find the territory in map
         String name = Map11.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -477,7 +451,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -491,7 +464,6 @@ public class AttackController {
     }
 
     public void showMapInfo_12(){
-        //todo: find the territory in map
         String name = Map12.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -503,7 +475,6 @@ public class AttackController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -515,5 +486,4 @@ public class AttackController {
         }
         this.mapInfo.setText(String.valueOf(s));
     }
-
 }

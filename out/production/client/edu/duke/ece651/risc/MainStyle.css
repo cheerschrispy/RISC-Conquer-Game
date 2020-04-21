@@ -1,20 +1,19 @@
 /*root类选择器给所有的元素设置样式*/
 .root {
     -fx-font-family: "微软雅黑";
-    -fx-font-size: 16px;
+    -fx-font-size: 14px;
     -fx-background-size: stretch stretch;
     -fx-background-position: center center;
-
+    -fx-background-color: #FFFFFF;
 }
 
 #P{
-       -fx-background-image: url("./map.jpg");
+       -fx-background-image: url("map.jpg");
        -fx-background-repeat: stretch;
        -fx-background-size: 900 506;
        -fx-background-position: center center;
        -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
 }
-
 
 .button {
     -fx-text-fill: white;
@@ -23,11 +22,225 @@
     -fx-background-color: linear-gradient(#61a2b1, #2A5058);
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
-/*
-    -fx-background-image:url('WechatIMG1705.jpeg');
-    -fx-background-size: 80px;
-    -fx-text-fill: darkslategray;
-    */
+
+
+#Map1{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map1:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#Map2{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map2:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#Map3{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map3:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#Map4{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map4:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#Map5{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map5:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#Map6{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map6:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#Map7{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map7:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#Map8{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map8:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#Map9{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map9:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#Map10{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map10:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#Map11{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map11:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+#Map12{
+        -fx-text-fill: white;
+        -fx-font-family: "Arial Narrow";
+        -fx-font-weight: bold;
+        -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+        -fx-background-radius: 500em;
+        -fx-min-width: 25px;
+        -fx-min-height: 25px;
+        -fx-max-width: 25px;
+        -fx-max-height: 25px;
+        -fx-background-insets: 0px;
+        -fx-padding: 0px;
+}
+#Map12:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+}
+
+
 .button:hover {
     -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }

@@ -72,7 +72,7 @@ public class mainController {
     //------------------
     //from mainWindow to subWindows
     public mainController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc, ObjectOutputStream os,
-                          ObjectInputStream is,savedText savedText) throws IOException {
+                          ObjectInputStream is,savedText savedText) {
         this.windows=windows;
         this.player=player;
         this.territories=territories;
@@ -86,7 +86,7 @@ public class mainController {
     }
     //from subWindows to mainWindow
     public mainController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc, ObjectOutputStream os,
-                          ObjectInputStream is,Boolean sameAround,savedText savedText) throws IOException {
+                          ObjectInputStream is,Boolean sameAround,savedText savedText) {
         this.windows = windows;
         this.player = player;
         this.territories = territories;
@@ -103,9 +103,11 @@ public class mainController {
     @FXML
     public void initialize(){
         String s = "Hi, welcome player " + player.getId() + ".\r\n" +
-                "Now you are in TECHNIQUE level " + player.getTechLevel() + ".\r\n" +
+                "Now you are in TECHNIQUE level " + player.getTechLevel() + ".\r\n\n" +
                 "You have " + player.getFoodResources() + " food resources.\r\n" +
-                "You have " + player.getTechResources() + " tech resources.\r\n";
+                "You have " + player.getTechResources() + " tech resources.\r\n" +
+                "You current food production speed is " + player.getFoodSpeed() + ".\r\n" +
+                "You current technology production speed is " + player.getTechSpeed() + ".\r\n";
         playerInfo.setText(s);
         //this.savedText.clearActionHistory();
         history.setText(this.savedText.getActionHistory());
@@ -119,7 +121,7 @@ public class mainController {
     //------------------
 
     public void alliancePop(){
-        int result=chooseAlliacne("Choose the player");
+        int result = chooseAlliance("Choose the player");
         if(result!=-1){
             BufferedWriter bw1;
             try {
@@ -132,9 +134,7 @@ public class mainController {
             }
             this.sameAround=true;
             //write into history fields
-            StringBuilder description=new StringBuilder();
-            description.append("Make Alliance with: Player ").append(result+"\n");
-            this.savedText.addAction(String.valueOf(description));
+            this.savedText.addAction("Make Alliance with: Player " + result + "\n");
             this.history.setText(this.savedText.getActionHistory());
             //------------------
         }
@@ -155,9 +155,7 @@ public class mainController {
             }
             this.sameAround=true;
             //write into history fields
-            StringBuilder description=new StringBuilder();
-            description.append("Upgrade Technology Level\n");
-            this.savedText.addAction(String.valueOf(description));
+            this.savedText.addAction("Upgrade Technology Level\n");
             //------------------
             this.history.setText(this.savedText.getActionHistory());
 
@@ -178,9 +176,7 @@ public class mainController {
             }
             this.sameAround=true;
             //write into history fields
-            StringBuilder description=new StringBuilder();
-            description.append("Speed Up Technology Resource Generating Rate\n");
-            this.savedText.addAction(String.valueOf(description));
+            this.savedText.addAction("Speed Up Technology Resource Generating Rate\n");
             this.history.setText(this.savedText.getActionHistory());
 
 
@@ -198,9 +194,7 @@ public class mainController {
             }
             this.sameAround=true;
             //write into history fields
-            StringBuilder description=new StringBuilder();
-            description.append("Speed Up Food Resource Generating Rate\n");
-            this.savedText.addAction(String.valueOf(description));
+            this.savedText.addAction("Speed Up Food Resource Generating Rate\n");
             //------------------
             this.history.setText(this.savedText.getActionHistory());
         }
@@ -212,15 +206,8 @@ public class mainController {
         System.out.println("pop to attack stage");
 
         FXMLLoader Root = new FXMLLoader(getClass().getResource("Attack.fxml"));
-        Root.setControllerFactory(c->{
-            try {
-                return new AttackController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,this.sameAround,
-                        this.savedText);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+        Root.setControllerFactory(c-> new AttackController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,this.sameAround,
+                this.savedText));
         Scene nextScene = new Scene(Root.load());
         nextScene.getStylesheets().add(
                 getClass().getResource("MainStyle.css")
@@ -231,15 +218,8 @@ public class mainController {
 
     public void MoveStage() throws IOException {
         FXMLLoader Root = new FXMLLoader(getClass().getResource("Move.fxml"));
-        Root.setControllerFactory(c->{
-            try {
-                return new MoveController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,this.sameAround,
-                        this.savedText);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+        Root.setControllerFactory(c-> new MoveController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,this.sameAround,
+                this.savedText));
         Scene nextScene = new Scene(Root.load());
         nextScene.getStylesheets().add(
                 getClass().getResource("MainStyle.css")
@@ -261,7 +241,7 @@ public class mainController {
             ex.printStackTrace();
         }
         this.sameAround=false;
-        System.out.println("boolean is "+this.sameAround);
+        System.out.println("boolean is "+ this.sameAround);
 
         Executor endHelper = new Executor();
         //redirect setin
@@ -311,13 +291,8 @@ public class mainController {
 
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
         MainRoot.setControllerFactory(c->{
-            try {
-                return new mainController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,
-                        this.savedText);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
+            return new mainController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,
+                    this.savedText);
         });
         Scene nextScene=new Scene(MainRoot.load());
         this.windows.setScene(nextScene);
@@ -326,10 +301,6 @@ public class mainController {
                         .toExternalForm());
         this.windows.show();
     }
-
-
-
-
 
 
     //-------------------------
@@ -350,9 +321,7 @@ public class mainController {
         label.setText(information);
 
         Button quitButton =new Button(("OK"));
-        quitButton.setOnAction(e ->{
-            window.close();
-        });
+        quitButton.setOnAction(e -> window.close());
 
         VBox layout = new VBox(10);
         layout.getChildren().addAll(label, quitButton);
@@ -425,7 +394,7 @@ public class mainController {
     }
 
 
-    private int chooseAlliacne(String ins){
+    private int chooseAlliance(String ins){
         Stage window = new Stage();
         //int status=0;
 
@@ -449,7 +418,6 @@ public class mainController {
 
         //ArrayList<Button> allPlayer=new ArrayList<>();
         for(int i=0;i<playerNum;i++){
-            //todo:
             if(player.getId()==i) continue;
             Button button =new Button(("Player "+i));
             button.setOnAction(e ->{
@@ -472,10 +440,8 @@ public class mainController {
 
     private void UpgradeUnitStage() throws IOException {
         FXMLLoader Root = new FXMLLoader(getClass().getResource("Upgrade.fxml"));
-        Root.setControllerFactory(c->{
-            return new upgradeController(this.windows,this.player, this. territories,this.sc,this.os1,this.is1,this.sameAround,
-                    this.savedText);
-        });
+        Root.setControllerFactory(c-> new upgradeController(this.windows,this.player, this. territories,this.sc,this.os1,this.is1,this.sameAround,
+                this.savedText));
         Scene nextScene = new Scene(Root.load());
         nextScene.getStylesheets().add(
                 getClass().getResource("MainStyle.css")
@@ -489,7 +455,6 @@ public class mainController {
 
     //From Map button 1 to 12
     public void showMapInfo_1(){
-        //todo: find the territory in map
         String name = Map1.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -501,7 +466,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -515,7 +479,6 @@ public class mainController {
     }
 
     public void showMapInfo_2(){
-        //todo: find the territory in map
         String name = Map2.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -527,7 +490,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -541,7 +503,6 @@ public class mainController {
     }
 
     public void showMapInfo_3(){
-        //todo: find the territory in map
         String name = Map3.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -553,7 +514,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -567,7 +527,6 @@ public class mainController {
     }
 
     public void showMapInfo_4(){
-        //todo: find the territory in map
         String name = Map4.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -579,7 +538,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -593,7 +551,6 @@ public class mainController {
     }
 
     public void showMapInfo_5(){
-        //todo: find the territory in map
         String name = Map5.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -605,7 +562,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -619,7 +575,6 @@ public class mainController {
     }
 
     public void showMapInfo_6(){
-        //todo: find the territory in map
         String name = Map6.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -631,7 +586,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -645,7 +599,6 @@ public class mainController {
     }
 
     public void showMapInfo_7(){
-        //todo: find the territory in map
         String name = Map7.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -657,7 +610,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -671,7 +623,6 @@ public class mainController {
     }
 
     public void showMapInfo_8(){
-        //todo: find the territory in map
         String name = Map8.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -683,7 +634,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -697,7 +647,6 @@ public class mainController {
     }
 
     public void showMapInfo_9(){
-        //todo: find the territory in map
         String name = Map9.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -709,7 +658,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -723,7 +671,6 @@ public class mainController {
     }
 
     public void showMapInfo_10(){
-        //todo: find the territory in map
         String name = Map10.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -735,7 +682,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -749,7 +695,6 @@ public class mainController {
     }
 
     public void showMapInfo_11(){
-        //todo: find the territory in map
         String name = Map11.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -761,7 +706,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -775,7 +719,6 @@ public class mainController {
     }
 
     public void showMapInfo_12(){
-        //todo: find the territory in map
         String name = Map12.getText();
         Territory t = territories.get(name);
         StringBuilder s = new StringBuilder();
@@ -787,7 +730,6 @@ public class mainController {
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            ArrayList<Unit> ally = alliances.get(key);
             s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
@@ -799,5 +741,4 @@ public class mainController {
         }
         this.mapInfo.setText(String.valueOf(s));
     }
-
 }

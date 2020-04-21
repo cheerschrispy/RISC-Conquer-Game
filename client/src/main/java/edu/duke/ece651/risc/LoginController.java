@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -21,6 +22,9 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class LoginController {
+
+    @FXML private TextField username;
+    @FXML private TextField password;
 
     //All fields
     private Map<String, Territory> territories;
@@ -51,13 +55,8 @@ public class LoginController {
     public void goToMainPage() throws IOException {
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
         MainRoot.setControllerFactory(c->{
-            try {
-                return new mainController(this.window,this.player,this.territories,this.sc,this.os1,this.is1,
-                        this.savedText);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
+            return new mainController(this.window,this.player,this.territories,this.sc,this.os1,this.is1,
+                    this.savedText);
         });
         Scene nextScene=new Scene(MainRoot.load());
         nextScene.getStylesheets().add(
@@ -65,5 +64,10 @@ public class LoginController {
                         .toExternalForm());
         this.window.setScene(nextScene);
         this.window.show();
+    }
+
+    public void cancel(){
+        this.username.clear();
+        this.password.clear();
     }
 }

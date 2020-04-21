@@ -46,7 +46,7 @@
             </padding>
         </HBox>
         <TextArea layoutX="17.0" layoutY="686.0" prefHeight="27.0" prefWidth="531.0" />
-        <Button layoutX="556.0" layoutY="686.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" text="Send" />
+        <Button layoutX="564.0" layoutY="684.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" text="Send" />
         <TextArea fx:id="playerInfo" editable="false" layoutX="653.0" layoutY="37.0" prefHeight="149.0" prefWidth="332.0" />
         <TextArea fx:id="mapInfo" editable="false" layoutX="653.0" layoutY="199.0" prefHeight="235.0" prefWidth="332.0" />
         <TextArea fx:id="history" editable="false" layoutX="653.0" layoutY="442.0" prefHeight="275.0" prefWidth="332.0" />
