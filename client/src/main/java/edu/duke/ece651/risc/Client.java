@@ -107,10 +107,10 @@ public class Client extends Application {
     }
     //show the man page , all button function defined in controller file
     private void showMain() throws IOException {
-        FXMLLoader mainRoot = new FXMLLoader(getClass().getResource("Main.fxml"));
+        FXMLLoader mainRoot = new FXMLLoader(getClass().getResource("Login.fxml"));
         mainRoot.setControllerFactory(c -> {
             try {
-                return new mainController(this.window,this.player,this.territories,this.sc,this.os1,this.is1,
+                return new LoginController(this.window,this.player,this.territories,this.sc,this.os1,this.is1, false,
                         this.savedText);
             } catch (IOException e) {
                 e.printStackTrace();

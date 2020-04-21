@@ -8,7 +8,7 @@
 }
 
 #P{
-       -fx-background-image: url("./map.jpg");
+       -fx-background-image: url("map.jpg");
        -fx-background-repeat: stretch;
        -fx-background-size: 900 506;
        -fx-background-position: center center;
