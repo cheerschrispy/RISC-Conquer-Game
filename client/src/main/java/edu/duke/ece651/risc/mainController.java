@@ -120,7 +120,7 @@ public class mainController {
         Image mapImage=new Image("file:./map.jpg");
         map.setImage(mapImage);
 
-        receiver.start();
+        //receiver.start();
 
     }
 
