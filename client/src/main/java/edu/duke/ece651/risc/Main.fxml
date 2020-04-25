@@ -47,10 +47,10 @@
         </HBox>
         <TextArea layoutX="17.0" layoutY="686.0" prefHeight="27.0" prefWidth="531.0" />
         <Button layoutX="564.0" layoutY="684.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="77.0" text="Send" />
-        <TextArea fx:id="playerInfo" editable="false" layoutX="653.0" layoutY="37.0" prefHeight="149.0" prefWidth="332.0" />
+        <TextArea fx:id="playerInfo" editable="false" layoutX="653.0" layoutY="49.0" prefHeight="137.0" prefWidth="332.0" />
         <TextArea fx:id="mapInfo" editable="false" layoutX="653.0" layoutY="199.0" prefHeight="235.0" prefWidth="332.0" />
         <TextArea fx:id="history" editable="false" layoutX="653.0" layoutY="442.0" prefHeight="275.0" prefWidth="332.0" />
-        <Label fx:id="gameStatus" layoutX="653.0" layoutY="10.0" prefHeight="27.0" prefWidth="262.0" text="New Around" />
+        <Label fx:id="gameStatus" layoutX="653.0" layoutY="10.0" prefHeight="27.0" prefWidth="228.0" text="New Around" />
       <ImageView fx:id="map" fitHeight="574.0" fitWidth="619.0" layoutX="14.0" layoutY="15.0">
          <image>
             <Image url="@../../../../../../../../out/production/client/edu/duke/ece651/risc/map.jpg" />
@@ -68,5 +68,6 @@
       <Button fx:id="Map6" layoutX="281.0" layoutY="291.0" mnemonicParsing="false" onAction="#showMapInfo_6" text="T6" />
       <Button fx:id="Map1" layoutX="171.0" layoutY="75.0" mnemonicParsing="false" onAction="#showMapInfo_1" text="T1" />
       <Button fx:id="Map10" layoutX="213.0" layoutY="149.0" mnemonicParsing="false" onAction="#showMapInfo_10" text="T10" />
+      <Button layoutX="894.0" layoutY="8.0" mnemonicParsing="false" onAction="#changeLanguage" prefHeight="31.0" prefWidth="86.0" text="Language" />
     </children>
 </Pane>

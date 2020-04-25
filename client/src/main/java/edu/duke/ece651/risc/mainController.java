@@ -36,6 +36,7 @@ public class mainController {
     private savedText savedText;
     private Receiver receiver;
     private Sender sender;
+    private int language = 1;
 
     private boolean sameAround;
 
@@ -108,6 +109,7 @@ public class mainController {
     //------------------
     @FXML
     public void initialize(){
+        /*
         String s = "Hi, welcome player " + player.getId() + ".\r\n" +
                 "Now you are in TECHNIQUE level " + player.getTechLevel() + ".\r\n\n" +
                 "You have " + player.getFoodResources() + " food resources.\r\n" +
@@ -115,15 +117,39 @@ public class mainController {
                 "You current food production speed is " + player.getFoodSpeed() + ".\r\n" +
                 "You current technology production speed is " + player.getTechSpeed() + ".\r\n";
         playerInfo.setText(s);
+        */
         //this.savedText.clearActionHistory();
-        history.setText(this.savedText.getActionHistory());
+        history.setText(this.savedText.getActionHistoryE());
         Image mapImage=new Image("file:./map.jpg");
         map.setImage(mapImage);
 
         //receiver.start();
-
+        TextPrinter t1 = new EngTextPrinter();
+        String s = t1.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+        playerInfo.setText(s);
     }
 
+    public void changeLanguage(){
+        this.language = (this.language + 1) % 2;
+        //Player Information
+        if(this.language == 0){
+            //Player Information
+            TextPrinter t1 = new ChiTextPrinter();
+            String s = t1.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            playerInfo.setText(s);
+
+            mapInfo.clear();
+            history.setText(savedText.getActionHistoryC());
+        }
+        else{
+            TextPrinter t1 = new EngTextPrinter();
+            String s = t1.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            playerInfo.setText(s);
+
+            mapInfo.clear();
+            history.setText(savedText.getActionHistoryE());
+        }
+    }
 
     //------------------
     //----Button function------
@@ -151,8 +177,13 @@ public class mainController {
             }
             this.sameAround=true;
             //write into history fields
-            this.savedText.addAction("Make Alliance with: Player " + result + "\n");
-            this.history.setText(this.savedText.getActionHistory());
+            this.savedText.addActionE("Make Alliance with: Player " + result + "\n");
+            this.savedText.addActionC("和玩家 " + result + "结盟\n");
+
+            if(this.language == 1)
+                this.history.setText(this.savedText.getActionHistoryE());
+            else
+                this.history.setText(this.savedText.getActionHistoryC());
             //------------------
         }
         //if it is cancel, nothing happens
@@ -172,10 +203,13 @@ public class mainController {
             }
             this.sameAround=true;
             //write into history fields
-            this.savedText.addAction("Upgrade Technology Level\n");
+            this.savedText.addActionE("Upgrade Technology Level\n");
+            this.savedText.addActionC("升级科技等级\n");
             //------------------
-            this.history.setText(this.savedText.getActionHistory());
-
+            if(this.language == 1)
+                this.history.setText(this.savedText.getActionHistoryE());
+            else
+                this.history.setText(this.savedText.getActionHistoryC());
         }
         else if(result==2){
             //enter upgrade interface
@@ -193,11 +227,13 @@ public class mainController {
             }
             this.sameAround=true;
             //write into history fields
-            this.savedText.addAction("Speed Up Technology Resource Generating Rate\n");
-            this.history.setText(this.savedText.getActionHistory());
+            this.savedText.addActionE("Speed Up Technology Resource Generating Rate\n");
+            this.savedText.addActionC("升级科技资源生产速度\n");
 
-
-            //------------------
+            if(this.language == 1)
+                this.history.setText(this.savedText.getActionHistoryE());
+            else
+                this.history.setText(this.savedText.getActionHistoryC());
         }
         else if(result==4){
             //food speed up
@@ -211,9 +247,13 @@ public class mainController {
             }
             this.sameAround=true;
             //write into history fields
-            this.savedText.addAction("Speed Up Food Resource Generating Rate\n");
+            this.savedText.addActionE("Speed Up Food Resource Generating Rate\n");
+            this.savedText.addActionC("升级粮食资源生产速度\n");
             //------------------
-            this.history.setText(this.savedText.getActionHistory());
+            if(this.language == 1)
+                this.history.setText(this.savedText.getActionHistoryE());
+            else
+                this.history.setText(this.savedText.getActionHistoryC());
         }
         //if it is "cancel" option, just leave it alone
     }
@@ -248,6 +288,7 @@ public class mainController {
 
 
     public void commitAction() throws IOException, ClassNotFoundException {
+        this.language = (this.language + 1) % 2;
         //append a "D" in  history file
         BufferedWriter bw1;
         try {
@@ -304,7 +345,8 @@ public class mainController {
         endPop("Collisions In Your Input!");
 
         //display again
-        this.savedText.clearActionHistory();
+        this.savedText.clearActionHistoryC();
+        this.savedText.clearActionHistoryE();
 
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
         MainRoot.setControllerFactory(c->{
@@ -323,7 +365,6 @@ public class mainController {
     //-------------------------
     //----helper function------
     //------------------------
-
 
     private void endPop(String information){
         Stage window = new Stage();
@@ -474,288 +515,192 @@ public class mainController {
     public void showMapInfo_1(){
         String name = Map1.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 
     public void showMapInfo_2(){
         String name = Map2.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 
     public void showMapInfo_3(){
         String name = Map3.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 
     public void showMapInfo_4(){
         String name = Map4.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 
     public void showMapInfo_5(){
         String name = Map5.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 
     public void showMapInfo_6(){
         String name = Map6.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 
     public void showMapInfo_7(){
         String name = Map7.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 
     public void showMapInfo_8(){
         String name = Map8.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 
     public void showMapInfo_9(){
         String name = Map9.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 
     public void showMapInfo_10(){
         String name = Map10.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 
     public void showMapInfo_11(){
         String name = Map11.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 
     public void showMapInfo_12(){
         String name = Map12.getText();
         Territory t = territories.get(name);
-        StringBuilder s = new StringBuilder();
-        s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
-                .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
-        for(int i = 0; i < 7; i++){
-            s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
+
+        if(this.language == 0) {
+            TextPrinter t1 = new ChiTextPrinter();
+            String description1 = t1.appendMapButton(t);
+            this.mapInfo.setText(description1);
         }
-        s.append("\r\n");
-        HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
-        for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
-            for(int i = 0; i < 7; i++){
-                int num = t.getAllyNumOfLevel(i, key);
-                if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
-                }
-            }
-            s.append("\r\n");
+        else{
+            TextPrinter t2 = new EngTextPrinter();
+            String description2 = t2.appendMapButton(t);
+            this.mapInfo.setText(description2);
         }
-        this.mapInfo.setText(String.valueOf(s));
     }
 }
