@@ -1,6 +1,8 @@
 package edu.duke.ece651.risc;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class EngTextPrinter implements TextPrinter {
 
