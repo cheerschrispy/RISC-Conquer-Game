@@ -208,7 +208,7 @@ public class Player implements Serializable {
             //take the action first
             //------------------------
             String action = sc.nextLine();
-            if (!validate_helper.InputFormat_Validate(action)) return false;
+            //if (!validate_helper.InputFormat_Validate(action)) return false;
             if (action.equals("D")) break;
             if(action.equals("T")){
                 this.actions.add(new Action(action));

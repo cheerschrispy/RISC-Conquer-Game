@@ -10,6 +10,14 @@ class Sender {
     Sender(ObjectOutputStream os, int id) {
         this.os = os;
         this.id = id;
+        try {
+            Message msg = new Message("", id, -1);
+            os.writeObject(msg);
+            os.flush();
+            os.reset();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     void setMsg(String text, int target) {
         this.text = text;

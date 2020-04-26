@@ -130,7 +130,7 @@ public class LoginController {
         Socket chattingSocket = new Socket("localhost", 7999 - gameId);
         System.out.println("Connected to Chat Server");
         this.cos = new ObjectOutputStream(chattingSocket.getOutputStream());
-        this. cis = new ObjectInputStream(chattingSocket.getInputStream());
+        this.cis = new ObjectInputStream(chattingSocket.getInputStream());
         this.receiver = new Receiver(cis, player.getId(), savedText);
         receiver.start();
         this.sender = new Sender(cos, player.getId());
