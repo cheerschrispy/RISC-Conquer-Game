@@ -24,7 +24,7 @@ public class ChatThread extends Thread {
             ObjectInputStream is = new ObjectInputStream(client.getInputStream());
             while (true) {
                 Message msg = (Message) is.readObject();
-                System.out.println("Got message: " + msg.getContent());
+                System.out.println("Got message: " + msg.getContent() + " to " + msg.getReceiver());
                 chatRoom.addUser(msg.getSender(), os);
                 chatRoom.deliver(msg);
             }

@@ -29,7 +29,8 @@ public class Validator {
 
     public boolean InputFormat_Validate(String input){
         //check if the user's input is valid, i.e. belonging to limited input options
-        if(input.equals("M")||input.equals("A")|| input.equals("D")||input.equals("T")||input.equals("U")) return true;
+        if(input.equals("M")||input.equals("A")|| input.equals("D")||input.equals("T")||input.equals("U")||input.equals("L")
+                ||input.equals("P")||input.equals("Q")) return true;
         else{
             System.out.println("Invalid input! Please type the first character of each option given!");
         }

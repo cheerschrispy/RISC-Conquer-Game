@@ -13,11 +13,14 @@ public class ChatRoom {
     public void deliver(Message msg) throws Exception {
         try {
             int receiver = msg.getReceiver();
-            os[receiver].writeObject(msg);
-            os[receiver].flush();
-            os[receiver].reset();
-            System.out.println("Delivered message: " + msg.getContent());
+            if (receiver != -1) {
+                os[receiver].writeObject(msg);
+                os[receiver].flush();
+                os[receiver].reset();
+                System.out.println("Delivered message: " + msg.getContent());
+            }
         } catch (Exception e) {
+            e.printStackTrace();
             Thread.sleep(1000);
             System.out.println("Redeliver message: " + msg.getContent());
             deliver(msg);

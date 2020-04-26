@@ -36,7 +36,7 @@ public class Executor {
         terr.setSoldiers(survivor.getSoldiers());
     }
 
-    public void attack(Map<String, Map<Integer, ArrayList<Unit>>> attacks, Map<String, Territory> territories) {
+    public void attack(Map<String, Map<Integer, ArrayList<Unit>>> attacks, Map<String, Territory> territories, Player[] players) {
 
         Set<String> battleFields = attacks.keySet(); // Get the names of all lands
 
@@ -89,7 +89,7 @@ public class Executor {
             move(player, actions, territories, validator);
             unitUpgrade(player, actions);
         }
-        attack(convert(players, territories), territories);
+        attack(convert(players, territories), territories, players);
         increase(players, territories);
         for (Player player : players) {
             List<Action> actions = player.getActions();
@@ -183,7 +183,7 @@ public class Executor {
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             int key = entry.getKey();
             int value = entry.getValue();
-            if (map.get(value) == key) {
+            if (map.containsKey(value) && map.get(value) == key) {
                 bind(key, value, players);
             }
         }

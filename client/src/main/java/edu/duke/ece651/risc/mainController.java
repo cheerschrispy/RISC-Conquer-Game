@@ -145,6 +145,20 @@ public class mainController {
             history.setText(savedText.getActionHistoryC());
             mapInfo.clear();
         }
+
+        Runnable runnable =
+                () -> {
+            while (true) {
+                chatOutput.setText(this.savedText.getChattingHistory());
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 
     public void changeLanguage(){
@@ -180,9 +194,14 @@ public class mainController {
         sender.setMsg(text, target);
         sender.start();
     }
+
+
     public void recv(){
+
         chatOutput.setText(this.savedText.getChattingHistory());
     }
+
+
     public void alliancePop(){
         int result = chooseAlliance("Choose the player");
         if(result!=-1){
