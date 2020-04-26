@@ -76,39 +76,56 @@ public class LoginController {
         os1.writeObject(credential);
         os1.flush();
         os1.reset();
-        //if user exists
+        //valid or not
+        if (!(boolean) is1.readObject()){
+            prompt.setText("Wrong Username/Password! Type Again");
+            cancel();
+            //todo:disconnect
+            this.window.close();
+
+        }
         return (boolean) is1.readObject();
     }
 
     public void goToMainPage() throws IOException, ClassNotFoundException {
-        //authenticate
-
+        //old player
         if(authenticate()) {
-            prompt.setText("Wrong Username/Password! Type Again");
-            cancel();
-            return;
-        }
+            InitializeGame();
+            System.out.println( "ready to go mainController");
 
-
-
-        InitializeGame();
-        //if the users is true, jump tp next page
-        FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Initialize.fxml"));
-        MainRoot.setControllerFactory(c->{
-            try {
-                return new InitializeController(this.window,this.player,this.territories,this.sc,this.os1,this.is1,
+            FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
+            MainRoot.setControllerFactory(c->{
+                return new mainController(this.window,this.player,this.territories,this.sc,this.os1,this.is1,
                         this.savedText, this.sender);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
-        Scene nextScene=new Scene(MainRoot.load());
-        nextScene.getStylesheets().add(
-                getClass().getResource("MainStyle.css")
-                        .toExternalForm());
-        this.window.setScene(nextScene);
-        this.window.show();
+            });
+            Scene nextScene=new Scene(MainRoot.load());
+            nextScene.getStylesheets().add(
+                    getClass().getResource("MainStyle.css")
+                            .toExternalForm());
+            this.window.setScene(nextScene);
+            this.window.show();
+        }
+        else {
+            //new player
+            InitializeGame();
+            //if the users is true, jump tp next page
+            FXMLLoader MainRoot = new FXMLLoader(getClass().getResource("Initialize.fxml"));
+            MainRoot.setControllerFactory(c -> {
+                try {
+                    return new InitializeController(this.window, this.player, this.territories, this.sc, this.os1, this.is1,
+                            this.savedText, this.sender);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            });
+            Scene nextScene = new Scene(MainRoot.load());
+            nextScene.getStylesheets().add(
+                    getClass().getResource("MainStyle.css")
+                            .toExternalForm());
+            this.window.setScene(nextScene);
+            this.window.show();
+        }
     }
 
 
@@ -121,10 +138,9 @@ public class LoginController {
 
         //receive info
         this.player = (Player) is1.readObject();
-        System.out.println("recevied player");
         //receive map to be completed
         this.territories = (Map<String, Territory>) is1.readObject();
-        System.out.println("recevied t");
+
 
         //connect to Chat Server
         Socket chattingSocket = new Socket("localhost", 7999 - gameId);

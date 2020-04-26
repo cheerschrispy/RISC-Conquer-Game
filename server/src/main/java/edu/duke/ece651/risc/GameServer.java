@@ -147,6 +147,7 @@ public class GameServer extends Thread {
                     Prompts p=new Prompts(territories);
                     p.GraphPrompts();
                 } catch (Exception e) {
+                    e.printStackTrace();
                     continue;
                 }
             }
@@ -289,6 +290,7 @@ public class GameServer extends Thread {
                 //close the resources
 
             } catch (Exception e) {
+                e.printStackTrace();
                 reconnect();
                 run();
             }

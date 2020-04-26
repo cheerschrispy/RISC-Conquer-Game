@@ -94,29 +94,37 @@ public class Executor {
         for (Player player : players) {
             List<Action> actions = player.getActions();
             techUpgrade(player, actions);
-            techSpeed(player, actions);
-            foodSpeed(player, actions);
+            techSpeed(player, actions, territories);
+            foodSpeed(player, actions, territories);
         }
         findAlliance(players);
     }
 
     //speed tech
-    public void techSpeed(Player player, List<Action> actions) {
+    public void techSpeed(Player player, List<Action> actions, Map<String, Territory> territories) {
         for (Action action : actions) {
             if (action.getName().equals("P")) {
                 player.consumeTech((player.getTechLevel() + 1) * 10);
-                player.addTechSpeed();
+                for (Territory t : territories.values()) {
+                    if (t.getOwner() == player.getId()) {
+                        t.addTechPro();
+                    }
+                }
                 return;
             }
         }
     }
 
     //speed food
-    public void foodSpeed(Player player, List<Action> actions) {
+    public void foodSpeed(Player player, List<Action> actions, Map<String, Territory> territories) {
         for (Action action : actions) {
             if (action.getName().equals("Q")) {
                 player.consumeFood((player.getTechLevel() + 1) * 10);
-                player.addFoodSpeed();
+                for (Territory t : territories.values()) {
+                    if (t.getOwner() == player.getId()) {
+                        t.addFoodPro();
+                    }
+                }
                 return;
             }
         }

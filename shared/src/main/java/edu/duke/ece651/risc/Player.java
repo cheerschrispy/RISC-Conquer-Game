@@ -13,24 +13,11 @@ public class Player implements Serializable {
     private int techLevel;
     private static int[] costs = new int[] { 0, 50, 75, 125, 200, 300};
     private Set<Integer> alliances;
-    private int foodSpeed;
-    private int techSpeed;
 
     public Set<Integer> getAlliances() {
         return alliances;
     }
 
-    public int getFoodSpeed() {
-        return foodSpeed;
-    }
-
-    public void addFoodSpeed() { foodSpeed++; }
-
-    public int getTechSpeed() {
-        return techSpeed;
-    }
-
-    public void addTechSpeed() { techSpeed++; }
 
     public Player(int id) {
         this.id = id;
@@ -39,8 +26,6 @@ public class Player implements Serializable {
         this.techLevel = 1;
         this.techResources = 50;
         this.alliances = new HashSet<>();
-        this.foodSpeed = 5;
-        this.techSpeed = 10;
     }
 
     public int getId(){

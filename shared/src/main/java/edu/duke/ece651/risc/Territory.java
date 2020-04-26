@@ -40,6 +40,14 @@ public class Territory implements Serializable {
         this.techProduct = 10;
     }
 
+    public void addFoodPro() {
+        this.foodProduct += 5;
+    }
+
+    public void addTechPro() {
+        this.techProduct += 5;
+    }
+
     //add  other territory to its neighbor list
     public void connect(Territory t) {
         this.neighbors.add(t);

@@ -108,7 +108,7 @@ public class Validator {
                     //it is Attack command
                     Territory d = territories.get(dest);
                     if(player.getAlliances().contains(d.getOwner())){
-                        if(player.getActions().size() != 0){
+                        if(player.getActions().size() != 1){
                             player.isvalid = false;
                             System.out.println("You can only have one action in this situation");
                             return false;
