@@ -24,9 +24,13 @@ public class Player implements Serializable {
         return foodSpeed;
     }
 
+    public void addFoodSpeed() { foodSpeed++; }
+
     public int getTechSpeed() {
         return techSpeed;
     }
+
+    public void addTechSpeed() { techSpeed++; }
 
     public Player(int id) {
         this.id = id;

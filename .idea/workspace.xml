@@ -3,31 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="d9b2b30d-788f-46a8-9628-41b0e2c3460d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Attack.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Attack.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/AttackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/AttackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Initialize.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Initialize.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Move.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/Move.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/MoveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/MoveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/mainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/mainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/savedText.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/savedText.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/upgradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/edu/duke/ece651/risc/upgradeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/history0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/history0.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/history1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/history1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Attack.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Attack.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/AttackController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/AttackController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Initialize.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Initialize.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Move.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Move.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/Client.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/MoveController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/MoveController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/mainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/mainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/savedText.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/savedText.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/upgradeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/client/edu/duke/ece651/risc/upgradeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/ChiTextPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/ChiTextPrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/EngTextPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/EngTextPrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/TextPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/TextPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Validator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/main/edu/duke/ece651/risc/Validator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/edu/duke/ece651/risc/GameServer$Initializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/edu/duke/ece651/risc/GameServer$Initializer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/server/edu/duke/ece651/risc/GameServer$Receiver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/server/edu/duke/ece651/risc/GameServer$Receiver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/edu/duke/ece651/risc/GameServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Validator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,46 +115,57 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="184" y="123" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877@0.23.1440.877" timestamp="1587851156830" />
-    <state width="1398" height="382" key="GridCell.Tab.0.bottom" timestamp="1587920654752">
+    <state width="1398" height="225" key="GridCell.Tab.0.bottom" timestamp="1587932557735">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1398" height="220" key="GridCell.Tab.0.bottom/0.23.1440.877@0.0.1440.900" timestamp="1587871318973" />
-    <state width="1398" height="382" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1587920654752" />
-    <state width="1398" height="382" key="GridCell.Tab.0.center" timestamp="1587920654751">
+    <state width="1398" height="225" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1587932557735" />
+    <state width="1398" height="225" key="GridCell.Tab.0.center" timestamp="1587932557734">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1398" height="220" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587871318969" />
     <state width="1398" height="220" key="GridCell.Tab.0.center/0.23.1440.877@0.0.1440.900" timestamp="1587871318973" />
-    <state width="1398" height="382" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1587920654751" />
-    <state width="1398" height="382" key="GridCell.Tab.0.left" timestamp="1587920654750">
+    <state width="1398" height="225" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1587932557734" />
+    <state width="1398" height="225" key="GridCell.Tab.0.left" timestamp="1587932557733">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1398" height="220" key="GridCell.Tab.0.left/0.23.1440.877@0.0.1440.900" timestamp="1587871318973" />
-    <state width="1398" height="382" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1587920654750" />
-    <state width="1398" height="382" key="GridCell.Tab.0.right" timestamp="1587920654751">
+    <state width="1398" height="225" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1587932557733" />
+    <state width="1398" height="225" key="GridCell.Tab.0.right" timestamp="1587932557735">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state width="1398" height="220" key="GridCell.Tab.0.right/0.23.1440.877@0.0.1440.900" timestamp="1587871318973" />
-    <state width="1398" height="382" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1587920654751" />
-    <state width="1398" height="257" key="GridCell.Tab.1.bottom" timestamp="1587871312450">
+    <state width="1398" height="225" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1587932557735" />
+    <state width="1398" height="243" key="GridCell.Tab.1.bottom" timestamp="1587925701639">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="257" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1587871312450" />
-    <state width="1398" height="257" key="GridCell.Tab.1.center" timestamp="1587871312449">
+    <state width="1398" height="243" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1587925701639" />
+    <state width="1398" height="243" key="GridCell.Tab.1.center" timestamp="1587925701639">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="257" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1587871312449" />
-    <state width="1398" height="257" key="GridCell.Tab.1.left" timestamp="1587871312449">
+    <state width="1398" height="243" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1587925701639" />
+    <state width="1398" height="243" key="GridCell.Tab.1.left" timestamp="1587925701638">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="257" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1587871312449" />
-    <state width="1398" height="257" key="GridCell.Tab.1.right" timestamp="1587871312449">
+    <state width="1398" height="243" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1587925701638" />
+    <state width="1398" height="243" key="GridCell.Tab.1.right" timestamp="1587925701639">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state width="1398" height="257" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1587871312449" />
+    <state width="1398" height="243" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1587925701639" />
     <state x="399" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1587912801398">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="399" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1587912801398" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/shared/src/main/java/edu/duke/ece651/risc/Executor.java</url>
+          <line>158</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

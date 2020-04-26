@@ -26,17 +26,19 @@ public class Validator {
         return true;
     }
 
-
+/*
     public boolean InputFormat_Validate(String input){
         //check if the user's input is valid, i.e. belonging to limited input options
         if(input.equals("M")||input.equals("A")|| input.equals("D")||input.equals("T")||input.equals("U")||input.equals("L")
-                ||input.equals("P")||input.equals("Q")) return true;
+                ||input.equals("P")||input.equals("U")) return true;
         else{
             System.out.println("Invalid input! Please type the first character of each option given!");
         }
         return false;
     }
 
+
+ */
 
     public boolean InputOnwer_Validate(Player player, String input,Map<String, Territory> territories){
         //check if the selected territory is player's own one
@@ -89,7 +91,7 @@ public class Validator {
                         System.out.println("BFS error");
                         return false;
                     }
-                    this.foodRecord += soldiers.size() * territories.get(src).getSize();
+                    this.foodRecord += soldiers.size() * step;
                     this.moveChange(soldiers, src, dest);
                     if (!this.checkNumber()) {
                         player.isvalid = false;
@@ -203,9 +205,9 @@ public class Validator {
         this.record = new HashMap<>();
         int id = player.getId();
         Set<Integer> alliances = player.getAlliances();
-        alliances.add(id);
+
         for(String key : territories.keySet()){
-            if(alliances.contains(territories.get(key).getOwner())){
+            if(alliances.contains(territories.get(key).getOwner()) || territories.get(key).getOwner() == id){
                 ArrayList<Integer> numbers = new ArrayList<>();
                 numbers.add(0);
                 numbers.add(0);
@@ -250,7 +252,7 @@ public class Validator {
         Territory start = territories.get(src);
 
         Set<Integer> alliances = player.getAlliances();
-        alliances.add(player.getId());
+
         int step = 0;
         q.offer(start);
         visited.add(start);
@@ -261,7 +263,7 @@ public class Validator {
             step += curr.getSize();
             for(Territory t : curr.getNeighbors()){
                 if(!visited.contains(t)){
-                    if(alliances.contains(t.getOwner())) {
+                    if(alliances.contains(t.getOwner()) || t.getOwner() == player.getId()) {
                         q.offer(t);
                         visited.add(t);
                         if(t.getName().equals(dest)){

@@ -109,12 +109,11 @@ public class MoveController {
 
 
         Set<Integer> alliances = player.getAlliances();
-        alliances.add(player.getId());
         ObservableList<String> s = FXCollections.observableArrayList();
 
         for(String key: territories.keySet()){
             Territory t = territories.get(key);
-            if(alliances.contains(t.getOwner())){
+            if(alliances.contains(t.getOwner()) || t.getOwner() == player.getId()){
                 s.add(key);
             }
         }
