@@ -81,6 +81,9 @@ public class GameServer extends Thread {
         for (int i = 0; i < player_num; i++) {
             Credential credential = (Credential) is[i].readObject();
             credentials.put(i, credential);
+            os[i].writeObject(true);
+            os[i].flush();
+            os[i].reset();
             os[i].writeObject(false);
             os[i].flush();
             os[i].reset();
@@ -101,11 +104,16 @@ public class GameServer extends Thread {
     //receive player & send territories to each player
     private void play(Socket[] clients) throws InterruptedException, IOException {
         Receiver[] receivers = new Receiver[player_num];
+        Boolean[] fails = new Boolean[player_num];
         while (executor.checkWin(territories) == -1) {
             //players = new ArrayList<>();
             System.out.println("new around");
             for (int i = 0; i < player_num; i++) {
                 if (executor.singlePlayerFail(territories, i)) {
+                    if (!fails[i]) {
+                        fails[i] = true;
+                        sendAll(i);
+                    }
                     continue;
                 }
                 receivers[i] = new Receiver(clients, i);
@@ -127,6 +135,10 @@ public class GameServer extends Thread {
             executor.execute(players, territories);
             for (int i = 0; i < player_num; i++) {
                 if (executor.singlePlayerFail(territories, i)) {
+                    if (!fails[i]) {
+                        fails[i] = true;
+                        sendAll(i);
+                    }
                     continue;
                 }
                 try {
@@ -293,11 +305,17 @@ public class GameServer extends Thread {
                 Credential credential = (Credential) is[id].readObject();
                 if (!credentials.get(id).check(credential)) {
                     System.out.println("Wrong credentials");
+                    os[id].writeObject(false);
+                    os[id].flush();
+                    os[id].reset();
                     clients[id].close();
                     reconnect();
                     return;
                 }
                 System.out.println("Reconnected to player " + id);
+                os[id].writeObject(true);
+                os1.flush();
+                os1.reset();
                 os[id].writeObject(true);
                 os1.flush();
                 os1.reset();
