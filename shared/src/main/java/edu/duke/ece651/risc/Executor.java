@@ -169,7 +169,7 @@ public class Executor {
                     visited.add(t);
                     if(t.getOwner() == player.getId()){
                         t.getSoldiers().addAll(start.getAllies().get(player.getId()));
-                        start.getAllies().get(player.getId()).clear();
+                        start.getAllies().put(player.getId(), new ArrayList<>());
                     }
                 }
             }
