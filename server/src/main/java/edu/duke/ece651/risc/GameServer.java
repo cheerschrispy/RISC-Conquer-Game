@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -153,7 +154,13 @@ public class GameServer extends Thread {
                 ArrayList<Unit> mappedSoldiers = new ArrayList<>();
                 while (!soldiers.isEmpty()) {
                     Unit soldier = soldiers.remove(0);
-                    for (Unit unit : territory.getSoldiers()) {
+                    List<Unit> units;
+                    if (player.getId() == territory.getOwner()) {
+                        units = territory.getSoldiers();
+                    } else {
+                        units = territory.getAllies().get(player.getId());
+                    }
+                    for (Unit unit : units) {
                         if (soldier.getLevel() == unit.getLevel() && !mappedSoldiers.contains(unit)) {
                             mappedSoldiers.add(unit);
                             break;
@@ -222,6 +229,11 @@ public class GameServer extends Thread {
         connect("T8", "T9");
         connect("T10", "T11");
         connect("T11", "T12");
+        for (Territory t : territories.values()) {
+            for (int i = 0; i < player_num; i++) {
+                t.getAllies().put(i, new ArrayList<>());
+            }
+        }
     }
 
     private void connect(String t1, String t2) {

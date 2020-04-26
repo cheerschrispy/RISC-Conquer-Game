@@ -64,6 +64,7 @@ public class Executor {
 
     //execution starts here
     public void execute(Player[] players, Map<String, Territory> territories) {
+        breakAlly(players, territories);
         Validator validator = new Validator();
         for (Player player : players) {
             List<Action> actions = player.getActions();
@@ -79,13 +80,59 @@ public class Executor {
         findAlliance(players);
     }
 
+    private void breakAlly(Player[] players, Map<String, Territory> territories) {
+        for (Player player : players) {
+            List<Action> actions = player.getActions();
+            for (Action action : actions) {
+                if (action.getName().equals("A")) {
+                    String end = action.getEnd();
+                    Player p2 = players[territories.get(end).getOwner()];
+                    if (player.getAlliances().contains(p2.getId())) {
+                        player.getAlliances().remove(p2.getId());
+                        p2.getAlliances().remove(player.getId());
+                        for (String src : territories.keySet()) {
+                            if (territories.get(src).getOwner() == player.getId()) {
+                                bfs(src, p2, territories);
+                            }
+                            if (territories.get(src).getOwner() == p2.getId()) {
+                                bfs(src, player, territories);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void bfs(String src, Player player, Map<String, Territory> territories) {
+        Queue<Territory> q = new LinkedList<>();
+        HashSet<Territory> visited = new HashSet<>();
+        Territory start = territories.get(src);
+        q.offer(start);
+        visited.add(start);
+        while(!q.isEmpty()){
+            Territory curr = q.peek();
+            q.poll();
+            for(Territory t : curr.getNeighbors()){
+                if(!visited.contains(t)){
+                    q.offer(t);
+                    visited.add(t);
+                    if(t.getOwner() == player.getId()){
+                        t.getSoldiers().addAll(start.getAllies().get(player.getId()));
+                        start.getAllies().get(player.getId()).clear();
+                    }
+                }
+            }
+        }
+    }
+
     //find alliance
     public void findAlliance(Player[] players) {
         Map<Integer, Integer> map = new HashMap<>();
         for (Player player : players) {
             List<Action> actions = player.getActions();
             for (Action action : actions) {
-                if (action.getName().equals("A")) {
+                if (action.getName().equals("L")) {
                     map.put(player.getId(), action.getAlliance());
                     break;
                 }
@@ -151,10 +198,26 @@ public class Executor {
                 String start = action.getStart();
                 String end = action.getEnd();
                 ArrayList<Unit> soldiers = action.getSoldiers();
-                territories.get(start).getSoldiers().removeAll(soldiers);
-                territories.get(end).getSoldiers().addAll(soldiers);
+                remove(player, territories, start, soldiers);
+                add(player, territories, end, soldiers);
                 player.consumeFood(validator.BFS(player,start, end, territories) * action.getSoldiers().size());
             }
+        }
+    }
+
+    private void add(Player player, Map<String, Territory> territories, String end, ArrayList<Unit> soldiers) {
+        if (player.getId() == territories.get(end).getOwner()) {
+            territories.get(end).getSoldiers().addAll(soldiers);
+        } else {
+            territories.get(end).getAllies().get(player.getId()).addAll(soldiers);
+        }
+    }
+
+    private void remove(Player player, Map<String, Territory> territories, String start, ArrayList<Unit> soldiers) {
+        if (player.getId() == territories.get(start).getOwner()) {
+            territories.get(start).getSoldiers().removeAll(soldiers);
+        } else {
+            territories.get(start).getAllies().get(player.getId()).removeAll(soldiers);
         }
     }
 
@@ -167,7 +230,7 @@ public class Executor {
                 if (action.getName().equals("A")) {
                     String start = action.getStart();
                     ArrayList<Unit> soldiers = action.getSoldiers();
-                    territories.get(start).getSoldiers().removeAll(soldiers);
+                    remove(player, territories, start, soldiers);
                     String subject = action.getEnd();
                     if (attacks.containsKey(subject)) {
                         attacks.get(subject).put(player.getId(), soldiers);
