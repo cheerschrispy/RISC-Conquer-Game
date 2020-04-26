@@ -29,6 +29,7 @@ public class MoveController {
     private Sender sender;
 
     @FXML private TextArea mapInfo;
+    @FXML private TextArea playerInfo;
     @FXML private ImageView map;
     //@FXML private TextArea playerInfo;
     //all the button
@@ -121,6 +122,22 @@ public class MoveController {
         Src.getSelectionModel().select(0);
         Dest.setItems(s);
         Dest.getSelectionModel().select(0);
+
+
+        if (this.language == 1){
+            TextPrinter t1 = new EngTextPrinter();
+            String info = t1.appendPlayerInfo(player, player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            playerInfo.setText(info);
+            mapInfo.clear();
+        }
+        else{
+            TextPrinter t2 = new ChiTextPrinter();
+            String info = t2.appendPlayerInfo(player, player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            playerInfo.setText(info);
+            mapInfo.clear();
+
+        }
+
 
     }
 

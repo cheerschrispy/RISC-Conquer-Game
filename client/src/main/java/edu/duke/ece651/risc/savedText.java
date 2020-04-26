@@ -6,9 +6,9 @@ public class savedText {
     private String chattingHistory;
 
     public savedText(){
-        this.actionHistoryE="Current Round History:\n\n";
-        this.actionHistoryC = "本回合历史记录:\n\n";
-        this.chattingHistory="Chatting History:\n\n";
+        this.actionHistoryE="Current Round History:\n";
+        this.actionHistoryC = "本回合历史记录:\n";
+        this.chattingHistory="Chatting History:\n";
     }
 
     public String getActionHistoryC(){

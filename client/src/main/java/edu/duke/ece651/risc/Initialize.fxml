@@ -21,8 +21,8 @@
       <ComboBox fx:id="t4" layoutX="177.0" layoutY="633.0" prefWidth="150.0" />
       <ComboBox fx:id="t5" layoutX="177.0" layoutY="675.0" prefWidth="150.0" />
       <ComboBox fx:id="t6" layoutX="177.0" layoutY="716.0" prefWidth="150.0" />
-      <Label fx:id="prompt" layoutX="105.0" layoutY="481.0" text="Choose The Soldiers Number You Want To Assign" />
+      <Label fx:id="prompt" layoutX="78.0" layoutY="481.0" prefHeight="17.0" prefWidth="335.0" text="Choose The Soldiers Number You Want To Assign" />
       <Button layoutX="387.0" layoutY="716.0" mnemonicParsing="false" onAction="#done" text="Done" />
-      <Label fx:id="initialInfo" layoutX="125.0" layoutY="464.0" prefHeight="17.0" prefWidth="308.0" text="The Territories You Owned Are：" />
+      <Label fx:id="initialInfo" layoutX="89.0" layoutY="464.0" prefHeight="17.0" prefWidth="372.0" text="The Territories You Owned Are：" />
    </children>
 </AnchorPane>

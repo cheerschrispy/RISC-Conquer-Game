@@ -33,7 +33,9 @@ public class AttackController {
     //current windows
     private Stage windows;
     @FXML private TextArea mapInfo;
+    @FXML private TextArea playerInfo;
     @FXML private ImageView map;
+
 
 
 
@@ -100,6 +102,8 @@ public class AttackController {
             }
             else if (alliances.contains(t.getOwner())){
                 s.add(key);
+
+
                 d.add(key);
             }
             else{
@@ -134,7 +138,19 @@ public class AttackController {
         Image image6 = new Image("file:./WechatIMG1708.jpeg");
         lv6Soldier.setImage(image6);
 
+        if (this.language == 1){
+            TextPrinter t1 = new EngTextPrinter();
+            String info = t1.appendPlayerInfo(player, player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            playerInfo.setText(info);
+            mapInfo.clear();
+        }
+        else{
+            TextPrinter t2 = new ChiTextPrinter();
+            String info = t2.appendPlayerInfo(player, player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            playerInfo.setText(info);
+            mapInfo.clear();
 
+        }
     }
 
 

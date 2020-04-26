@@ -138,33 +138,6 @@ public class Client extends Application {
     }
 
     //for testing
-    /*
-    public static Map<String, Territory>  createTerritories() {
-        int player_num=2;
-        Map<String, Territory> territories=new HashMap<>();
-
-        Territory[][] matrix = new Territory[player_num][3];
-        for (int i = 0; i < player_num; i++) {
-            for (int j = 0; j < 3; j++) {
-                String tName = (char) ('T'+i) + String.valueOf(j);
-                Territory newTerritory = new Territory(tName, i);
-                territories.put(tName, newTerritory);
-                matrix[i][j] = newTerritory;
-                if (j > 0) {
-                    connect(newTerritory, matrix[i][j - 1]);
-                }
-                if (i > 0) {
-                    connect(newTerritory, matrix[i - 1][j]);
-                }
-            }
-        }
-        return territories;
-    }
-    public static void connect(Territory t1, Territory t2) {
-        t1.connect(t2);
-        t2.connect(t1);
-    }
-*/
     public static void main(String[] args) {
 
         Client client=new Client();

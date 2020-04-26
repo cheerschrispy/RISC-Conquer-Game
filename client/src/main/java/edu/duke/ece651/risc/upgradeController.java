@@ -74,13 +74,13 @@ public class upgradeController {
         map.setImage(mapImage);
         if (this.language == 1){
             TextPrinter t1 = new EngTextPrinter();
-            String s = t1.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            String s = t1.appendPlayerInfo(player, player.getTechLevel(), player.getFoodResources(), player.getTechResources());
             playerInfo.setText(s);
             mapInfo.clear();
         }
         else{
             TextPrinter t2 = new ChiTextPrinter();
-            String s = t2.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            String s = t2.appendPlayerInfo(player, player.getTechLevel(), player.getFoodResources(), player.getTechResources());
             playerInfo.setText(s);
             mapInfo.clear();
         }

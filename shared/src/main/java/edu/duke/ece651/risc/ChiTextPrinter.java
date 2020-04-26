@@ -67,9 +67,17 @@ public class ChiTextPrinter implements TextPrinter {
     }
 
     @Override
-    public String appendPlayerInfo(int id, int techLevel, int foodResource, int techResources) {
-        return "嗨！欢迎玩家 " + id + ".\r\n" + "现在你处于科技水平 " + techLevel + ".\r\n" + "你有 " + foodResource + " 单位食物\r\n"
-                + "你有 " + techResources + " 单位科技点\r\n";
+    public String appendPlayerInfo(Player player, int techLevel, int foodResource, int techResources) {
+        String s="嗨！欢迎玩家 " + player.getId() + ".\r\n" + "现在你处于科技水平 " + techLevel + ".\r\n" + "你有 " + foodResource + " 单位食物\r\n"
+                + "你有 " + techResources + " 单位科技点\n";
+        if(!player.getAlliances().isEmpty()){
+            for(int a :player.getAlliances()){
+                s+="你的盟友ID为：";
+                s+=a;
+                s+="\n";
+            }
+        }
+        return s;
     }
     
     @Override
@@ -129,17 +137,19 @@ public class ChiTextPrinter implements TextPrinter {
         StringBuilder s = new StringBuilder();
         s.append("领土信息:\r\n\r\n").append("领土 ").append(t.getName())
                 .append(", 现在被 ").append(t.getOwner()).append(" 拥有.\r\n");
+        s.append("当前食物生产速度为：").append(t.getFoodProduct()).append("\n");
+        s.append("当前科技生产速度为：").append(t.getTechProduct()).append("\n\n");
         for(int i = 0; i < 7; i++){
             s.append("有   ").append(t.getSoldierNumOfLevel(i)).append("   个 ").append(i).append(" 级士兵.\r\n");
         }
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            s.append("这个领土上有盟友：").append(key);
+
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
                 if(num != 0){
-                    s.append("该盟友有  ").append(num).append("  个").append(i).append(" 级士兵.\r\n");
+                    s.append("盟友 "+key+" 有  ").append(num).append("  个").append(i).append(" 级士兵.\r\n");
                 }
             }
             s.append("\r\n");

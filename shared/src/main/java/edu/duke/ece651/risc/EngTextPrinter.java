@@ -67,10 +67,18 @@ public class EngTextPrinter implements TextPrinter {
     }
 
     @Override
-    public String appendPlayerInfo(int id, int techLevel, int foodResource, int techResources) {
-        return "Hi, welcome player " + id + ".\r\n" + "Now you are in TECHNIQUE level " + techLevel + ".\r\n"
+    public String appendPlayerInfo(Player player, int techLevel, int foodResource, int techResources) {
+        String s= "Hi, welcome player " + player.getId() + ".\r\n" + "Now you are in TECHNIQUE level " + techLevel + ".\r\n"
                 + "You have " + foodResource + " food resources.\r\n" + "You have " + techResources
                 + " tech resources.\r\n";
+        if(!player.getAlliances().isEmpty()){
+            for(int a :player.getAlliances()){
+                s+="Your alliance's Id is：";
+                s+=a;
+                s+="\n";
+            }
+        }
+        return s;
 
     }
     
@@ -133,17 +141,21 @@ public class EngTextPrinter implements TextPrinter {
         StringBuilder s = new StringBuilder();
         s.append("Territory Information:\r\n\r\n").append("This is territory ").append(t.getName())
                 .append(", owned by ").append(t.getOwner()).append(" now.\r\n");
+
+        s.append("The current Food production speed is：").append(t.getFoodProduct()).append("\n");
+        s.append("The current Technology production speed is：").append(t.getTechProduct()).append("\n\n");
+
         for(int i = 0; i < 7; i++){
             s.append("It has   ").append(t.getSoldierNumOfLevel(i)).append("   level-").append(i).append(" soldiers.\r\n");
         }
         s.append("\r\n");
         HashMap<Integer, ArrayList<Unit>> alliances = t.getAllies();
         for(int key : alliances.keySet()){
-            s.append("It has ally player ").append(key).append(" in this territory");
+            //s.append("It has ally player ").append(key).append(" in this territory");
             for(int i = 0; i < 7; i++){
                 int num = t.getAllyNumOfLevel(i, key);
                 if(num != 0){
-                    s.append("It has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
+                    s.append("Alliance "+key+" has   ").append(num).append("   level-").append(i).append(" soldiers.\r\n");
                 }
             }
             s.append("\r\n");

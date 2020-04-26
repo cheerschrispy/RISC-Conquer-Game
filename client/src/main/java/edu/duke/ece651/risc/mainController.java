@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
@@ -51,7 +48,7 @@ public class mainController {
     @FXML private Button commit;
     @FXML private Button alliance;
 
-    @FXML private TextArea chatInput;
+    @FXML private TextField chatInput;
     @FXML private TextArea chatOutput;
 
 
@@ -81,7 +78,7 @@ public class mainController {
     //------------------
     //from mainWindow to subWindows
     public mainController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc, ObjectOutputStream os,
-                          ObjectInputStream is,savedText savedText, Sender sender){//todo: sender) {
+                          ObjectInputStream is,savedText savedText, Sender sender){
         this.windows=windows;
         this.player=player;
         this.territories=territories;
@@ -133,14 +130,14 @@ public class mainController {
         //receiver.start();
         if (this.language == 1){
             TextPrinter t1 = new EngTextPrinter();
-            String s = t1.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            String s = t1.appendPlayerInfo(player, player.getTechLevel(), player.getFoodResources(), player.getTechResources());
             playerInfo.setText(s);
             history.setText(savedText.getActionHistoryE());
             mapInfo.clear();
         }
         else{
             TextPrinter t2 = new ChiTextPrinter();
-            String s = t2.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            String s = t2.appendPlayerInfo(player, player.getTechLevel(), player.getFoodResources(), player.getTechResources());
             playerInfo.setText(s);
             history.setText(savedText.getActionHistoryC());
             mapInfo.clear();
@@ -167,7 +164,7 @@ public class mainController {
         if(this.language == 0){
             //Player Information
             TextPrinter t1 = new ChiTextPrinter();
-            String s = t1.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            String s = t1.appendPlayerInfo(player, player.getTechLevel(), player.getFoodResources(), player.getTechResources());
             playerInfo.setText(s);
 
             mapInfo.clear();
@@ -175,7 +172,7 @@ public class mainController {
         }
         else{
             TextPrinter t1 = new EngTextPrinter();
-            String s = t1.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            String s = t1.appendPlayerInfo(player, player.getTechLevel(), player.getFoodResources(), player.getTechResources());
             playerInfo.setText(s);
 
             mapInfo.clear();
@@ -193,12 +190,6 @@ public class mainController {
         String text = chatInput.getText();
         sender.setMsg(text, target);
         sender.start();
-    }
-
-
-    public void recv(){
-
-        chatOutput.setText(this.savedText.getChattingHistory());
     }
 
 
@@ -327,7 +318,6 @@ public class mainController {
 
 
     public void commitAction() throws IOException, ClassNotFoundException {
-        this.language = (this.language + 1) % 2;
         //append a "D" in  history file
         BufferedWriter bw1;
         try {
@@ -398,8 +388,8 @@ public class mainController {
 
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
         MainRoot.setControllerFactory(c->{
-            return new mainController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,
-                    this.savedText, this.sender);
+            return new mainController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,this.sameAround,
+                    this.savedText,this.sender,this.language);
         });
         Scene nextScene=new Scene(MainRoot.load());
         this.windows.setScene(nextScene);

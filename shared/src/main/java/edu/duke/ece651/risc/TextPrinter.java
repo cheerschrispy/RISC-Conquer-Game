@@ -8,7 +8,7 @@ import java.util.List;
 public interface TextPrinter {
     
     // PlayerInfo
-    String appendPlayerInfo(int id, int techLevel, int foodResource, int techResources);
+    String appendPlayerInfo(Player player, int techLevel, int foodResource, int techResources);
     
     // Move History : moveController Line 160-176
     String appendMoveHistory(String source, String destination, List<Integer> soldierDistribution);

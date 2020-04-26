@@ -122,10 +122,10 @@ public class Player implements Serializable {
     //addAction helper function
     //------------------------
     private String chooseFirstTerritory(Scanner sc,Map<String, Territory> territories){
-        Validator validate_helper=new Validator();
+        //Validator validate_helper=new Validator();
         System.out.println("Please assign the source territory of YOURSELF");
         String src = sc.nextLine();
-        if (!validate_helper.InputOnwer_Validate(this, src, territories)) src="";
+        //if (!validate_helper.InputOnwer_Validate(this, src, territories)) src="";
         return src;
     }
 
@@ -191,10 +191,10 @@ public class Player implements Serializable {
     }
 
     //true to indicate the format is okay
-    public boolean addAction(Map<String, Territory>territories ,String client_name,Scanner sc){
+    public void  addAction(Map<String, Territory>territories ,String client_name,Scanner sc){
         //the argument is passed by server via socket
         // need to simply verify the user input
-        Validator validate_helper=new Validator();
+        //Validator validate_helper=new Validator();
         Prompts prompts_helper=new Prompts(territories);
 
         this.actions.clear();
@@ -208,37 +208,44 @@ public class Player implements Serializable {
             //take the action first
             //------------------------
             String action = sc.nextLine();
-            //if (!validate_helper.InputFormat_Validate(action)) return false;
             if (action.equals("D")) break;
             if(action.equals("T")){
                 this.actions.add(new Action(action));
                 continue;
             }
+            if(action.equals("Q")){
+                this.actions.add(new Action(action));
+                continue;
+            }
+            if(action.equals("P")){
+                this.actions.add(new Action(action));
+                continue;
+            }
+            if(action.equals("L")){
+                int playerId=Integer.parseInt(sc.nextLine());
+                this.actions.add(new Action(action,playerId));
+                continue;
+            }
             //------------------------
             //take the first territory
-            String src=this.chooseFirstTerritory(sc,territories);
-            if(src.equals("")) return false;
-
+            String src=sc.nextLine();
             //if it is upgrade unit command
             if(action.equals("U")){
                 ArrayList<Unit> toUpgrade=updateCertainlevelSoldier(sc,territories,src);
                 System.out.println("Select the level you want to upgrade to");
                 String curr=sc.nextLine();
-                if(!validate_helper.InputNumber_Validate(curr)) return false;
                 int desLevel=Integer.parseInt(curr);
                 actions.add(new Action(action,src,toUpgrade,desLevel));
                 continue;
             }
             //it is attack/move command
             ArrayList<Unit> toAssign=assignSoldiers(sc,territories,src);
-            if(toAssign==null) return false;
+
             //------------------------
             //take the second territory
-            String des = this.chooseSecondTerritory(sc,territories,action);
-            if(des.equals("")) return false;
+            String des = sc.nextLine();
             this.actions.add(new Action(action,src,des,toAssign));
         }
-        return true;
     }
 
 
