@@ -18,7 +18,7 @@
             <children>
                 <Button fx:id="move" mnemonicParsing="false" onAction="#MoveStage" prefHeight="40.0" prefWidth="100.0" text="Move">
                <HBox.margin>
-                  <Insets bottom="10.0" />
+                  <Insets />
                </HBox.margin></Button>
                 <Region prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
                 <Button fx:id="attack" mnemonicParsing="false" onAction="#AttackStage" prefHeight="40.0" prefWidth="100.0" text="Attack">
@@ -45,9 +45,9 @@
                 <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
             </padding>
         </HBox>
-        <TextArea fx:id="playerInfo" editable="false" layoutX="653.0" layoutY="49.0" prefHeight="137.0" prefWidth="332.0" />
-        <TextArea fx:id="mapInfo" editable="false" layoutX="653.0" layoutY="199.0" prefHeight="235.0" prefWidth="332.0" />
-        <TextArea fx:id="history" editable="false" layoutX="653.0" layoutY="442.0" prefHeight="275.0" prefWidth="332.0" />
+        <TextArea fx:id="playerInfo" editable="false" layoutX="653.0" layoutY="49.0" prefHeight="131.0" prefWidth="332.0" />
+        <TextArea fx:id="mapInfo" editable="false" layoutX="653.0" layoutY="199.0" prefHeight="271.0" prefWidth="332.0" />
+        <TextArea fx:id="history" editable="false" layoutX="653.0" layoutY="474.0" prefHeight="243.0" prefWidth="332.0" />
         <Label fx:id="gameStatus" layoutX="653.0" layoutY="10.0" prefHeight="27.0" prefWidth="228.0" text="New Around" />
       <ImageView fx:id="map" fitHeight="574.0" fitWidth="619.0" layoutX="14.0" layoutY="15.0">
          <image>

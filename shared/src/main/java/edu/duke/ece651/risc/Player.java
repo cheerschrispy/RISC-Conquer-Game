@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Player implements Serializable {
+    private int playerNum;
     private int id;
     private ArrayList<Action> actions;
     public boolean isvalid = true; //for validating
@@ -19,7 +20,8 @@ public class Player implements Serializable {
     }
 
 
-    public Player(int id) {
+    public Player(int id,int playerNum) {
+        this.playerNum=playerNum;
         this.id = id;
         this.actions = new ArrayList<>();
         this.foodResources = 30;
@@ -32,6 +34,9 @@ public class Player implements Serializable {
         return this.id;
     }
 
+    public int getPlayerNum(){
+        return this.playerNum;
+    }
     //upgrade tech
     public void upgrade(){
         this.techResources -= costs[techLevel];

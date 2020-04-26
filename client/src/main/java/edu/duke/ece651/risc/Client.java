@@ -129,7 +129,6 @@ public class Client extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.window = primaryStage;
         //this.territories=createTerritories();
-        this.player=new Player(0);
 
         connectServer();
         showMain();

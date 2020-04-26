@@ -33,7 +33,7 @@ public class InitializeController {
     private ObjectOutputStream os1;
     private ObjectInputStream is1;
 
-    private int playerNum;
+    //private int playerNum=3;
 
     //components
     @FXML private ComboBox<Integer> t1;
@@ -94,11 +94,12 @@ public class InitializeController {
         t6.getSelectionModel().select(0);
 
 
-        if(this.playerNum==3){
+        if(this.player.getPlayerNum()==3){
             t5.setDisable(true);
             t6.setDisable(true);
         }
-        if(this.playerNum==4){
+
+        if(this.player.getPlayerNum()==4){
             t4.setDisable(true);
             t5.setDisable(true);
             t6.setDisable(true);

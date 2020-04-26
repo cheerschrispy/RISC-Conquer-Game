@@ -9,28 +9,23 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.duke.ece651.risc.upgradeController">
     <children>
-        <TextArea layoutX="18.0" layoutY="629.0" prefHeight="109.0" prefWidth="612.0">
-            <padding>
-                <Insets left="10.0" />
-            </padding>
-        </TextArea>
-        <TextArea fx:id="playerInfo" layoutX="651.0" layoutY="51.0" prefHeight="141.0" prefWidth="336.0" />
-        <TextArea fx:id="mapInfo" layoutX="650.0" layoutY="208.0" prefHeight="164.0" prefWidth="336.0" />
+        <TextArea fx:id="playerInfo" editable="false" layoutX="651.0" layoutY="51.0" prefHeight="141.0" prefWidth="336.0" />
+        <TextArea fx:id="mapInfo" editable="false" layoutX="650.0" layoutY="208.0" prefHeight="381.0" prefWidth="336.0" />
         <Label layoutX="647.0" layoutY="28.0" prefHeight="17.0" prefWidth="421.0" text="New Around" />
-        <ComboBox fx:id="source" layoutX="713.0" layoutY="400.0" prefHeight="40.0" prefWidth="109.0" />
+        <ComboBox fx:id="source" layoutX="76.0" layoutY="669.0" prefHeight="40.0" prefWidth="109.0" />
       <ImageView fx:id="map" fitHeight="574.0" fitWidth="619.0" layoutX="14.0" layoutY="14.0">
          <image>
             <Image url="@../../../../../../../../out/production/client/edu/duke/ece651/risc/map.jpg" />
          </image>
       </ImageView>
-        <Label layoutX="651.0" layoutY="405.0" text="Territory" />
-        <ComboBox fx:id="num" layoutX="725.0" layoutY="510.0" prefHeight="40.0" prefWidth="75.0" />
-        <ComboBox fx:id="destLevel" layoutX="907.0" layoutY="510.0" prefHeight="40.0" prefWidth="75.0" />
-        <ComboBox fx:id="srcLevel" layoutX="908.0" layoutY="400.0" prefHeight="40.0" prefWidth="75.0" />
-        <Button fx:id="done" layoutX="880.0" layoutY="684.0" mnemonicParsing="false" onAction="#finishUpgradeAction" prefHeight="40.0" prefWidth="100.0" text="Done" />
-        <Label layoutX="839.0" layoutY="405.0" text="Src Level" />
-        <Label layoutX="818.0" layoutY="515.0" text="Des Level" />
-        <Label layoutX="663.0" layoutY="515.0" text="Num" />
+        <Label layoutX="14.0" layoutY="674.0" text="Territory" />
+        <ComboBox fx:id="num" layoutX="645.0" layoutY="664.0" prefHeight="40.0" prefWidth="75.0" />
+        <ComboBox fx:id="destLevel" layoutX="476.0" layoutY="666.0" prefHeight="40.0" prefWidth="75.0" />
+        <ComboBox fx:id="srcLevel" layoutX="279.0" layoutY="669.0" prefHeight="40.0" prefWidth="75.0" />
+        <Button fx:id="done" layoutX="849.0" layoutY="664.0" mnemonicParsing="false" onAction="#finishUpgradeAction" prefHeight="40.0" prefWidth="100.0" text="Done" />
+        <Label layoutX="210.0" layoutY="674.0" text="Src Level" />
+        <Label layoutX="402.0" layoutY="676.0" text="Des Level" />
+        <Label layoutX="594.0" layoutY="674.0" text="Num" />
       <Button fx:id="Map10" layoutX="213.0" layoutY="148.0" mnemonicParsing="false" onAction="#showMapInfo_10" text="T10" />
       <Button fx:id="Map1" layoutX="171.0" layoutY="74.0" mnemonicParsing="false" onAction="#showMapInfo_1" text="T1" />
       <Button fx:id="Map6" layoutX="281.0" layoutY="290.0" mnemonicParsing="false" onAction="#showMapInfo_6" text="T6" />

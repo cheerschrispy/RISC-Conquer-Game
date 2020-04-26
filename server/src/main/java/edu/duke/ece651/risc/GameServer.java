@@ -256,7 +256,7 @@ public class GameServer extends Thread {
 
     private void createPlayers() {
         for (int i = 0; i < player_num; i++) {
-            Player player = new Player(i);
+            Player player = new Player(i, player_num);
             players[i] = player;
         }
     }

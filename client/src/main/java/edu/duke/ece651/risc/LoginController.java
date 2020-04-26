@@ -78,8 +78,7 @@ public class LoginController {
         os1.reset();
         //valid or not
         if (!(boolean) is1.readObject()){
-            prompt.setText("Wrong Username/Password! Type Again");
-            cancel();
+            endPop("Wrong password");
             //todo:disconnect
             this.window.close();
 
@@ -152,4 +151,30 @@ public class LoginController {
         this.sender = new Sender(cos, player.getId());
 
     }
+    private void endPop(String information){
+        Stage window = new Stage();
+        //int status=0;
+
+        //Block events to other windows
+        window.initModality(Modality.APPLICATION_MODAL);
+        //window.setTitle("RISC");
+        window.setMinWidth(250);
+
+        Label label = new Label();
+        label.setText(information);
+
+        Button quitButton =new Button(("Quit"));
+        quitButton.setOnAction(e -> window.close());
+
+        VBox layout = new VBox(10);
+        layout.getChildren().addAll(label, quitButton);
+        layout.setAlignment(Pos.TOP_CENTER);
+
+
+        //Display window and wait for it to be closed before returning
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.showAndWait();
+    }
+
 }

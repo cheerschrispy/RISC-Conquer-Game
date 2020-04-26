@@ -3,15 +3,42 @@ package edu.duke.ece651.risc;
 import java.util.*;
 
 public class ForcePair {
+
   // Constructor: Auto sort the taken in soldiers array
   public ForcePair(int o, ArrayList<Unit> s) {
     this.owner = o;
     this.soldiers = sortByBonus(s);
+    this.isCombinedForce = false;
   }
-  
+
   // Check if there is no soldier left
   public boolean isLost() {
-    return soldiers.isEmpty();
+
+    if(!this.soldiers.isEmpty()) { // If me is not empty, don't care friend
+      return false;
+    }
+
+    if(this.isCombinedForce) { // If I lost, my friend take over
+      this.owner = this.friend;
+      this.soldiers = this.friendSoldiers;
+      this.isCombinedForce = false;
+      return false;
+    }
+
+    return true; // I am empty and have no friend, lost
+
+  }
+
+  public boolean isACombinedForce() {
+    return this.isCombinedForce;
+  }
+
+  public int getFriend() {
+    return this.friend;
+  }
+
+  public ArrayList<Unit> getFriendSoldiers() {
+    return this.friendSoldiers;
   }
 
   public int getOwner() {
@@ -33,12 +60,23 @@ public class ForcePair {
   public int getHighestSoldier() {
     return this.soldiers.size() - 1;
   }
+
+  public void combine(ForcePair rhs) { // Combine two forces
+    this.isCombinedForce = true;
+    this.friend = rhs.getOwner();
+    this.friendSoldiers = rhs.getSoldiers();
+  }
+
   public void dieByID(int id) {
     this.soldiers.remove(id);
   }
 
   private int owner;
   private ArrayList<Unit> soldiers;
+
+  private boolean isCombinedForce;
+  private int friend;
+  private ArrayList<Unit> friendSoldiers;
 
   // Just as is named
   private ArrayList<Unit> sortByBonus(ArrayList<Unit> originalList) {
@@ -68,5 +106,8 @@ public class ForcePair {
     return out;
 
   }
+
+
+
 
 }

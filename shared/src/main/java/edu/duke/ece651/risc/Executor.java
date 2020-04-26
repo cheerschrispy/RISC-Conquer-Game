@@ -5,6 +5,10 @@ import java.util.*;
 
 public class Executor {
 
+    private boolean isAlliance(ForcePair attacker, Set<Integer> set) {
+        return set.contains(attacker.getOwner());
+    }
+
     private ForcePair selectAttacker(Map<Integer, ArrayList<Unit>> attackSquads) {
 
         Integer[] keyArray = attackSquads.keySet().toArray(new Integer[0]); // Store all keys in an array
@@ -14,8 +18,8 @@ public class Executor {
         int rand_index = rand.nextInt(keyArray.length);
         int squad_id = keyArray[rand_index];
         ArrayList<Unit> soldierList = attackSquads.remove(squad_id); // Remove from attackSquads
-        // System.out.println("Selecting attacker ... Squad " + squad_id 
-        //                                        + "! (" + soldier_num + " soldiers)");
+        // System.out.println("Selecting attacker ... Squad " + squad_id
+        // + "! (" + soldier_num + " soldiers)");
 
         ForcePair out = new ForcePair(squad_id, soldierList);
 
@@ -30,13 +34,18 @@ public class Executor {
 
     private void assertDomination(ForcePair survivor, Territory terr) {
 
-        // System.out.println(terr.getName() + "'s new owner is " + survivor.getOwner() + 
+        // System.out.println(terr.getName() + "'s new owner is " + survivor.getOwner() +
         //                            " with " + survivor.getSoldier() + " soldiers");
         terr.setOwner(survivor.getOwner());
         terr.setSoldiers(survivor.getSoldiers());
+
+        if(survivor.isACombinedForce()) {   // If survivor is a combined force, let friend stay in the hotel
+            terr.getAllies().put(survivor.getFriend(), survivor.getFriendSoldiers());
+        }
     }
 
-    public void attack(Map<String, Map<Integer, ArrayList<Unit>>> attacks, Map<String, Territory> territories, Player[] players) {
+    public void attack(Map<String, Map<Integer, ArrayList<Unit>>> attacks, Map<String, Territory> territories,
+                       Player[] players) {
 
         Set<String> battleFields = attacks.keySet(); // Get the names of all lands
 
@@ -54,12 +63,16 @@ public class Executor {
             // Loop until one survivor
             while (!attackSquads.isEmpty()) {
                 attacker = selectAttacker(attackSquads); // Select and remove a attacker from attackSquads
+                if (isAlliance(attacker, players[defender.getOwner()].getAlliances())) { // If allicance attack each other, form a combined force
+                    defender.combine(attacker);
+                    continue; // skip this iteration
+                }
                 Arena currArena = new Arena(attacker, defender);
                 defender = currArena.run(); // One that survive become new defender
             }
 
             // If the origin owner lost its control, allies come to "help"
-            if(defender.getOwner() != currTerr.getOwner()) {
+            if (defender.getOwner() != currTerr.getOwner()) {
                 attackSquads = currTerr.getAllies();
                 while (!attackSquads.isEmpty()) {
                     attacker = selectAttacker(attackSquads); // Select and remove a attacker from attackSquads

@@ -26,7 +26,7 @@ public class mainController {
     //--private fields--
     //----------------
     private int status;
-    private int playerNum = 3;
+    //private int playerNum;
     //private Map<String, Territory> territories;
     private Player player;
     private Map<String, Territory> territories;
@@ -91,6 +91,7 @@ public class mainController {
         //this.receiver = receiver;
         this.sender = sender;
         this.language=1;
+        //this.playerNum=playerNum;
     }
     //from subWindows to mainWindow
     public mainController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc, ObjectOutputStream os,
@@ -113,7 +114,7 @@ public class mainController {
     @FXML
     public void initialize(){
         ObservableList<Integer> users = FXCollections.observableArrayList();
-        for(int i=0;i<playerNum;i++){
+        for(int i=0;i<this.player.getPlayerNum();i++){
             if(i!=player.getId()){
                 users.add(i);
             }
@@ -188,6 +189,8 @@ public class mainController {
         //todo: parse in target id
         int target = userSend.getValue();
         String text = chatInput.getText();
+
+        chatInput.clear();
         sender.setMsg(text, target);
         sender.start();
     }
@@ -508,7 +511,7 @@ public class mainController {
         layout.setAlignment(Pos.TOP_CENTER);
 
         //ArrayList<Button> allPlayer=new ArrayList<>();
-        for(int i=0;i<playerNum;i++){
+        for(int i=0;i<this.player.getPlayerNum();i++){
             if(player.getId()==i) continue;
             Button button =new Button(("Player "+i));
             button.setOnAction(e ->{
