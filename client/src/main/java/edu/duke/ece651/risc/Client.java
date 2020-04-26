@@ -22,7 +22,7 @@ public class Client extends Application {
     //----------------------------------------
     ///basic information
     private int gameId;
-    final int totalSoldiers = 3;
+    //final int totalSoldiers = 3;
     private Player player=null;
     private Map<String, Territory> territories=null;
 
@@ -34,8 +34,8 @@ public class Client extends Application {
     private ObjectInputStream cis=null;
 
     private Socket socket = null;
-    private Receiver receiver;
-    private Sender sender;
+    private Receiver receiver=null;
+    private Sender sender=null;
 
     //for display
     private Stage window;
@@ -77,20 +77,6 @@ public class Client extends Application {
 
     }
 
-    //todo:put into UI
-    private Map<String, Territory> initMap(Player player, Map<String, Territory> territories) throws IOException, ClassNotFoundException {
-        //fill the map in player
-        HashMap<String, Integer> init_info = new HashMap<>();
-        player.initial_game(territories, sc, totalSoldiers, init_info);
-
-        //send it to server
-        os1.writeObject(init_info);
-        os1.flush();
-        os1.reset();
-        //wait server send back completed map
-        territories = (Map<String, Territory>) is1.readObject();
-        return territories;
-    }
     //--------------------------------------------
     //----------------Initialize Game-------------
     //--------------------------------------------
@@ -122,7 +108,7 @@ public class Client extends Application {
         mainRoot.setControllerFactory(c -> {
             try {
                 return new LoginController(this.window,this.player,this.territories,this.sc,this.os1,this.is1,
-                        this.savedText, this.sender);
+                        this.savedText, this.sender,this.gameId,this.cis,this.cos,this.receiver);
             } catch (IOException e) {
                 e.printStackTrace();
             }

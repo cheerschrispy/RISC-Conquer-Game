@@ -16,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,10 +41,16 @@ public class LoginController {
     private Stage window;
     private ObjectOutputStream os1;
     private ObjectInputStream is1;
+    private ObjectOutputStream cos;
+    private ObjectInputStream cis;
+    private int gameId;
+    private Receiver receiver;
+
+
 
     public LoginController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc,
                            ObjectOutputStream os, ObjectInputStream is, savedText savedText,
-                           Sender sender) throws IOException {
+                           Sender sender,int gameId,ObjectInputStream cis,ObjectOutputStream cos,Receiver receiver) throws IOException {
         this.window = windows;
         this.player = player;
         this.territories = territories;
@@ -54,11 +61,16 @@ public class LoginController {
         this.savedText=savedText;
         //this.receiver = receiver;
         this.sender = sender;
+        this.gameId= gameId;
+        this.cis= cis;
+        this.cos= cos;
+        this.receiver=receiver;
     }
 
 
     private boolean authenticate() throws IOException, ClassNotFoundException {
         //set username & password
+        System.out.println(username.getText()+ password.getText());
         Credential credential = new Credential(username.getText(), password.getText());
         //send username & password
         os1.writeObject(credential);
@@ -71,18 +83,15 @@ public class LoginController {
     public void goToMainPage() throws IOException, ClassNotFoundException {
         //authenticate
 
-        if(!authenticate()) {
+        if(authenticate()) {
             prompt.setText("Wrong Username/Password! Type Again");
             cancel();
             return;
         }
-        //receive info
-        this.player = (Player) is1.readObject();
-        System.out.println("recevied player");
-        //receive map to be completed
-        this.territories = (Map<String, Territory>) is1.readObject();
-        System.out.println("recevied t");
 
+
+
+        InitializeGame();
         //if the users is true, jump tp next page
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Initialize.fxml"));
         MainRoot.setControllerFactory(c->{
@@ -106,5 +115,25 @@ public class LoginController {
     public void cancel(){
         this.username.clear();
         this.password.clear();
+    }
+
+    private void InitializeGame() throws IOException, ClassNotFoundException {
+
+        //receive info
+        this.player = (Player) is1.readObject();
+        System.out.println("recevied player");
+        //receive map to be completed
+        this.territories = (Map<String, Territory>) is1.readObject();
+        System.out.println("recevied t");
+
+        //connect to Chat Server
+        Socket chattingSocket = new Socket("localhost", 7999 - gameId);
+        System.out.println("Connected to Chat Server");
+        this.cos = new ObjectOutputStream(chattingSocket.getOutputStream());
+        this. cis = new ObjectInputStream(chattingSocket.getInputStream());
+        this.receiver = new Receiver(cis, player.getId(), savedText);
+        receiver.start();
+        this.sender = new Sender(cos, player.getId());
+
     }
 }

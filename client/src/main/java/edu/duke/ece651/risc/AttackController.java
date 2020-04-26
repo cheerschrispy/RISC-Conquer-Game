@@ -90,14 +90,17 @@ public class AttackController {
         l6.getSelectionModel().select(0);
 
         Set<Integer> alliances = player.getAlliances();
-        alliances.add(player.getId());
         ObservableList<String> s = FXCollections.observableArrayList();
         ObservableList<String> d = FXCollections.observableArrayList();
 
         for(String key: territories.keySet()){
             Territory t = territories.get(key);
-            if(alliances.contains(t.getOwner())){
+            if(t.getOwner() == player.getId()){
                 s.add(key);
+            }
+            else if (alliances.contains(t.getOwner())){
+                s.add(key);
+                d.add(key);
             }
             else{
                 d.add(key);

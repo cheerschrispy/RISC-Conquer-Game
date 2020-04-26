@@ -100,7 +100,7 @@ public class GameServer extends Thread {
     //receive player & send territories to each player
     private void play(Socket[] clients) throws InterruptedException, IOException {
         Receiver[] receivers = new Receiver[player_num];
-        while (executor.checkWin(territories) != -1) {
+        while (executor.checkWin(territories) == -1) {
             //players = new ArrayList<>();
             System.out.println("new around");
             for (int i = 0; i < player_num; i++) {
@@ -203,25 +203,25 @@ public class GameServer extends Thread {
     public void createTerritories() {
         int n = 12/player_num;
         for (int i = 1; i < 13; i++) {
-            String tName = "t" + i;
+            String tName = "T" + i;
             Territory t = new Territory(tName, (i-1)/n);
             territories.put(tName, t);
         }
-        connect("t1", "t5");
-        connect("t1", "t10");
-        connect("t2", "t5");
-        connect("t2", "t3");
-        connect("t3", "t4");
-        connect("t4", "t6");
-        connect("t5", "t6");
-        connect("t6", "t7");
-        connect("t6", "t9");
-        connect("t7", "t8");
-        connect("t7", "t11");
-        connect("t7", "t12");
-        connect("t8", "t9");
-        connect("t10", "t11");
-        connect("t11", "t12");
+        connect("T1", "T5");
+        connect("T1", "T10");
+        connect("T2", "T5");
+        connect("T2", "T3");
+        connect("T3", "T4");
+        connect("T4", "T6");
+        connect("T5", "T6");
+        connect("T6", "T7");
+        connect("T6", "T9");
+        connect("T7", "T8");
+        connect("T7", "T11");
+        connect("T7", "T12");
+        connect("T8", "T9");
+        connect("T10", "T11");
+        connect("T11", "T12");
     }
 
     private void connect(String t1, String t2) {

@@ -189,7 +189,7 @@ public class mainController {
             BufferedWriter bw1;
             try {
                 bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("./history"+player.getId()+".txt"),this.sameAround)));
-                bw1.write("Alliance"+"\n");
+                bw1.write("L"+"\n");
                 bw1.write(result+"\n");
                 bw1.close();
             } catch (IOException ex) {
@@ -240,7 +240,7 @@ public class mainController {
             BufferedWriter bw1;
             try {
                 bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("./history"+player.getId()+".txt"),this.sameAround)));
-                bw1.write("TechSpeedUp"+"\n");
+                bw1.write("P"+"\n");
                 bw1.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -260,7 +260,7 @@ public class mainController {
             BufferedWriter bw1;
             try {
                 bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File("./history"+player.getId()+".txt"),this.sameAround)));
-                bw1.write("FoodSpeedUp"+"\n");
+                bw1.write("Q"+"\n");
                 bw1.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -346,6 +346,7 @@ public class mainController {
                 //if  current player does not lose
                 if (!endHelper.singlePlayerFail(this.territories, this.player.getId())) {
                     this.gameStatus.setText("Status: Please Choose Your Action");
+                    jumpToMain();
                     return;
                 }
                 else {
@@ -363,7 +364,15 @@ public class mainController {
         //else , it is not valid
         System.out.println("Collision! Choose Action Again");
         endPop("Collisions In Your Input!");
+        jumpToMain();
+    }
 
+
+    //-------------------------
+    //----helper function------
+    //------------------------
+
+    private void jumpToMain() throws IOException {
         //display again
         this.savedText.clearActionHistoryC();
         this.savedText.clearActionHistoryE();
@@ -380,11 +389,6 @@ public class mainController {
                         .toExternalForm());
         this.windows.show();
     }
-
-
-    //-------------------------
-    //----helper function------
-    //------------------------
 
     private void endPop(String information){
         Stage window = new Stage();
