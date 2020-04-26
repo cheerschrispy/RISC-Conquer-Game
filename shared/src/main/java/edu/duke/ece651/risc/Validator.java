@@ -40,14 +40,14 @@ public class Validator {
     public boolean InputOnwer_Validate(Player player, String input,Map<String, Territory> territories){
         //check if the selected territory is player's own one
         for(String name : territories.keySet()){
-           if(name.equals(input)){
-               Territory t=territories.get(input);
-               if(t.getOwner()==player.getId()) return true;
-               else{
-                   System.out.println("It is NOT your territory, please choose again");
-               }
-               return false;
-           }
+            if(name.equals(input)){
+                Territory t=territories.get(input);
+                if(t.getOwner()==player.getId()) return true;
+                else{
+                    System.out.println("It is NOT your territory, please choose again");
+                }
+                return false;
+            }
         }
         System.out.println("Your input is not valid territory name");
         return false;
@@ -103,6 +103,19 @@ public class Validator {
                     break;
                 case "A":
                     //it is Attack command
+                    Territory d = territories.get(dest);
+                    if(player.getAlliances().contains(d.getOwner())){
+                        if(player.getActions().size() != 0){
+                            player.isvalid = false;
+                            System.out.println("You can only have one action in this situation");
+                            return false;
+                        }
+                        if(territories.get(src).getOwner() != player.getId()){
+                            player.isvalid = false;
+                            System.out.println("You can only break alliances from your territory");
+                            return false;
+                        }
+                    }
                     if (!this.findEnemy(src, dest, territories)) {
                         player.isvalid = false;
                         System.out.println("cannot find enemy");
@@ -234,6 +247,9 @@ public class Validator {
         Queue<Territory> q = new LinkedList<>();
         HashSet<Territory> visited = new HashSet<>();
         Territory start = territories.get(src);
+
+        Set<Integer> alliances = player.getAlliances();
+        alliances.add(player.getId());
         int step = 0;
         q.offer(start);
         visited.add(start);
@@ -241,11 +257,9 @@ public class Validator {
         while(!q.isEmpty()){
             Territory curr = q.peek();
             q.poll();
-            step+=curr.getSize();
+            step += curr.getSize();
             for(Territory t : curr.getNeighbors()){
                 if(!visited.contains(t)){
-                    Set<Integer> alliances = player.getAlliances();
-                    alliances.add(player.getId());
                     if(alliances.contains(t.getOwner())) {
                         q.offer(t);
                         visited.add(t);

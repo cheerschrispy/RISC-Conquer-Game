@@ -44,9 +44,9 @@ public class Executor {
         for (String currBFD : battleFields) { // For each current battle field
             // System.out.println("Current battle field is: " + currBFD + "!");
             Map<Integer, ArrayList<Unit>> attackSquads = attacks.get(currBFD); // Get the attack squads
-            Territory currTerr = territories.get(currBFD);                // Get the current territory
-            // System.out.println(currBFD + " is owned by: " + currTerr.getOwner() 
-            //                             + " with " + currTerr.getNum() + " soldiers.");
+            Territory currTerr = territories.get(currBFD); // Get the current territory
+            // System.out.println(currBFD + " is owned by: " + currTerr.getOwner()
+            // + " with " + currTerr.getNum() + " soldiers.");
             ForcePair attacker;
             ForcePair defender;
 
@@ -57,10 +57,28 @@ public class Executor {
                 Arena currArena = new Arena(attacker, defender);
                 defender = currArena.run(); // One that survive become new defender
             }
+
+            // If the origin owner lost its control, allies come to "help"
+            if(defender.getOwner() != currTerr.getOwner()) {
+                attackSquads = currTerr.getAllies();
+                while (!attackSquads.isEmpty()) {
+                    attacker = selectAttacker(attackSquads); // Select and remove a attacker from attackSquads
+                    Arena currArena = new Arena(attacker, defender);
+                    defender = currArena.run(); // One that survive become new defender
+                }
+
+                // No allies any more
+                for (Map.Entry<Integer, ArrayList<Unit>> entry : currTerr.getAllies().entrySet()) {
+                    currTerr.getAllies().put(entry.getKey(), new ArrayList<>());
+                }
+            }
+
             assertDomination(defender, currTerr); // Write combat result in currTerr
         }
 
     }
+
+
 
     //execution starts here
     public void execute(Player[] players, Map<String, Territory> territories) {
