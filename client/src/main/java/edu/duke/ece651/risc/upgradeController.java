@@ -25,6 +25,7 @@ public class upgradeController {
     private Boolean sameAround;
     private savedText savedText;
     private int language;
+    private Sender sender;
 
     private Stage windows;
     @FXML private ImageView map;
@@ -54,7 +55,7 @@ public class upgradeController {
 
 
     public upgradeController(Stage windows,Player player, Map<String, Territory> territories,Scanner sc,
-                             ObjectOutputStream os, ObjectInputStream is,Boolean sameAround,savedText savedText){
+                             ObjectOutputStream os, ObjectInputStream is,Boolean sameAround,savedText savedText,int language, Sender sender){
         this.windows=windows;
         this.player=player;
         this.territories=territories;
@@ -63,17 +64,28 @@ public class upgradeController {
         this.is=is;
         this.sameAround=sameAround;
         this.savedText= savedText;
+        this.language=language;
+        this.sender=sender;
     }
 
     @FXML
     public void initialize(){
         Image mapImage=new Image("file:./map.jpg");
         map.setImage(mapImage);
-        String pInfo = "Hi, welcome player " + player.getId() + ".\r\n" +
-                "Now you are in TECHNIQUE level " + player.getTechLevel() + ".\r\n" +
-                "You have " + player.getFoodResources() + " food resources.\r\n" +
-                "You have " + player.getTechResources() + " tech resources.\r\n";
-        playerInfo.setText(pInfo);
+        if (this.language == 1){
+            TextPrinter t1 = new EngTextPrinter();
+            String s = t1.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            playerInfo.setText(s);
+            mapInfo.clear();
+        }
+        else{
+            TextPrinter t2 = new ChiTextPrinter();
+            String s = t2.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            playerInfo.setText(s);
+            mapInfo.clear();
+        }
+
+
 
         ObservableList<Integer> options= FXCollections.observableArrayList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25);
         ObservableList<Integer> levels = FXCollections.observableArrayList(0, 1, 2, 3, 4, 5, 6);
@@ -127,7 +139,7 @@ public class upgradeController {
 
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
         MainRoot.setControllerFactory(c-> new mainController(this.windows,this.player, this.territories,this.sc,this.os,this.is,this.sameAround,
-        this. savedText));
+        this. savedText,this.sender,this.language));
         Scene nextScene=new Scene(MainRoot.load());
         this.windows.setScene(nextScene);
         nextScene.getStylesheets().add(

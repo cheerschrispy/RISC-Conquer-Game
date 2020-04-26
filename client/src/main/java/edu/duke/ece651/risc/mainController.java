@@ -1,10 +1,13 @@
 package edu.duke.ece651.risc;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -34,12 +37,12 @@ public class mainController {
     private ObjectOutputStream os1;
     private ObjectInputStream is1;
     private savedText savedText;
-    private Receiver receiver;
+    //private Receiver receiver;
     private Sender sender;
-    private int language = 1;
+    private int language;
 
     private boolean sameAround;
-
+    @FXML private ComboBox<Integer> userSend;
 
     @FXML private Label gameStatus;
     @FXML private Button attack;
@@ -78,7 +81,7 @@ public class mainController {
     //------------------
     //from mainWindow to subWindows
     public mainController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc, ObjectOutputStream os,
-                          ObjectInputStream is,savedText savedText, Receiver receiver, Sender sender){//todo: sender) {
+                          ObjectInputStream is,savedText savedText, Sender sender){//todo: sender) {
         this.windows=windows;
         this.player=player;
         this.territories=territories;
@@ -88,12 +91,13 @@ public class mainController {
         //append or override the history file
         this.sameAround=false;
         this.savedText=savedText;
-        this.receiver = receiver;
+        //this.receiver = receiver;
         this.sender = sender;
+        this.language=1;
     }
     //from subWindows to mainWindow
     public mainController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc, ObjectOutputStream os,
-                          ObjectInputStream is,Boolean sameAround,savedText savedText) {
+                          ObjectInputStream is,Boolean sameAround,savedText savedText,Sender sender,int language) {
         this.windows = windows;
         this.player = player;
         this.territories = territories;
@@ -103,35 +107,49 @@ public class mainController {
         //append or override the history file
         this.sameAround = sameAround;
         this.savedText=savedText;
+        this.language=language;
+        this.sender=sender;
     }
     //------------------
     //----function------
     //------------------
     @FXML
     public void initialize(){
-        /*
-        String s = "Hi, welcome player " + player.getId() + ".\r\n" +
-                "Now you are in TECHNIQUE level " + player.getTechLevel() + ".\r\n\n" +
-                "You have " + player.getFoodResources() + " food resources.\r\n" +
-                "You have " + player.getTechResources() + " tech resources.\r\n" +
-                "You current food production speed is " + player.getFoodSpeed() + ".\r\n" +
-                "You current technology production speed is " + player.getTechSpeed() + ".\r\n";
-        playerInfo.setText(s);
-        */
+        ObservableList<Integer> users = FXCollections.observableArrayList();
+        for(int i=0;i<playerNum;i++){
+            if(i!=player.getId()){
+                users.add(i);
+            }
+        }
+        userSend.setItems(users);
+        userSend.getSelectionModel().select(0);
+
+
         //this.savedText.clearActionHistory();
         history.setText(this.savedText.getActionHistoryE());
         Image mapImage=new Image("file:./map.jpg");
         map.setImage(mapImage);
 
         //receiver.start();
-        TextPrinter t1 = new EngTextPrinter();
-        String s = t1.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
-        playerInfo.setText(s);
+        if (this.language == 1){
+            TextPrinter t1 = new EngTextPrinter();
+            String s = t1.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            playerInfo.setText(s);
+            history.setText(savedText.getActionHistoryE());
+            mapInfo.clear();
+        }
+        else{
+            TextPrinter t2 = new ChiTextPrinter();
+            String s = t2.appendPlayerInfo(player.getId(), player.getTechLevel(), player.getFoodResources(), player.getTechResources());
+            playerInfo.setText(s);
+            history.setText(savedText.getActionHistoryC());
+            mapInfo.clear();
+        }
     }
 
     public void changeLanguage(){
         this.language = (this.language + 1) % 2;
-        //Player Information
+
         if(this.language == 0){
             //Player Information
             TextPrinter t1 = new ChiTextPrinter();
@@ -157,12 +175,14 @@ public class mainController {
 
     public void send() {
         //todo: parse in target id
-        int target = 0;
+        int target = userSend.getValue();
         String text = chatInput.getText();
         sender.setMsg(text, target);
         sender.start();
     }
-
+    public void recv(){
+        chatOutput.setText(this.savedText.getChattingHistory());
+    }
     public void alliancePop(){
         int result = chooseAlliance("Choose the player");
         if(result!=-1){
@@ -264,7 +284,7 @@ public class mainController {
 
         FXMLLoader Root = new FXMLLoader(getClass().getResource("Attack.fxml"));
         Root.setControllerFactory(c-> new AttackController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,this.sameAround,
-                this.savedText));
+                this.savedText,this.language,this.sender));
         Scene nextScene = new Scene(Root.load());
         nextScene.getStylesheets().add(
                 getClass().getResource("MainStyle.css")
@@ -276,7 +296,7 @@ public class mainController {
     public void MoveStage() throws IOException {
         FXMLLoader Root = new FXMLLoader(getClass().getResource("Move.fxml"));
         Root.setControllerFactory(c-> new MoveController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,this.sameAround,
-                this.savedText));
+                this.savedText,this.language,this.sender));
         Scene nextScene = new Scene(Root.load());
         nextScene.getStylesheets().add(
                 getClass().getResource("MainStyle.css")
@@ -351,7 +371,7 @@ public class mainController {
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
         MainRoot.setControllerFactory(c->{
             return new mainController(this.windows,this.player,this.territories,this.sc,this.os1,this.is1,
-                    this.savedText, this.receiver, this.sender);
+                    this.savedText, this.sender);
         });
         Scene nextScene=new Scene(MainRoot.load());
         this.windows.setScene(nextScene);
@@ -499,7 +519,7 @@ public class mainController {
     private void UpgradeUnitStage() throws IOException {
         FXMLLoader Root = new FXMLLoader(getClass().getResource("Upgrade.fxml"));
         Root.setControllerFactory(c-> new upgradeController(this.windows,this.player, this. territories,this.sc,this.os1,this.is1,this.sameAround,
-                this.savedText));
+                this.savedText,this.language,this.sender));
         Scene nextScene = new Scene(Root.load());
         nextScene.getStylesheets().add(
                 getClass().getResource("MainStyle.css")

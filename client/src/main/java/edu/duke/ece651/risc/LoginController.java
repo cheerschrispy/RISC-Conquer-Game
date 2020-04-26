@@ -25,16 +25,16 @@ public class LoginController {
 
     @FXML private TextField username;
     @FXML private TextField password;
+    @FXML private Label prompt;
 
     //All fields
     private Map<String, Territory> territories;
     private Player player;
     private Scanner sc;
-    private Boolean sameAround;
     private ObjectOutputStream os;
     private ObjectInputStream is;
     private savedText savedText;
-    private Receiver receiver;
+    //private Receiver receiver;
     private Sender sender;
     //current windows
     private Stage window;
@@ -42,7 +42,8 @@ public class LoginController {
     private ObjectInputStream is1;
 
     public LoginController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc,
-                           ObjectOutputStream os, ObjectInputStream is, Boolean sameAround, savedText savedText, Receiver receiver, Sender sender) throws IOException {
+                           ObjectOutputStream os, ObjectInputStream is, savedText savedText,
+                           Sender sender) throws IOException {
         this.window = windows;
         this.player = player;
         this.territories = territories;
@@ -50,17 +51,48 @@ public class LoginController {
         this.is1 = is;
         this.os1 = os;
         //append or override the history file
-        this.sameAround = sameAround;
         this.savedText=savedText;
-        this.receiver = receiver;
+        //this.receiver = receiver;
         this.sender = sender;
     }
 
-    public void goToMainPage() throws IOException {
-        FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
+
+    private boolean authenticate() throws IOException, ClassNotFoundException {
+        //set username & password
+        Credential credential = new Credential(username.getText(), password.getText());
+        //send username & password
+        os1.writeObject(credential);
+        os1.flush();
+        os1.reset();
+        //if user exists
+        return (boolean) is1.readObject();
+    }
+
+    public void goToMainPage() throws IOException, ClassNotFoundException {
+        //authenticate
+
+        if(!authenticate()) {
+            prompt.setText("Wrong Username/Password! Type Again");
+            cancel();
+            return;
+        }
+        //receive info
+        this.player = (Player) is1.readObject();
+        System.out.println("recevied player");
+        //receive map to be completed
+        this.territories = (Map<String, Territory>) is1.readObject();
+        System.out.println("recevied t");
+
+        //if the users is true, jump tp next page
+        FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Initialize.fxml"));
         MainRoot.setControllerFactory(c->{
-            return new mainController(this.window,this.player,this.territories,this.sc,this.os1,this.is1,
-                    this.savedText, this.receiver, this.sender);
+            try {
+                return new InitializeController(this.window,this.player,this.territories,this.sc,this.os1,this.is1,
+                        this.savedText, this.sender);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
         });
         Scene nextScene=new Scene(MainRoot.load());
         nextScene.getStylesheets().add(
@@ -69,6 +101,7 @@ public class LoginController {
         this.window.setScene(nextScene);
         this.window.show();
     }
+
 
     public void cancel(){
         this.username.clear();

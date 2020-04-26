@@ -30,6 +30,9 @@ public class Client extends Application {
     private Scanner sc = new Scanner(System.in);
     private ObjectOutputStream os1 = null;
     private ObjectInputStream is1 = null;
+    private ObjectOutputStream cos =null;
+    private ObjectInputStream cis=null;
+
     private Socket socket = null;
     private Receiver receiver;
     private Sender sender;
@@ -57,19 +60,23 @@ public class Client extends Application {
     }
 
 
-    private void connectServer() throws IOException, ClassNotFoundException {
-        //todo: get gameId from UI
+    private void connectServer() throws IOException{
+
         System.out.println("Choose one game to play (start from 0):");
         gameId = Integer.parseInt(sc.nextLine());
         try {
             socket = new Socket("localhost", 8000 + gameId);
             System.out.println("Client Connected");
+            this.os1 = new ObjectOutputStream(socket.getOutputStream());
+            this.is1 = new ObjectInputStream(socket.getInputStream());
         } catch (ConnectException e) {
             System.out.println("Game not available, please choose another game:");
             connectServer();
             return;
         }
+
     }
+
     //todo:put into UI
     private Map<String, Territory> initMap(Player player, Map<String, Territory> territories) throws IOException, ClassNotFoundException {
         //fill the map in player
@@ -89,42 +96,33 @@ public class Client extends Application {
     //--------------------------------------------
 
     private void InitializeGame() throws IOException, ClassNotFoundException {
-        this.os1 = new ObjectOutputStream(socket.getOutputStream());
-        this.is1 = new ObjectInputStream(socket.getInputStream());
-
-        //authenticate user
-        boolean exists;
-        try {
-            exists = authenticate();
-        } catch (SocketException e) {
-            System.out.println("Authentication failed, try again");
-            connectServer();
-            return;
-        }
 
         //receive info
         this.player = (Player) is1.readObject();
+        System.out.println("recevied player");
         //receive map to be completed
         this.territories = (Map<String, Territory>) is1.readObject();
+        System.out.println("recevied t");
+
         //connect to Chat Server
-        Socket socket = new Socket("localhost", 7999 - gameId);
+        Socket chattingSocket = new Socket("localhost", 7999 - gameId);
         System.out.println("Connected to Chat Server");
-        ObjectOutputStream cos = new ObjectOutputStream(socket.getOutputStream());
-        ObjectInputStream cis = new ObjectInputStream(socket.getInputStream());
+        this.cos = new ObjectOutputStream(chattingSocket.getOutputStream());
+        this. cis = new ObjectInputStream(chattingSocket.getInputStream());
         this.receiver = new Receiver(cis, player.getId(), savedText);
+        receiver.start();
         this.sender = new Sender(cos, player.getId());
-        //initialize map if user is new
-        if (!exists) {
-            territories = initMap(player, territories);
-        }
+
     }
+
+
     //show the man page , all button function defined in controller file
     private void showMain() throws IOException {
         FXMLLoader mainRoot = new FXMLLoader(getClass().getResource("Login.fxml"));
         mainRoot.setControllerFactory(c -> {
             try {
-                return new LoginController(this.window,this.player,this.territories,this.sc,this.os1,this.is1, false,
-                        this.savedText, this.receiver, this.sender);
+                return new LoginController(this.window,this.player,this.territories,this.sc,this.os1,this.is1,
+                        this.savedText, this.sender);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -144,15 +142,17 @@ public class Client extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.window = primaryStage;
-        this.territories=createTerritories();
+        //this.territories=createTerritories();
         this.player=new Player(0);
 
-        //connectServer();
-        //InitializeGame();
+        connectServer();
         showMain();
+        //InitializeGame();
+        //showMain();
     }
 
     //for testing
+    /*
     public static Map<String, Territory>  createTerritories() {
         int player_num=2;
         Map<String, Territory> territories=new HashMap<>();
@@ -178,7 +178,7 @@ public class Client extends Application {
         t1.connect(t2);
         t2.connect(t1);
     }
-
+*/
     public static void main(String[] args) {
 
         Client client=new Client();

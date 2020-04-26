@@ -26,6 +26,7 @@ public class MoveController {
     private ObjectInputStream is;
     private savedText savedText;
     private int language;
+    private Sender sender;
 
     @FXML private TextArea mapInfo;
     @FXML private ImageView map;
@@ -127,7 +128,7 @@ public class MoveController {
     private Stage windows;
 
     public MoveController(Stage windows,Player player, Map<String, Territory> territories,Scanner sc,
-                          ObjectOutputStream os, ObjectInputStream is,Boolean sameAround,savedText savedText) {
+                          ObjectOutputStream os, ObjectInputStream is,Boolean sameAround,savedText savedText,int language,Sender sender) {
         this.windows=windows;
         this.player=player;
         this.territories=territories;
@@ -136,6 +137,8 @@ public class MoveController {
         this.is=is;
         this.sameAround=sameAround;
         this.savedText= savedText;
+        this.language=language;
+        this.sender=sender;
     }
 
     public void doneAction() throws IOException {
@@ -182,7 +185,7 @@ public class MoveController {
         System.out.println("pop Back");
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
         MainRoot.setControllerFactory(c-> new mainController(this.windows,this.player,this.territories,this.sc,this.os,this.is,this.sameAround,
-                this.savedText));
+                this.savedText,this.sender,this.language));
         Scene nextScene=new Scene(MainRoot.load());
         nextScene.getStylesheets().add(
                 getClass().getResource("MainStyle.css")

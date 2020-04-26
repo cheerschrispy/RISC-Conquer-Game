@@ -16,7 +16,7 @@ class Receiver extends Thread {
         try {
             while (true) {
                 Message msg = (Message) is.readObject();
-                savedText.addChat(msg.getContent());
+                savedText.addChat(msg.getSender()+":"+msg.getContent());
             }
         } catch (Exception e) {
             e.printStackTrace();

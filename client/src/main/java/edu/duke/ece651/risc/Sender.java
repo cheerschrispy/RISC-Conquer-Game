@@ -2,7 +2,7 @@ package edu.duke.ece651.risc;
 
 import java.io.ObjectOutputStream;
 
-class Sender extends Thread {
+class Sender {
     private ObjectOutputStream os;
     private int id;
     private int target;
@@ -15,8 +15,7 @@ class Sender extends Thread {
         this.text = text;
         this.target = target;
     }
-    @Override
-    public void run() {
+    public void start() {
         try {
             Message msg = new Message(this.text, id, this.target);
             os.writeObject(msg);

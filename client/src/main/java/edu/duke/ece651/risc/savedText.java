@@ -20,7 +20,7 @@ public class savedText {
     }
 
     public String getChattingHistory(){
-        return this.actionHistoryC;
+        return this.chattingHistory;
     }
 
     public void clearActionHistoryE(){
@@ -41,8 +41,8 @@ public class savedText {
         this.actionHistoryE += "-------------------\n";
     }
 
-    public void addChat(String action){
-        this.chattingHistory+=action;
+    public void addChat(String msg){
+        this.chattingHistory+=msg;
         this.chattingHistory+="\n";
 
     }

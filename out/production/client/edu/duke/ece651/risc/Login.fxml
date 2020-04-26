@@ -21,7 +21,7 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label fx:id="lblTitle" text="Welcome to our RISC" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+        <Label fx:id="prompt" text="Welcome to our RISC" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
         <Label text="Username: " GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
         <TextField GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
             <GridPane.margin>

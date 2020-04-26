@@ -28,10 +28,13 @@ public class AttackController {
     private ObjectInputStream is;
     private savedText savedText;
     private int language;
+    private Sender sender;
+
     //current windows
     private Stage windows;
     @FXML private TextArea mapInfo;
     @FXML private ImageView map;
+
 
 
     //all the button
@@ -133,7 +136,7 @@ public class AttackController {
 
 
     public AttackController(Stage windows, Player player, Map<String, Territory> territories, Scanner sc,
-                            ObjectOutputStream os, ObjectInputStream is,Boolean sameAround,savedText savedText) {
+                            ObjectOutputStream os, ObjectInputStream is,Boolean sameAround,savedText savedText,int language, Sender sender) {
         this.windows=windows;
         this.player=player;
         this.territories=territories;
@@ -142,6 +145,8 @@ public class AttackController {
         this.is=is;
         this.sameAround=sameAround;
         this.savedText=savedText;
+        this.language=language;
+        this.sender=sender;
     }
 
     //done button function
@@ -189,7 +194,7 @@ public class AttackController {
         this.sameAround=true;
         FXMLLoader MainRoot =new FXMLLoader(getClass().getResource("Main.fxml"));
         MainRoot.setControllerFactory(c-> new mainController(this.windows,this.player,this.territories,this.sc,this.os,this.is,this.sameAround,
-                this.savedText));
+                this.savedText,this.sender,this.language));
         Scene nextScene=new Scene(MainRoot.load());
         nextScene.getStylesheets().add(
                 getClass().getResource("MainStyle.css")
